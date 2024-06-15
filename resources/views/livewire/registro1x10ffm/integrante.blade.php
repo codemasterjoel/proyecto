@@ -8,7 +8,7 @@
             <div class="min-h-screen flex items-center justify-center">
                 <div class="p-4 w-full bg-white rounded-lg">
                     <div class="flex items-center justify-center">
-                        <img src="{{asset('img/logo.svg')}}" class="w-52">
+                        <img src="{{asset('assets/img/logo.png')}}" class="w-52">
                     </div>
                     @if(session()->has('integranteGuardado')== 'success')
                         @include('livewire.components.success')

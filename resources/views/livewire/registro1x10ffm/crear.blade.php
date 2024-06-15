@@ -17,14 +17,14 @@
             <div class="min-h-screen flex items-center justify-center">
                 <div class="max-w-md w-full bg-white rounded-lg">
                     <div class="flex items-center justify-center">
-                        <img src="{{asset('img/logo.svg')}}" class="w-52">
+                        <img src="{{asset('assets/img/logo.png')}}" class="w-52">
                     </div>
                     <h3 class="text-2xl text-cyan-400 font-semibold text-center">REGISTRAR JEFE DE 1X10</h3>
                     <form>
                         <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                             <div class="w-full rounded-lg bg-gray-500">
                                 <div class="flex">
-                                    <input wire:model="cedula" type="number" placeholder="Cedula" class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                    <input wire:model="cedula" type="number" placeholder="Cedula" class="w-full bg-white pl-2 text-base border border-r-0 border-solid border-neutral-300 font-semibold">
                                     <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                 </div>
                             </div>
