@@ -11,6 +11,9 @@
                 </ol>
             </nav>
             <div class=" navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">
+                <div class="nav-item mr-8 d-flex align-self-end">
+                    <a href="{{ route('ffm') }}" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true"><b>1x10</b></a>
+                </div>
                 <ul class="navbar-nav justify-content-end">
                     <li class="nav-item d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">

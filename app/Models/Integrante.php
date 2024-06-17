@@ -21,6 +21,6 @@ class Integrante extends Model
     }
     public function saime()
     {
-        return $this->belongsTo(saime::class);
+        return $this->belongsTo(Saime::class);
     }
 }
