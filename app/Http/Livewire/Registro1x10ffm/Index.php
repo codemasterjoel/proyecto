@@ -290,6 +290,13 @@ class Index extends Component
     }
     public function guardarIntegrante()
     {
+
+        $this->validate([
+            'cedulaIntegrante' =>'required',
+            'nombreCompletoIntegrante' =>'required',
+            'telefonoIntegrante' =>'required'
+        ]);
+
         $integrante = integrante::updateOrCreate(['id' => $this->idIntegrante],
             [
                 // 'saime_id' => $this->saime_id,

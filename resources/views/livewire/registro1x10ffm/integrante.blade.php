@@ -32,8 +32,8 @@
                                     <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                                         <div class="w-full rounded-lg bg-gray-500">
                                             <div class="flex">
-                                                <input wire:model="cedulaIntegrante" type="number"  class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                                <input wire:click="consultarIntegrante" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                                <input wire:model="cedulaIntegrante" type="number"  class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                                <input type="button" value="Cédula" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                             </div>
                                         </div>
                                     </div>
@@ -55,16 +55,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>                                    
+                                @error('cedulaIntegrante')
+                                    {{$message}}
+                                @enderror <br>
+                                @error('nombreCompletoIntegrante')
+                                    {{$message}}
+                                @enderror<br>
+                                @error('telefonoIntegrante')
+                                    {{$message}}
+                                @enderror
+                                
 
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cedula</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">nombre completo</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">telefono</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">acciones</th>
+                                            <th class="text-center text-uppercase text-gray-700 font-semibold text-xxs font-weight-bolder opacity-7">#</th>
+                                            <th class="text-center text-uppercase text-gray-700 font-semibold text-xxs font-weight-bolder opacity-7">Cedula</th>
+                                            <th class="text-center text-uppercase text-gray-700 font-semibold text-xxs font-weight-bolder opacity-7">nombre completo</th>
+                                            <th class="text-center text-uppercase text-gray-700 font-semibold text-xxs font-weight-bolder opacity-7">telefono</th>
+                                            <th class="text-center text-uppercase text-gray-700 font-semibold text-xxs font-weight-bolder opacity-7">acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
