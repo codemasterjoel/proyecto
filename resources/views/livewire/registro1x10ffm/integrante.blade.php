@@ -33,7 +33,7 @@
                                         <div class="w-full rounded-lg bg-gray-500">
                                             <div class="flex">
                                                 <input wire:model="cedulaIntegrante" type="number"  class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                                <input type="button" value="Cédula" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                                <input type="button" wire:click="consultarIntegrante" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                             </div>
                                         </div>
                                     </div>

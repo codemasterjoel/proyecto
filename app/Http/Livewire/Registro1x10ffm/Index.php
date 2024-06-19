@@ -227,7 +227,7 @@ class Index extends Component
         } else 
         {
             $elector = cne::where('cedula', '=', $this->cedula)->get();
-            if (count($elector)>0) 
+            if (count($elector)>0)
             {
                 $elector = cne::where('cedula', '=', $this->cedula)->firstOrFail();
                 $this->nombreCompleto = trim($elector->nombre1)." ".trim($elector->nombre2)." ".trim($elector->apellido1)." ".trim($elector->apellido2);
@@ -262,30 +262,19 @@ class Index extends Component
     }
     public function consultarIntegrante()
     {
-        $existeSaime = Saime::where('cedula', '=', $this->cedulaIntegrante)->get();
-        
-        if (count($existeSaime) > 0) //se encuentra registrado en la data del saime
-        {
-            // $this->existelsb2 = $existeSaime->first();
 
-            $this->saime_id = $existeSaime->first()->id;
-            $existeIntegrante = Integrante::where('saime_id', '=', $this->saime_id)->get();
+        $existeIntegrante = Integrante::where('cedula', '=', $this->cedulaIntegrante)->get();
 
-            if (count($existeIntegrante) > 0)
-            {
-                session()->flash('yaregistrado', 'success');
-                $this->limpiarCampos();
-            }
-            else 
-            {
-                $saime = Saime::where('cedula', '=', $this->cedulaIntegrante)->firstOrFail();
-                $this->nombreCompletoIntegrante = $saime->nombre1." ".$saime->nombre2." ".$saime->apellido1." ".$saime->apellido2;
-                $this->saime_id = $saime->id;
-            }
-        }else
+        if (count($existeIntegrante) > 0)
         {
-            session()->flash('noexiste', 'success');
+            session()->flash('yaregistrado', 'success');
             $this->limpiarCampos();
+        }
+        else 
+        {
+            $cne = cne::where('cedula', '=', $this->cedulaIntegrante)->firstOrFail();
+            $this->nombreCompletoIntegrante = $cne->nombre;
+            // $this->saime_id = $saime->id;
         }
     }
     public function guardarIntegrante()
