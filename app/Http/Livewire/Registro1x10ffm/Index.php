@@ -268,13 +268,17 @@ class Index extends Component
         if (count($existeIntegrante) > 0)
         {
             session()->flash('yaregistrado', 'success');
-            $this->limpiarCampos();
+            $this->cedulaIntegrante = null;
         }
         else 
         {
-            $cne = cne::where('cedula', '=', $this->cedulaIntegrante)->firstOrFail();
-            $this->nombreCompletoIntegrante = $cne->nombre;
-            // $this->saime_id = $saime->id;
+            $existecne = cne::where('cedula', '=', $this->cedulaIntegrante)->get();
+            if (count($existecne) > 0) {
+                $cne = cne::where('cedula', '=', $this->cedulaIntegrante)->firstOrFail();
+                $this->nombreCompletoIntegrante = $cne->nombre;
+            } else {
+                session()->flash('noencontrada', 'noencontrada');
+            }
         }
     }
     public function guardarIntegrante()

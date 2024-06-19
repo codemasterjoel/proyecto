@@ -19,8 +19,8 @@
                     @if(session()->has('yaregistrado')== 'success')
                         @include('livewire.components.yaregistrado')
                     @endif
-                    @if(session()->has('noexiste')== 'success')
-                        @include('livewire.components.noexiste')
+                    @if(session()->has('noencontrada')== 'noencontrada')
+                        @include('livewire.components.noencontrada')
                     @endif
                     <h3 class="text-2xl text-cyan-400 font-extrabold text-center">REGISTRAR INTEGRANTE DEL 1X10</h3>
                     <h2 class="text-2xl text-cyan-800 font-semibold text-center">{{$jefeNombreCompleto}}</h2>
@@ -66,7 +66,6 @@
                                     {{$message}}
                                 @enderror
                                 
-
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
