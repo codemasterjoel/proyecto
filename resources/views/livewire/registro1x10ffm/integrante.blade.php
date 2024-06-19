@@ -23,7 +23,7 @@
                         @include('livewire.components.noexiste')
                     @endif
                     <h3 class="text-2xl text-cyan-400 font-extrabold text-center">REGISTRAR INTEGRANTE DEL 1X10</h3>
-                    <h2 class="text-2xl text-cyan-800 font-semibold text-center">JOEL ANTONIO ZERPA GUERRERO</h2>
+                    <h2 class="text-2xl text-cyan-800 font-semibold text-center">{{$jefeNombreCompleto}}</h2>
                     {{$existelsb2}}
                     <form>
                         <div class="card-body px-0 pt-0 pb-2">

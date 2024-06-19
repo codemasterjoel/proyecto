@@ -12,7 +12,7 @@
                     </div>
                 </div>
 
-                @if(session()->has('message')== 'success')
+                @if(session()->has('success')== 'success')
                     @include('livewire.components.success')
                 @endif
                 @if(session()->has('message')== 'delete')

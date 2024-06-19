@@ -20,7 +20,7 @@ class Index extends Component
     use WithPagination;
 
     public $modal, $estado, $mostrar, $integranteModal = false;
-    public $nombreCompleto = null; //Nombres
+    public $nombreCompleto, $jefeNombreCompleto = null; //Nombres
     public $municipios  = null; // Liste de Municipios
     public $estados     = null; // Lista de estados
     public $parroquias  = null; // Lista de parroquias
@@ -194,7 +194,7 @@ class Index extends Component
                 'centro_id' => $this->centroId
         ]);
          
-         session()->flash('message', 'success');
+         session()->flash('success', 'success');
          
          $this->cerrarModal();
          $this->limpiarCampos();
@@ -211,7 +211,7 @@ class Index extends Component
         $this->integrantes = Integrante::where('jefe_id', $id)->get();
         $this->jefe_id = $id;
         $jefe_1x10 = registro1x10ffm::where('id', $id)->firstOrFail();
-        $this->nombreCompleto = $jefe_1x10->NombreCompleto;
+        $this->jefeNombreCompleto = $jefe_1x10->NombreCompleto;
         $this->abrirIntegrante();
     }
     public function consultar1()
