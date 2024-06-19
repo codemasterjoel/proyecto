@@ -24,7 +24,7 @@ Route::get('/', function() {
     return redirect('/login');
 });
 
-Route::get('/1x10ffm', ffm::class)->name('ffm');
+
 
 Route::get('/sign-up', SignUp::class)->name('sign-up');
 Route::get('/login', Login::class)->name('login');
@@ -34,6 +34,7 @@ Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-passwo
 Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/1x10ffm', ffm::class)->name('ffm');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');

@@ -15,12 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('letra');
             $table->bigInteger('cedula')->unique();
-            $table->string('apellido1');
-            $table->string('apellido2')->nullable();
-            $table->string('nombre1');
-            $table->string('nombre2')->nullable();
-            $table->date('fecha_nac');
+            $table->string('nombre');
             $table->string('genero');
+            $table->foreignId('estado_id')->nullable()->references('id')->on('estados')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('centro_id')->nullable()->references('id')->on('centros')->nullOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

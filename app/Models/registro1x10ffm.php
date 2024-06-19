@@ -12,7 +12,6 @@ class registro1x10ffm extends Model
     protected $fillable = [
         'cedula',
         'NombreCompleto',
-        'fecha_nac',
         'telefono',
         'genero_id',
         'estado_id',

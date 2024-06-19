@@ -25,7 +25,6 @@ class Index extends Component
     public $estados     = null; // Lista de estados
     public $parroquias  = null; // Lista de parroquias
     public $generos = null; //Genero
-    public $fechaNacimiento = null; //Fecha Nacimiento
     public $cedula = null; //Cedula
     public $centros = null;
     public $id, $idIntegrante, $saime_id, $jefe_id = null;
@@ -72,7 +71,6 @@ class Index extends Component
     {
         $this->cedula = null;
         $this->nombreCompleto = null;
-        $this->fechaNacimiento = null;
         $this->telefono = null;
         $this->correo = null;
         $this->generoId = null;
@@ -94,7 +92,6 @@ class Index extends Component
     public function limpiarCampos2()
     {
         $this->nombreCompleto = null;
-        $this->fechaNacimiento = null;
         $this->telefono = null;
         $this->correo = null;
         $this->generoId = null;
@@ -139,13 +136,12 @@ class Index extends Component
             if (count($elector)>0) 
             {
                 $elector = cne::where('cedula', '=', $this->cedula)->firstOrFail();
-                $this->nombreCompleto = trim($elector->nombre1)." ".trim($elector->nombre2)." ".trim($elector->apellido1)." ".trim($elector->apellido2);
+                $this->nombreCompleto = $elector->nombre;
                 if ($elector->genero == 'M') {
                     $this->generoId = 1;
                 } else {
                     $this->generoId = 2;
                 }
-                $this->fechaNacimiento = $elector->fecha_nac;
     
                 $centrolsb = centro::where('id', $elector->centro_id)->firstOrFail();
                 $this->centroId = $centrolsb->id;
@@ -172,11 +168,20 @@ class Index extends Component
     }
     public function guardar()
     {
+        $this->validate([
+            'cedula' =>'required',
+            'nombreCompleto' =>'required',
+            'telefono' =>'required',
+            'estadoId' =>'required',
+            'municipioId' =>'required',
+            'parroquiaId' =>'required',
+            'centroId' =>'required',
+            'generoId' =>'required',
+        ]);
         $jefe1x10 = registro1x10ffm::updateOrCreate(['id' => $this->id],
             [
                 'cedula' => $this->cedula,
                 'NombreCompleto' => $this->nombreCompleto,
-                'fecha_nac' => $this->fechaNacimiento,
                 'telefono' => $this->telefono,
                 'estado_id' => $this->estadoId,
                 'municipio_id' => $this->municipioId,
@@ -225,7 +230,6 @@ class Index extends Component
                 } else {
                     $this->generoId = 2;
                 }
-                $this->fechaNacimiento = $elector->fecha_nac;
     
                 $centrolsb = centro::where('id', $elector->centro_id)->firstOrFail();
                 $this->centroId = $centrolsb->id;

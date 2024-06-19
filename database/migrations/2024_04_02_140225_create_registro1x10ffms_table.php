@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->Integer('cedula')->unique();
             $table->string('NombreCompleto');
-            $table->date('fecha_nac');
             $table->string('telefono')->nullable();
+            $table->string('genero');
             $table->foreignId('estado_id')->nullable()->references('id')->on('estados')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('municipio_id')->nullable()->references('id')->on('municipios')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('parroquia_id')->nullable()->references('id')->on('parroquias')->nullOnDelete()->cascadeOnUpdate();
