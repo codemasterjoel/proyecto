@@ -72,11 +72,11 @@
                                         @foreach ($integrantes as $integrante)
                                         <?php $indice += 1; ?>
                                         <tr><td class="ps-4"><p class="text-xs font-weight-bold mb-0"><?php echo $indice; ?></p></td>
-                                            <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$integrante->saime->cedula}}</p></td>
-                                            <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$integrante->saime->nombre1}} {{ $integrante->saime->apellido1}}</td>
+                                            <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$integrante->cedula}}</p></td>
+                                            <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$integrante->nombreCompleto}}</td>
                                             <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$integrante->telefono}}</td>
                                             <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Integrante">
-                                                <a href="#" wire:click="editarIntegrante('{{$integrante->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
+                                                {{-- <a href="#" wire:click="editarIntegrante('{{$integrante->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a> --}}
                                                 <a href="#" wire:click="borrarIntegrante('{{$integrante->id}}')" class=" text-danger font-bold py-2 px-4"><span class="material-symbols-outlined">person_cancel</span></a>
                                             </td>
                                         </tr>

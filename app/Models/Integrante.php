@@ -12,7 +12,9 @@ class Integrante extends Model
     protected $fillable = [
         'saime_id',
         'telefono',
-        'jefe_id'
+        'jefe_id',
+        'cedula',
+        'nombreCompleto'
     ];
 
     public function jefe()

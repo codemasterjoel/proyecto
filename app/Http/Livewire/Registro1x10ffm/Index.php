@@ -186,6 +186,7 @@ class Index extends Component
         $jefe1x10 = registro1x10ffm::updateOrCreate(['id' => $this->id],
             [
                 'cedula' => $this->cedula,
+                'genero' => $this->generoId,
                 'NombreCompleto' => $this->nombreCompleto,
                 'telefono' => $this->telefono,
                 'estado_id' => $this->estadoId,
@@ -291,7 +292,9 @@ class Index extends Component
     {
         $integrante = integrante::updateOrCreate(['id' => $this->idIntegrante],
             [
-                'saime_id' => $this->saime_id,
+                // 'saime_id' => $this->saime_id,
+                'cedula' => $this->cedulaIntegrante,
+                'nombreCompleto' => $this->nombreCompletoIntegrante,
                 'jefe_id' => $this->jefe_id,
                 // 'fecha_nac' => $this->fechaNacimiento,
                 'telefono' => $this->telefonoIntegrante,

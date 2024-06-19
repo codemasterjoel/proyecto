@@ -17,6 +17,7 @@ class registro1x10ffm extends Model
         'estado_id',
         'municipio_id',
         'parroquia_id',
+        'genero',
         'centro_id'
     ];
 

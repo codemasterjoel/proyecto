@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('jefe_id')->nullable()->references('id')->on('registro1x10ffms')->nullOnDelete()->cascadeOnUpdate();
-
+            $table->integer('cedula');
+            $table->string('nombreCompleto');
             $table->foreignId('saime_id')->nullable()->references('id')->on('saimes')->nullOnDelete()->cascadeOnUpdate();
-
             $table->string('telefono')->nullable();
-
             $table->timestamps();
         });
     }
