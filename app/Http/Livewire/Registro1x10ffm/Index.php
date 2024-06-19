@@ -42,8 +42,13 @@ class Index extends Component
     }
     public function render()
     {
-        $registro1x10 = registro1x10ffm::where('cedula', 'like', "%$this->search%")
-        ->paginate(10);
+        if (auth()->user()->estado_id <> 25) {
+            $registro1x10 = registro1x10ffm::where('estado_id', '=', auth()->User()->estado_id)
+            ->paginate(10);
+        }else {
+            $registro1x10 = registro1x10ffm::where('cedula', 'like', "%$this->search%")
+            ->paginate(10);
+        }
         $this->estados = Estado::all();
         $this->generos = Genero::all();
         $this->centros = centro::all();

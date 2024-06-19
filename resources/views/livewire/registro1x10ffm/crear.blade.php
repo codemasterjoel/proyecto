@@ -65,7 +65,7 @@
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
                                         <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
-                                        <input wire:model="telefono" type="text" class="w-full border pl-2 text-base rounded-r-lg font-semibold " minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" required/>
+                                        <input wire:model="telefono" type="text" class="w-full text-gray-400 border pl-2 text-base rounded-r-lg font-semibold " minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" required/>
                                     </div>
                                     @error('telefono')
                                         {{$message}}
