@@ -13,6 +13,7 @@ use App\Models\Saime;
 use App\Models\cne;
 use App\Models\centro;
 use App\Models\Integrante;
+
 use Livewire\WithPagination;
 
 class Index extends Component

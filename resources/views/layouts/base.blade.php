@@ -21,6 +21,8 @@
     <link href="{{asset('css/css3.css')}}"rel="stylesheet">
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/Chart.js')}}"></script>
+    <script src="{{ asset('js/chart.min.js')}}"></script>
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1" rel="stylesheet" />
@@ -33,6 +35,7 @@
 
     <!--   Core JS Files   --> 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/google.js')}}"></script> --}}
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>

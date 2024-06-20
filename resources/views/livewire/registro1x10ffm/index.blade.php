@@ -56,7 +56,7 @@
                                         {{-- <td class="text-center text-uppercase"><p class="text-xs font-weight-bold">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td> --}}
                                         <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar lsb">
                                             {{-- <a wire:click="editar('')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a> --}}
-                                            <a wire:click="integrante('{{$lsb->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">list</span></a>
+                                            <a wire:click="integrante('{{$lsb->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">patient_list</span></a>
                                             {{-- <button wire:click="editar()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4">Editar</button> --}}
                                             {{-- <a wire:click="borrar('')" class=" text-danger font-bold py-2 px-4"><span class="material-symbols-outlined">person_cancel</span></a> --}}
                                         </td>
