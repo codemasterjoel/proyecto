@@ -52,7 +52,7 @@ class Index extends Component
         }
         $this->estados = Estado::all();
         $this->generos = Genero::all();
-        $this->centros = centro::all();
+        // $this->centros = centro::all();
         return view('livewire.registro1x10ffm.index', ['registro1x10'=>$registro1x10]);
     }
     public function crear()
@@ -123,6 +123,11 @@ class Index extends Component
     {
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
+    }
+    public function updatedParroquiaId($id)
+    {
+        $this->centroId = null;
+        $this->centros = centro::where('parroquia_id', $id)->get();
     }
     public function consultar()
     {

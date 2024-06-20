@@ -111,17 +111,17 @@
                                     <div class="w-full rounded-lg bg-red-500 text-white">
                                         <div class="flex">
                                             <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
-                                            <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 focus:outline-none font-semibold focus:ring-2 focus:ring-cyan-500" wire:model="parroquiaId" required>
+                                            <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 focus:outline-none font-semibold focus:ring-2 focus:ring-cyan-500" wire:model.live="parroquiaId" required>
                                                 <option value="">Seleccione</option>
                                                 @foreach( $parroquias as $parroquia )
                                                 <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @error('parroquiaId')
+                                            {{$message}}
+                                        @enderror
                                     </div>
-                                    @error('parroquiaId')
-                                        {{$message}}
-                                    @enderror
                                 </div>
                             @endif
                             @if (!is_null($centros))
