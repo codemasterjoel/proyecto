@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        {{-- {{$lsbs->links()}} --}}
+                        {{$registro1x10->links()}}
                     </div>
                 @else   
                     <div class="card-dody px-4 pt-2 py-8 pb-2">

@@ -19,6 +19,7 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $modal, $estado, $mostrar, $integranteModal = false;
     public $nombreCompleto, $jefeNombreCompleto = null; //Nombres
@@ -45,10 +46,10 @@ class Index extends Component
     {
         if (auth()->user()->estado_id <> 25) {
             $registro1x10 = registro1x10ffm::where('estado_id', '=', auth()->User()->estado_id)
-            ->paginate(10);
+            ->paginate(5);
         }else {
             $registro1x10 = registro1x10ffm::where('cedula', 'like', "%$this->search%")
-            ->paginate(10);
+            ->paginate(5);
         }
         $this->estados = Estado::all();
         $this->generos = Genero::all();
