@@ -23,8 +23,8 @@
                     <form>
                         <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                             <div class="w-full rounded-lg bg-red-500 text-white">
-                                <div class="flex">
-                                    <input wire:model="cedula" type="number" placeholder="Cedula" class="w-full bg-white pl-2 text-gray-400 text-base border border-r-0 border-solid border-neutral-300 font-semibold">
+                                <div class="">
+                                    <input wire:model="cedula" type="number" placeholder="Cedula" class=" bg-white pl-2 text-gray-400 text-base border border-r-0 border-solid border-neutral-300 font-semibold">
                                     <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                 </div>
                                 @error('cedula')

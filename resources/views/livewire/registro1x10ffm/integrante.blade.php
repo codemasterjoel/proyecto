@@ -1,5 +1,5 @@
 <div class="fixed z-50 inset-0 overflow-y-auto ease-out duration-400">
-    <div class="flex justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0 min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1140px]">
+    <div class="flex justify-center min-h-screen pt-4 px-4 pb-20 text-center">
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
@@ -32,7 +32,7 @@
                                     <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                                         <div class="w-full rounded-lg bg-gray-500">
                                             <div class="flex">
-                                                <input wire:model="cedulaIntegrante" type="number"  class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                                <input wire:model="cedulaIntegrante" type="number"  class=" bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
                                                 <input type="button" wire:click="consultarIntegrante" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                             </div>
                                         </div>
