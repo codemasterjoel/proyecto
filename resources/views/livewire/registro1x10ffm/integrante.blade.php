@@ -39,23 +39,26 @@
                                     </div>
                                 </div>
                                 
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nombre y Apellido --}}
-                                        <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre</span>
-                                        {{-- <input wire:model="nombreCompletoIntegrante" type="text" class=" bg-white pl-2 text-base font-semibold outline-0 border-slate-200 rounded-r-lg" /> --}}
-                                        <input wire:model="nombreCompletoIntegrante" type="text" class=" relative m-0 block w-[1px] min-w-0 flex-auto border border-solid rounded-r-lg border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                        <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nombre y Apellido --}}
+                                            <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre</span>
+                                            {{-- <input wire:model="nombreCompletoIntegrante" type="text" class=" bg-white pl-2 text-base font-semibold outline-0 border-slate-200 rounded-r-lg" /> --}}
+                                            <input wire:model="nombreCompletoIntegrante" type="text" class=" relative m-0 block w-[1px] min-w-0 flex-auto border border-solid rounded-r-lg border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
+                                        </div>
                                     </div>
-        
-                                    <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
-                                        <div class="w-full rounded-lg bg-gray-500">
-                                            <div class="flex">
-                                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
-                                                <input wire:model="telefonoIntegrante" type="text" class="w-full bg-white pl-2 text-base font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
-                                                <input wire:click="guardarIntegrante" type="button" value="Guardar" class="bg-gradient-to-r from-cyan-400 to-cyan-600 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                        <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
+                                            <div class="w-full rounded-lg bg-gray-500">
+                                                <div class="flex">
+                                                    <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
+                                                    <input wire:model="telefonoIntegrante" type="text" class="w-full bg-white pl-2 text-base font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
+                                                    <input wire:click="guardarIntegrante" type="button" value="Guardar" class="bg-gradient-to-r from-cyan-400 to-cyan-600 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                    
+                                </div>
                                 @error('cedulaIntegrante')
                                     {{$message}}
                                 @enderror <br>
@@ -84,10 +87,12 @@
                                             <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$integrante->cedula}}</p></td>
                                             <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$integrante->nombreCompleto}}</td>
                                             <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$integrante->telefono}}</td>
-                                            <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Integrante">
-                                                {{-- <a href="#" wire:click="editarIntegrante('{{$integrante->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a> --}}
-                                                <a href="#" wire:click="borrarIntegrante('{{$integrante->id}}')" class=" text-danger font-bold py-2 px-4"><span class="material-symbols-outlined">person_cancel</span></a>
-                                            </td>
+                                            @if (auth()->user()->nivel_id == 1)
+                                                <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Integrante">
+                                                    {{-- <a href="#" wire:click="editarIntegrante('{{$integrante->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a> --}}
+                                                    <a href="#" wire:click="borrarIntegrante('{{$integrante->id}}')" class=" text-danger font-bold py-2 px-4"><span class="material-symbols-outlined">person_cancel</span></a>
+                                                </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>

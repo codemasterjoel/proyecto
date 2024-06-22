@@ -22,9 +22,9 @@
                     <h3 class="text-2xl text-cyan-400 font-semibold text-center">REGISTRAR JEFE DE 1X10</h3>
                     <form>
                         <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
-                            <div class="w-full rounded-lg bg-red-500 text-white">
-                                <div class="">
-                                    <input wire:model="cedula" type="number" placeholder="Cedula" class=" bg-white pl-2 text-gray-400 text-base border border-r-0 border-solid border-neutral-300 font-semibold">
+                            <div class="w-full rounded-lg text-white">
+                                <div class="flex">
+                                    <input wire:model="cedula" type="number" placeholder="Cedula" class=" bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
                                     <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                 </div>
                                 @error('cedula')
