@@ -24,7 +24,7 @@
                         <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                             <div class="w-full rounded-lg text-white">
                                 <div class="flex">
-                                    <input wire:model="cedula" type="number" placeholder="Cedula" class=" bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                    <input wire:model="cedula" type="number" placeholder="Cedula" class=" bg-white text-gray-500 pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
                                     <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                 </div>
                                 @error('cedula')

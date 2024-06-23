@@ -51,7 +51,7 @@ class Index extends Component
             $registro1x10 = registro1x10ffm::where('cedula', 'like', "%$this->search%")
             ->paginate(5);
         }
-        $this->estados = Estado::all();
+        $this->estados = Estado::where('id', '<', '25')->get();
         $this->generos = Genero::all();
         // $this->centros = centro::all();
         return view('livewire.registro1x10ffm.index', ['registro1x10'=>$registro1x10]);

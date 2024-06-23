@@ -116,18 +116,21 @@
 
 
 
-  <script type="text/javascript">
-  var ctx = document.getElementById('integrantes');
-  var integrantes = new Chart(ctx, {
-      type: 'bar',
-      data: {
+<script type="text/javascript">
+  var ctx = document.getElementById('myChart');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
           labels: [
             @foreach ( $jefexestado as $estado )
               '{{$estado->nombre}}',
             @endforeach
           ],
           datasets: [{
-              label: '1X10',
+              label: '1X10 POR ESTADO',
+              borderRadius: Number.MAX_VALUE,
+              borderWidth: 4,
+              borderSkipped: false,
               data:[
                 @foreach ( $jefexestado as $estado )
                   '{{$estado->jefes}}',
@@ -162,54 +165,109 @@
           }
       }
   });
-
+</script>
   
-  </script>
-    <script type="text/javascript">
-      var ctx = document.getElementById('integrantes');
-      var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: [
-                @foreach ( $integrantexestado as $ixestado )
-                  '{{$ixestado->nombre}}',
-                @endforeach
+<script type="text/javascript">
+  var ctx2 = document.getElementById('integrantes').getContext('2d');
+  var myChart2 = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+          labels: [
+              @foreach ($integrantexestado as $estados)
+                  "{{ $estados->nombre }}",
+              @endforeach
+          ],
+          datasets: [{
+              label: 'INTEGRANTES POR ESTADO',
+              borderRadius: Number.MAX_VALUE,
+              borderWidth: 4,
+              borderSkipped: false,
+              data: [
+              @foreach ($integrantexestado as $estados)
+                {{ $estados->integrantes }},
+              @endforeach
               ],
-              datasets: [{
-                  label: '1X10',
-                  data:[
-                    @foreach ( $integrantexestado as $integrante )
-                      '{{$integrante->integrantes}}',
-                    @endforeach
-                  ],
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true
-                      }
-                  }]
-              }
-          }
-      });
-      </script>
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(166, 101, 80, 0.2)',
+                  'RGBA(78, 147, 191, 0.2)',
+                  'RGBA(78,147,93, 0.2)',
+                  'RGBA(78,146,159, 0.2)',
+                  'RGBA(78,73,159, 0.2)',
+                  'RGBA(78,171,24, 0.2)',
+                  'RGBA(184,76,24, 0.2)',
+                  'RGBA(184,76,255, 0.2)',
+                  'RGBA(184,174,164, 0.2)',
+                  'RGBA(245,174,164, 0.2)',
+                  'RGBA(194,239,164, 0.2)',
+                  'RGBA(255,0,0, 0.2)'
 
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(166, 101, 80, 1)',
+                  'RGBA(78, 147, 191, 1)',
+                  'RGBA(78,147,93, 1)',
+                  'RGBA(78,146,159, 1)',
+                  'RGBA(78,73,159, 1)',
+                  'RGBA(78,171,24, 1)',
+                  'RGBA(184,76,24, 1)',
+                  'RGBA(184,76,255, 1)',
+                  'RGBA(184,174,164, 1)',
+                  'RGBA(245,174,164, 1)',
+                  'RGBA(194,239,164, 1)',
+                  'RGBA(255,0,0,1)',
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          datalabels:{
+            align: 'end',
+            anchor: 'end',
+            font: function(context) {
+              var w = context.chart.width;
+              return {
+                size: w < 512 ? 12 : 14,
+                weight: 'bold',
+              };
+            },
+            color: function(context) {
+                return context.dataset.borderColor;
+            },
+          },
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: false,
+            text: 'Chart.js Bar Chart'
+          }
+        }
+      }
+  });
+</script>
