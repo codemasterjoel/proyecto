@@ -24314,13 +24314,13 @@ pre[class*=language-] {
 /*
  * Container style
  */
-.ps {
+/* .ps {
   overflow: hidden !important;
   overflow-anchor: none;
   -ms-overflow-style: none;
   touch-action: auto;
   -ms-touch-action: auto;
-}
+} */
 
 /*
  * Scrollbar rail styles

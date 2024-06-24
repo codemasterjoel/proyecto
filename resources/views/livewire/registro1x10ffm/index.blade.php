@@ -47,12 +47,12 @@
                                     @foreach ($registro1x10 as $lsb)
                                     <?php $indice += 1; ?>
                                     <tr><td class="ps-4"><p class="text-xs font-weight-bold mb-0"><?php echo $indice; ?></p></td>
-                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$lsb->cedula}}</p></td>
-                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$lsb->NombreCompleto}}</td>
-                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$lsb->estado->nombre}}</td>
-                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$lsb->municipio->nombre}}</td>
+                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{ (isset($lsb->cedula) ? $lsb->cedula : "") }}</p></td>
+                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{ (isset($lsb->NombreCompleto) ? $lsb->NombreCompleto : "") }}</td>
+                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{ (isset($lsb->estado->nombre) ? $lsb->estado->nombre : "") }}</td>
+                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{ (isset($lsb->municipio->nombre) ? $lsb->municipio->nombre : "") }}</td>
                                         {{-- <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$lsb->parroquia->nombre}}</td> --}}
-                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{$lsb->telefono}}</td>
+                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0"></p>{{ (isset($lsb->telefono) ? $lsb->telefono : "") }}</td>
                                         {{-- <td class="text-center text-uppercase"><p class="text-xs font-weight-bold">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td> --}}
                                         <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar lsb">
                                             {{-- <a wire:click="editar('')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a> --}}
