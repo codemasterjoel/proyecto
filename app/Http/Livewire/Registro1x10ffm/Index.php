@@ -46,6 +46,7 @@ class Index extends Component
     {
         if (auth()->user()->estado_id <> 25) {
             $registro1x10 = registro1x10ffm::where('estado_id', '=', auth()->User()->estado_id)
+            ->where('cedula', 'like', "%$this->search%")
             ->paginate(5);
         }else {
             $registro1x10 = registro1x10ffm::where('cedula', 'like', "%$this->search%")
