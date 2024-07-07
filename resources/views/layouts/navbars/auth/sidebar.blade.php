@@ -51,7 +51,7 @@
             {{-- REGISTRO DE NBC --}}
             @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'nbc' ? 'active' : '' }}" href="">
+                    <a class="nav-link {{ Route::currentRouteName() == 'nbc' ? 'active' : '' }}" href="{{route('nbc')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="material-icons {{ in_array(request()->route()->getName(),['nbc']) ? 'text-white' : 'text-dark' }}">groups</span>
                             {{-- <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center ></i> --}}

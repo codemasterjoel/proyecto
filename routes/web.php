@@ -15,6 +15,7 @@ use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Rtl;
 use App\Http\Livewire\Registro1x10ffm\Index as ffm;
 use App\Http\Livewire\Luchador\Index as registrolsb;
+use App\Http\Livewire\NBC\Index as registronbc;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -36,6 +37,7 @@ Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')-
 Route::middleware('auth')->group(function () {
     Route::get('/1x10ffm', ffm::class)->name('ffm');
     Route::get('/lsb', registrolsb::class)->name('lsb');
+    Route::get('/nbc', registronbc::class)->name('nbc');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');

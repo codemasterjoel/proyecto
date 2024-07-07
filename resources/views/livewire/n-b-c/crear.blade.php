@@ -3,6 +3,9 @@
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
+        @if(session()->has('yaregistrado')== 'yaregistrado')
+        @include('livewire.components.yaregistrado')
+    @endif
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">    
             <div class="min-h-screen flex items-center justify-center">
@@ -67,28 +70,28 @@
                             <div class="flex items-center justify-center py-4"> {{-- campo consejo comunales --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <input wire:model="CantConsejoComunal" type="number" placeholder="Consejos Comunales" class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-lg border-slate-200">
+                                        <input wire:model="CantConsejoComunal" type="number" placeholder="Consejos Comunales" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center py-4"> {{-- campo base de misiones --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <input wire:model="CantBaseMisiones" type="number" placeholder="Bases de Misiones" class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-lg border-slate-200">
+                                        <input wire:model="CantBaseMisiones" type="number" placeholder="Bases de Misiones" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center py-4"> {{-- campo urbanismos --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <input wire:model="CantUrbanismo" type="number" placeholder="Urbanismos" class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-lg border-slate-200">
+                                        <input wire:model="CantUrbanismo" type="number" placeholder="Urbanismos" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center py-4"> {{-- campo cdi --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <input wire:model="CantCDI" type="number" placeholder="CDI" class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-lg border-slate-200">
+                                        <input wire:model="CantCDI" type="number" placeholder="CDI" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
                                     </div>
                                 </div>
                             </div>
@@ -97,16 +100,16 @@
                             <div class="flex items-center justify-center py-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <input wire:model="CedulaJefe" type="number" placeholder="Cedula Jefe de Nucleo" class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                        <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                        <input wire:model="CedulaJefe" type="number" placeholder="Cedula Jefe de Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                        <input wire:click="consultar('jefe')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-center"> {{-- campo Correo --}}
+                            <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
                                     <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
-                                    <input wire:model="NombreJefe" type="text" class="w-full bg-white pl-2 text-base rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                    <input wire:model="NombreJefe" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
                                   </div>
                                 </div>
                             </div>
@@ -119,7 +122,7 @@
                           <div class="card-body">
                             <ul class="nav nav-pills-primary nav-pills-icons justify-content-center">
                               <li class="nav-item">
-                                <a wire:click="MenuOrganizador" href="#">
+                                <a class="nav-link" wire:click="MenuOrganizador" href="#">
                                   <div class=" bg-gradient-info rounded-t-lg py-3 px-1 text-white">
                                     <div class="card-icon text-center">
                                       <i class="material-icons">groups</i><br>ORGANIZADOR
@@ -128,7 +131,7 @@
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#formador">
+                                <a class="nav-link" wire:click="MenuFormador" data-toggle="tab" href="#">
                                   <div class=" bg-gradient-primary rounded-t-lg py-3 px-3 text-white">
                                     <div class="card-icon text-center">
                                       <i class="material-icons">auto_stories</i><br>FORMADOR
@@ -137,7 +140,7 @@
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link show" data-toggle="tab" href="#movilizador">
+                                <a class="nav-link" wire:click="MenuMovilizacion" data-toggle="tab" href="#">
                                   <div class=" bg-gradient-secondary rounded-t-lg py-3 px-1 text-white">
                                     <div class="card-icon text-center">
                                       <i class="material-icons">directions_run</i><br>MOVILIZADOR
@@ -146,7 +149,7 @@
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#defensa">
+                                <a class="nav-link" wire:click="MenuDefensa" data-toggle="tab" href="#">
                                   <div class=" bg-gradient-success rounded-t-lg py-3 px-4 text-white">
                                     <div class="card-icon text-center">
                                       <i class="material-icons">military_tech</i><br>DEFENSA  
@@ -155,7 +158,7 @@
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link show" data-toggle="tab" href="#productivo">
+                                <a class="nav-link" wire:click="MenuProductivo" data-toggle="tab" href="#productivo">
                                   <div class=" bg-gradient-danger rounded-t-lg py-3 px-2 text-white">
                                     <div class="card-icon text-center">
                                       <i class="material-icons">grass</i><br>PRODUCTIVO
@@ -168,7 +171,7 @@
                               @if ($ContentOrganizador)
                                   <br><h4 class="text-info">DATOS DEL ORGANIZADOR DE NBC</h4>
                                   <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
-                                    <input type="checkbox" value="1" class="peer sr-only" wire:click="PoseeOrganizador" />
+                                    <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeOrganizador" />
                                     <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
                                         <span>SI</span>
                                         <span>NO</span>
@@ -176,55 +179,153 @@
                                   </label>
 
                                   @if ($FormOrganizador)
-                                    <div id="poseeOrganizador">
-                                      <div class="rows">
-                                        <div class="col-3">
-                                          <div class="form-group label-floating">
-                                            <label class="bmd-label-floating">CÉDULA:</label>
-                                            <input type="number" class="form-control" name="organizadorCedula" id="organizadorCedula">
+                                    <div class="grid grid-cols-2 gap-4"> {{-- campo cedula --}}
+                                      <div class="flex items-center justify-center py-4">
+                                          <div class="w-full rounded-lg bg-gray-500">
+                                              <div class="flex">
+                                                  <input wire:model="CedulaOrganizador" type="number" placeholder="Cedula Organizador del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                                  <input wire:click="consultar('organizador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                              </div>
                                           </div>
-                                        </div>
-                                        <div class="col-1">
-                                          <button class="btn btn-fab btn-round btn-primary" id="buscar_org" name="buscar_org" type="button" title="BUSCAR"><i class="material-icons">search</i></button>
-                                        </div>
-                                      </div><br>
-                                      <div class="rows">
-                                        <div class="col-7">
-                                          <div class="form-group">
-                                            <label>NOMBRE COMPLETO:</label><br>
-                                            <label id="OrganizadorNombreCompleto" name="OrganizadorNombreCompleto" class="text-dark"></label>
-                                            <input type="hidden" name="lsb_organizador" id="lsb_organizador">
-                                          </div>
-                                        </div>
-                                        <div class="col-2">
-                                          <div class="form-group">
-                                            <label>FECHA DE NAC.:</label><br>
-                                            <label id="OrganizadorFechaNac" name="OrganizadorFechaNac" class="text-dark"></label>
-                                          </div>
-                                        </div>
-                                        <div class="col-3">
-                                          <div class="form-group">
-                                            <label>GENERO:</label><br>
-                                            <label id="OrganizadorGenero" name="OrganizadorGenero" class="text-dark"></label>
-                                          </div>
-                                        </div>
                                       </div>
-                                      <div class="rows">
-                                        <div class="col-2">
-                                          <div class="form-group">
-                                            <label>TELEFONO:</label><br>
-                                            <label class="text-dark" name="OrganizadorTelefono" id="OrganizadorTelefono"></label>
-                                          </div>
-                                        </div>
-                                        <div class="col-6">
-                                          <div class="form-group">
-                                            <label for="correo">CORREO:</label><br>
-                                            <label class="text-dark" name="OrganizadorCorreo" id="OrganizadorCorreo"></label>
+                                      <div class="flex items-center justify-center"> {{-- campo Nombre --}}
+                                        <div class="w-full rounded-lg bg-gray-500">
+                                          <div class="flex">
+                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
+                                            <input wire:model="NombreOrganizador" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   @endif
+                              @endif
+                              {{-- PESTANA FORMADOR --}}
+                              @if ($ContentFormador)
+                                <br><h4 class="text-info">DATOS DEL FORMADOR DE NBC</h4>
+                                <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
+                                  <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeFormador" />
+                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                      <span>SI</span>
+                                      <span>NO</span>
+                                  </div><h5 class="p-2"> Posee Formador?</h5>
+                                </label>
+
+                                @if ($FormFormador)
+                                  <div class="grid grid-cols-2 gap-4"> {{-- campo cedula --}}
+                                    <div class="flex items-center justify-center py-4">
+                                        <div class="w-full rounded-lg bg-gray-500">
+                                            <div class="flex">
+                                                <input wire:model="CedulaFormador" type="number" placeholder="Cedula Formador del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                                <input wire:click="consultar('formador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-center"> {{-- campo Nombre --}}
+                                      <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="flex">
+                                          <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
+                                          <input wire:model="NombreFormador" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                @endif
+                              @endif
+                              {{-- PESTANA MOVILIZADOR --}}
+                              @if ($ContentMovilizador)
+                                <br><h4 class="text-info">DATOS DEL MOVILIZADOR DE NBC</h4>
+                                <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
+                                  <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeMovilizador" />
+                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                      <span>SI</span>
+                                      <span>NO</span>
+                                  </div><h5 class="p-2"> Posee Movilizador?</h5>
+                                </label>
+
+                                @if ($FormMovilizador)
+                                  <div class="grid grid-cols-2 gap-4"> {{-- campo cedula --}}
+                                    <div class="flex items-center justify-center py-4">
+                                        <div class="w-full rounded-lg bg-gray-500">
+                                            <div class="flex">
+                                                <input wire:model="CedulaMovilizador" type="number" placeholder="Cedula Movilizador del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                                <input wire:click="consultar('movilizador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-center"> {{-- campo Nombre --}}
+                                      <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="flex">
+                                          <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
+                                          <input wire:model="NombreMovilizador" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                @endif
+                              @endif
+                              {{-- PESTANA DEFENSA --}}
+                              @if ($ContentDefensa)
+                                <br><h4 class="text-info">DATOS DE EL DE DEFENSA DE NBC</h4>
+                                <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
+                                  <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeDefensa" />
+                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                      <span>SI</span>
+                                      <span>NO</span>
+                                  </div><h5 class="p-2"> Posee el de Defensa?</h5>
+                                </label>
+
+                                @if ($FormDefensa)
+                                  <div class="grid grid-cols-2 gap-4"> {{-- campo cedula --}}
+                                    <div class="flex items-center justify-center py-4">
+                                        <div class="w-full rounded-lg bg-gray-500">
+                                            <div class="flex">
+                                                <input wire:model="CedulaDefensa" type="number" placeholder="Cedula Defensa del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                                <input wire:click="consultar('defensa')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-center"> {{-- campo Nombre --}}
+                                      <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="flex">
+                                          <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
+                                          <input wire:model="NombreDefensa" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                @endif
+                              @endif
+                              {{-- PESTANA PRODUCTIVO --}}
+                              @if ($ContentProductivo)
+                                <br><h4 class="text-info">DATOS DEL PRODUCTOR DE NBC</h4>
+                                <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
+                                  <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeProductivo" />
+                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                      <span>SI</span>
+                                      <span>NO</span>
+                                  </div><h5 class="p-2"> Posee Productor?</h5>
+                                </label>
+
+                                @if ($FormProductivo)
+                                  <div class="grid grid-cols-2 gap-4"> {{-- campo cedula --}}
+                                    <div class="flex items-center justify-center py-4">
+                                        <div class="w-full rounded-lg bg-gray-500">
+                                            <div class="flex">
+                                                <input wire:model="CedulaProductivo" type="number" placeholder="Cedula Productor del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                                <input wire:click="consultar('productor')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-center"> {{-- campo Nombre --}}
+                                      <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="flex">
+                                          <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
+                                          <input wire:model="NombreProductivo" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                @endif
                               @endif
                           </div>
                         </div>

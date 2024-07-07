@@ -16,6 +16,24 @@ class NBC extends Model
 
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'codigo',
+        'jefe_id',
+        'organizador_id',
+        'formador_id',
+        'movilizador_id',
+        'defensa_id',
+        'productivo_id',
+        'cant_consejos_comunales',
+        'cant_bases_misiones',
+        'cant_urbanismos',
+        'cant_cdi',
+        'estado_id',
+        'municipio_id',
+        'parroquia_id'
+    ];
+
     public function estado()
     {
         return $this->belongsTo(Estado::class);

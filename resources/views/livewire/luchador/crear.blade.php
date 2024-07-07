@@ -25,7 +25,7 @@
                             <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <input wire:model="cedula" type="number"  class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
+                                        <input wire:model="cedula" type="number"  class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
                                         <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
                                         <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
-                                        <input wire:model="telefono" type="text" class="w-full bg-white pl-2 text-base rounded-r-lg font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
+                                        <input wire:model="telefono" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                 <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
                                     <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Avanzada</span>
-                                    <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="avanzadaId" required>
+                                    <select class="w-full px-4 py-2 rounded-r-lg focus:outline-none border focus:ring-2 focus:ring-cyan-500" wire:model="avanzadaId" required>
                                         <option value="">Seleccione</option>
                                         @foreach( $avanzadas as $avanzada )
                                             <option value="{{ $avanzada->id }}">{{ $avanzada->nombre }}</option>
@@ -174,7 +174,7 @@
                             <div class="w-full rounded-lg bg-gray-500">
                               <div class="flex">
                                 <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Correo</span>
-                                <input wire:model="correo" type="email" class="w-full bg-white pl-2 text-base rounded-r-lg font-semibold outline-0 border-slate-200" placeholder="usuario@correo.com" />
+                                <input wire:model="correo" type="email" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" placeholder="usuario@correo.com" />
                               </div>
                             </div>
                         </div>

@@ -36,7 +36,6 @@ return new class extends Migration
             $table->integer('cant_lsb_jefe_comunidad')->nullable();
             $table->integer('cant_lsb_jefe_calle')->nullable();
             $table->integer('cant_lsb_vocero_cc')->nullable();
-            $table->string('cant');
 
             $table->foreignId('estado_id')->nullable()->references('id')->on('estados')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('municipio_id')->nullable()->references('id')->on('municipios')->nullOnDelete()->cascadeOnUpdate();

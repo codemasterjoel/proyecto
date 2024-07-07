@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\NBC;
+namespace App\Http\Livewire\NBC;
 
 use Livewire\Component;
 
@@ -16,15 +16,16 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     public $modal, $PoseeOrganizador, $PoseeFormador, $PoseeMovilizador, $PoseeDefensa, $PoseeProductivo = false;
-    public $ContentOrganizador = false;
-    public $FormOrganizador = false;
+    public $ContentOrganizador, $ContentFormador, $ContentMovilizador, $ContentDefensa, $ContentProductivo = false;
+    public $FormOrganizador, $FormFormador, $FormMovilizador, $FormDefensa, $FormProductivo = false;
     public $estados     = null; // Lista de estados
     public $municipios  = null; // Liste de Municipios
     public $parroquias  = null; // Lista de parroquias
-    public $CedulaJefe, $CedulaOrganizador, $CedulaFormador, $CedulaMolizador, $CedulaDefensa, $CedulaProductivo = null; //Cedula
-    public $NombreNBC = null; // Nombre del NBC
+    public $CedulaJefe, $CedulaOrganizador, $CedulaFormador, $CedulaMovilizador, $CedulaDefensa, $CedulaProductivo = null; //Cedula
+    public $NombreNBC, $id = null; // Nombre del NBC
     public $CantConsejoComunal, $CantBaseMisiones, $CantUrbanismo, $CantCDI = null;
-    public $NombreJefe, $NombreOrganizador, $NombreFormador, $NombreMovilizador, $NombreDefensa, $NombreProductivo = null; // Cedula
+    public $NombreJefe, $NombreOrganizador, $NombreFormador, $NombreMovilizador, $NombreDefensa, $NombreProductivo = null; // nombre
+    public $IdJefe, $IdOrganizador, $IdFormador, $IdMovilizador, $IdDefensa, $IdProductivo = null; // nombre
 
     public $estadoId, $municipioId, $parroquiaId = null; //Id que recibo de los campos
 
@@ -49,23 +50,47 @@ class Index extends Component
     }
     public function cerrarModal() 
     {
-        $this->modal = false;
+        $this->modal = false; 
+        $this->limpiarCampos();
     }
     public function limpiarCampos()
     {
-        // $this->estatus = false;
-        // $this->cedula = null;
-        // $this->nombreCompleto = null;
-        // $this->fechaNacimiento = null;
-        // $this->telefono = null;
-        // $this->correo = null;
-        // $this->avanzadaId = null;
-        // $this->generoId = null;
-        // $this->nivelAcademicoId = null;
-        // $this->responsabilidadId = null;
-        // $this->estadoId = null;
-        // $this->municipioId = null;
-        // $this->parroquiaId = null;
+        $this->NombreNBC = null;
+        $this->CedulaJefe = null;
+        $this->NombreJefe = null;
+        $this->CedulaOrganizador = null;
+        $this->NombreOrganizador = null;
+        $this->CedulaFormador = null;
+        $this->NombreFormador = null;
+        $this->CedulaMovilizador = null;
+        $this->NombreMovilizador = null;
+        $this->CedulaDefensa = null;
+        $this->NombreDefensa = null;
+        $this->CedulaProductivo = null;
+        $this->NombreProductivo = null;
+        $this->PoseeOrganizador = false;
+        $this->PoseeFormador = false;
+        $this->PoseeMovilizador = false;
+        $this->PoseeDefensa = false;
+        $this->PoseeProductivo = false;
+        $this->ContentOrganizador = false;
+        $this->ContentFormador = false;
+        $this->ContentMovilizador = false;
+        $this->ContentDefensa = false;
+        $this->ContentProductivo = false; 
+        $this->IdJefe = null;
+        $this->IdOrganizador = null;
+        $this->IdFormador = null;
+        $this->IdMovilizador = null;
+        $this->IdDefensa = null;
+        $this->IdProductivo = null;
+        $this->CantConsejoComunal = null;
+        $this->CantBaseMisiones = null;
+        $this->CantUrbanismo = null;
+        $this->CantCDI = null;
+        $this->estadoId = null;
+        $this->municipioId = null;
+        $this->parroquiaId = null;
     }
     public function updatedEstadoId($id)
     {
@@ -78,12 +103,56 @@ class Index extends Component
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
     }
-    public function consultar()
+    public function consultar($estructura)
     {
-        $saime = Saime::where('cedula', '=', $this->cedula)->firstOrFail();
-        $this->nombreCompleto = $saime->nombre1." ".$saime->nombre2." ".$saime->apellido1." ".$saime->apellido2;
-        $this->generoId = $saime->genero_id;
-        $this->fechaNacimiento = $saime->fecha_nac;
+        if ($estructura == 'jefe') {
+
+            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaJefe)->firstOrFail(); 
+
+            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
+                ->orWhere('organizador_id', '=', $validar_lsb->id)
+                ->orWhere('formador_id', '=', $validar_lsb->id)
+                ->orWhere('movilizador_id', '=', $validar_lsb->id)
+                ->orWhere('defensa_id', '=', $validar_lsb->id)
+                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
+
+            if (count($existelsb) > 0)
+            {
+                session()->flash('yaregistrado', 'yaregistrado');
+            }
+            else{
+                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaJefe)->firstOrFail();
+                $this->NombreJefe = $Luchador->NombreCompleto;
+                $this->IdJefe = $Luchador->id;
+            }
+
+
+        }
+        elseif ($estructura == 'organizador') 
+        {
+            $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaOrganizador)->firstOrFail();
+            $this->NombreOrganizador = $Luchador->NombreCompleto;
+        }
+        elseif ($estructura == 'formador')
+        {
+            $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaFormador)->firstOrFail();
+            $this->NombreFormador = $Luchador->NombreCompleto;
+        }
+        elseif ($estructura == 'movilizador')
+        {
+            $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaMovilizador)->firstOrFail();
+            $this->NombreMovilizador = $Luchador->NombreCompleto; 
+        }
+        elseif ($estructura == 'defensa')
+        {
+            $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaDefensa)->firstOrFail();
+            $this->NombreDefensa = $Luchador->NombreCompleto;   
+        }
+        elseif ($estructura == 'productor')
+        {
+            $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaProductivo)->firstOrFail();
+            $this->NombreProductivo = $Luchador->NombreCompleto;   
+        }
     }
     public function editar($id)
     {
@@ -120,18 +189,20 @@ class Index extends Component
     }
     public function guardar()
     {
-        $lsb = RegistroLuchador::updateOrCreate(['id' => $this->id],
+        $lsb = NBC::updateOrCreate(['id' => $this->id],
             [
-            'estatus' => $this->estatus,
-            'cedula' => $this->cedula,
-            'NombreCompleto' => $this->nombreCompleto,
-            'fecha_nac' => $this->fechaNacimiento,
-            'telefono' => $this->telefono,
-            'correo' => $this->correo,
-            'avanzada_id' => $this->avanzadaId,
-            'genero_id' => $this->generoId,
-            'nivel_academico_id' => $this->nivelAcademicoId,
-            'responsabilidad_id' => $this->responsabilidadId,
+            'nombre' => $this->NombreNBC,
+            'codigo' => $this->parroquiaId.random_int('1000', '9999'),
+            'jefe_id' => $this->IdJefe,
+            'organizador_id' => $this->IdOrganizador,
+            'formador_id' => $this->IdFormador,
+            'movilizador_id' => $this->IdMovilizador,
+            'defensa_id' => $this->IdDefensa,
+            'productivo_id' => $this->IdProductivo,
+            'cant_consejos_comunales' => $this->CantConsejoComunal,
+            'cant_bases_misiones' => $this->CantBaseMisiones,
+            'cant_urbanismos' => $this->CantUrbanismo,
+            'cant_cdi' => $this->CantCDI,
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
             'parroquia_id' => $this->parroquiaId
@@ -139,8 +210,7 @@ class Index extends Component
          
          session()->flash('message', 'success');
          
-         $this->cerrarModal();
-         $this->limpiarCampos();
+         $this->cerrarModal(); 
     }
     public function borrar($id)
     {
@@ -153,14 +223,112 @@ class Index extends Component
             $this->ContentOrganizador = false; 
         } else {
             $this->ContentOrganizador = true; 
+            $this->ContentFormador = false;
+            $this->ContentMovilizador = false;
+            $this->ContentDefensa = false;
+            $this->ContentProductivo = false;
         }
     }
-    public function poseeOrganizador()
+    public function updatedPoseeOrganizador()
     {
         if ($this->FormOrganizador) {
             $this->FormOrganizador = false;
+            $this->CedulaOrganizador = null;
+            $this->NombreOrganizador = null;
+            $this->FechaNacOrganizador = null;
+            $this->TelefonoOrganizador = null;
+            $this->GeneroOrganizador = null;
+            $this->CorreoOrganizador = null;
         } else {
             $this->FormOrganizador = true;
         }
-    } 
+    }
+    public function MenuFormador()
+    {
+        if ($this->ContentFormador) {
+            $this->ContentFormador = false; 
+        } else {
+            $this->ContentFormador = true;
+            $this->ContentOrganizador = false; 
+            $this->ContentMovilizador = false;
+            $this->ContentDefensa = false;
+            $this->ContentProductivo = false;
+        }
+    }
+    public function updatedPoseeFormador()
+    {
+        if ($this->FormFormador) {
+            $this->FormFormador = false;
+            $this->CedulaFormador = null;
+            $this->NombreFormador = null;
+        } else {
+            $this->FormFormador = true;
+        }
+    }
+    public function MenuMovilizacion()
+    {
+        if ($this->ContentMovilizador) {
+            $this->ContentMovilizador = false; 
+        } else {
+            $this->ContentMovilizador = true;
+            $this->ContentOrganizador = false; 
+            $this->ContentFormador = false;
+            $this->ContentDefensa = false;
+            $this->ContentProductivo = false;
+        }
+    }
+    public function updatedPoseeMovilizador()
+    {
+        if ($this->FormMovilizador) {
+            $this->FormMovilizador = false;
+            $this->CedulaMovilizador = null;
+            $this->NombreMovilizador = null;
+        } else {
+            $this->FormMovilizador = true;
+        }
+    }
+    public function MenuDefensa()
+    {
+        if ($this->ContentDefensa) {
+            $this->ContentDefensa = false; 
+        } else {
+            $this->ContentDefensa = true; 
+            $this->ContentOrganizador = false; 
+            $this->ContentFormador = false;
+            $this->ContentMovilizador = false;
+            $this->ContentProductivo = false;
+        }
+    }
+    public function updatedPoseeDefensa()
+    {
+        if ($this->FormDefensa) {
+            $this->FormDefensa = false;
+            $this->CedulaDefensa = null;
+            $this->NombreDefensa = null;
+        } else {
+            $this->FormDefensa = true;
+        }
+    }
+    public function MenuProductivo()
+    {
+        if ($this->ContentProductivo) {
+            $this->ContentProductivo = false; 
+        } else {
+            $this->ContentProductivo = true; 
+            $this->ContentOrganizador = false; 
+            $this->ContentFormador = false;
+            $this->ContentMovilizador = false;
+            $this->ContentDefensa = false;
+        }
+    }
+    public function updatedPoseeProductivo()
+    {
+        if ($this->FormProductivo) {
+            $this->FormProductivo = false;
+            $this->CedulaProductivo = null;
+            $this->NombreProductivo = null;
+        } else {
+            $this->FormProductivo = true;
+        }
+    }
 }

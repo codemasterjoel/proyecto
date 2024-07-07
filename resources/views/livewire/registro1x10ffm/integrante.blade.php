@@ -52,7 +52,7 @@
                                             <div class="w-full rounded-lg bg-gray-500">
                                                 <div class="flex">
                                                     <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
-                                                    <input wire:model="telefonoIntegrante" type="text" class="w-full bg-white pl-2 text-base font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
+                                                    <input wire:model="telefonoIntegrante" type="text" class="w-full bg-white pl-2 border text-base font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
                                                     <input wire:click="guardarIntegrante" type="button" value="Guardar" class="bg-gradient-to-r from-cyan-400 to-cyan-600 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
                                                 </div>
                                             </div>
