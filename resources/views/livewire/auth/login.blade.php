@@ -3,9 +3,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
-                    <div class="card card-plain mt-8">
+                    <div class="card card-plain mt-2">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <img src="{{asset('assets/img/logo.png')}}" class="navbar-brand-img h-100">
+                            <img src="{{asset('img/logo.svg')}}" class="navbar-brand-img h-100">
                         </div>
                         <div class="card-body">
                             <form wire:submit="login" action="#" method="POST" role="form text-left">

@@ -2,7 +2,7 @@
     <div class="sidenav-header mb-5">
         <i class="fas fa-times p-3 cursor-pointer text-seconsdary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="p-2">
-            <img src="{{asset('assets/img/logo.png')}}" class="">
+            <img src="{{asset('img/logo.svg')}}" class="">
             {{-- <span class="ms-3 font-weight-bold">Soft UI Dashboard Laravel Livewire</span> --}}
         </a>
     </div>
@@ -32,7 +32,7 @@
             {{-- REGISTRO DE LSB --}}
             @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'lsb' ? 'active' : '' }}" href="">
+                    <a class="nav-link {{ Route::currentRouteName() == 'lsb' ? 'active' : '' }}" href="{{route('lsb')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="material-icons {{ in_array(request()->route()->getName(),['lsb']) ? 'text-white' : 'text-dark' }}">person</span>
                         </div>

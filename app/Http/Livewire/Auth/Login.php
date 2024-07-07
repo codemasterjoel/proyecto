@@ -24,15 +24,29 @@ class Login extends Component
     }
 
     public function login() {
-        $credentials = $this->validate();
-        if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
-            $user = User::where(["email" => $this->email])->first();
+
+        $user = User::where('email', '=', $this->email)->first();
+        
+        if($user->email == $this->email and password_verify($this->password, $user->password)) 
+        {
             auth()->login($user, $this->remember_me);
-            return redirect()->intended('/dashboard');        
-        }
-        else{
+            return redirect()->intended('/dashboard'); 
+
+        }else
+        {
             return $this->addError('email', trans('auth.failed')); 
         }
+
+        // $credentials = $this->validate();
+        // if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
+        //     $user = User::where(["email" => $this->email])->first();
+        //     dd($user);
+        //     auth()->login($user, $this->remember_me);
+        //     return redirect()->intended('/dashboard');        
+        // }
+        // else{
+            //return $this->addError('email', trans('auth.failed')); 
+        // }
     }
 
     public function render()

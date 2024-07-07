@@ -177,7 +177,6 @@ class Index extends Component
                 // $this->existelsb2 = $elector;
             }
         }
-        
     }
     public function guardar()
     {
