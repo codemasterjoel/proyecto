@@ -21522,6 +21522,8 @@ hr.horizontal.gray-light {
 
 .sidenav {
   z-index: 9;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .sidenav .navbar-brand,
 .sidenav .navbar-heading {
