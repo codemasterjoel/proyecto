@@ -16,6 +16,7 @@ use App\Http\Livewire\Rtl;
 use App\Http\Livewire\Registro1x10ffm\Index as ffm;
 use App\Http\Livewire\Luchador\Index as registrolsb;
 use App\Http\Livewire\NBC\Index as registronbc;
+use App\Http\Livewire\Saime\Index as saime;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/1x10ffm', ffm::class)->name('ffm');
     Route::get('/lsb', registrolsb::class)->name('lsb');
     Route::get('/nbc', registronbc::class)->name('nbc');
+    Route::get('/saime', saime::class)->name('saime');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');

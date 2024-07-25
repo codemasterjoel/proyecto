@@ -173,5 +173,4 @@ class Index extends Component
         RegistroLuchador::find($id)->delete();
         session()->flash('integranteEliminado', 'success');
     }
-
 }

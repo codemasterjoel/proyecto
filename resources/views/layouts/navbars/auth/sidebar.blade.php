@@ -90,8 +90,7 @@
                 </li>
                 {{-- SAIME --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'saime' ? 'active' : '' }}"
-                        href="">
+                    <a class="nav-link {{ Route::currentRouteName() == 'saime' ? 'active' : '' }}" href="{{ route('saime')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="material-icons {{ in_array(request()->route()->getName(),['saime']) ? 'text-white' : 'text-dark' }}">business</span>
                         </div>

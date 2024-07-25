@@ -158,7 +158,7 @@
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" wire:click="MenuProductivo" data-toggle="tab" href="#productivo">
+                                <a class="nav-link" wire:click="MenuProductivo" data-toggle="tab" href="#">
                                   <div class=" bg-gradient-danger rounded-t-lg py-3 px-2 text-white">
                                     <div class="card-icon text-center">
                                       <i class="material-icons">grass</i><br>PRODUCTIVO
@@ -172,7 +172,7 @@
                                   <br><h4 class="text-info">DATOS DEL ORGANIZADOR DE NBC</h4>
                                   <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
                                     <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeOrganizador" />
-                                    <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                    <div class="peer flex h-8 flex-row-reverse items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
                                         <span>SI</span>
                                         <span>NO</span>
                                     </div><h5 class="p-2"> Posee Organizador?</h5>
@@ -204,7 +204,7 @@
                                 <br><h4 class="text-info">DATOS DEL FORMADOR DE NBC</h4>
                                 <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
                                   <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeFormador" />
-                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                  <div class="peer flex flex-row-reverse h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
                                       <span>SI</span>
                                       <span>NO</span>
                                   </div><h5 class="p-2"> Posee Formador?</h5>
@@ -236,7 +236,7 @@
                                 <br><h4 class="text-info">DATOS DEL MOVILIZADOR DE NBC</h4>
                                 <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
                                   <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeMovilizador" />
-                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                  <div class="peer flex flex-row-reverse h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
                                       <span>SI</span>
                                       <span>NO</span>
                                   </div><h5 class="p-2"> Posee Movilizador?</h5>
@@ -268,7 +268,7 @@
                                 <br><h4 class="text-info">DATOS DE EL DE DEFENSA DE NBC</h4>
                                 <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
                                   <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeDefensa" />
-                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                  <div class="peer flex flex-row-reverse h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
                                       <span>SI</span>
                                       <span>NO</span>
                                   </div><h5 class="p-2"> Posee el de Defensa?</h5>
@@ -300,7 +300,7 @@
                                 <br><h4 class="text-info">DATOS DEL PRODUCTOR DE NBC</h4>
                                 <label class="relative inline-flex cursor-pointer items-center pb-4 py-4 "> {{-- campo activo --}}
                                   <input type="checkbox" value="1" class="peer sr-only" wire:model.live="PoseeProductivo" />
-                                  <div class="peer flex h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
+                                  <div class="peer flex flex-row-reverse h-8 items-center gap-4 rounded-full bg-cyan-600 px-3 after:absolute after:left-1 after: after:h-6 after:w-10 after:rounded-full after:bg-white/40 after:transition-all after:content-[''] peer-checked:bg-orange-600 cheked value='0' peer-checked:after:translate-x-full peer-focus:outline-none text-white">
                                       <span>SI</span>
                                       <span>NO</span>
                                   </div><h5 class="p-2"> Posee Productor?</h5>
@@ -329,7 +329,7 @@
                               @endif
                           </div>
                         </div>
-                        <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <div class="px-4 py-3 sm:px-6 sm:flex">
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
                                 <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
                             </span>

@@ -7,10 +7,10 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Soft UI Dashboard by Creative Tim
+        Frente Francisco de Miranda
     </title>
-    <!-- Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Fonts and icons
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />     -->
     <!-- Nucleo Icons -->
     <script src="{{asset('css/3.4.4')}}"></script>
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -19,8 +19,8 @@
     <link href="{{asset('css/icon.css')}}" rel="stylesheet" />
     <link href="{{asset('css/css2.css')}}"rel="stylesheet">
     <link href="{{asset('css/css3.css')}}"rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome Icons
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
     <script src="{{ asset('js/Chart.js')}}"></script>
     <script src="{{ asset('js/chart.min.js')}}"></script>
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -48,8 +48,8 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Github buttons
+    <script async defer src="https://buttons.github.io/buttons.js"></script> -->
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/soft-ui-dashboard.js"></script>
     <script src="{{ asset('js/jquery.mask.min.js')}}"></script>
