@@ -19,16 +19,14 @@
                 </a>
             </li>
             {{-- PERFIL DE USUARIO --}}
-            @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'user-profile' ? 'active' : '' }}" href="{{ route('user-profile') }}">
+                    <a class="nav-link {{ Route::currentRouteName() == 'perfil' ? 'active' : '' }}" href="{{ route('perfil') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="material-icons {{ in_array(request()->route()->getName(),['user-profile']) ? 'text-white' : 'text-dark' }}">account_box</span>
+                            <span class="material-icons {{ in_array(request()->route()->getName(),['perfil']) ? 'text-white' : 'text-dark' }}">account_box</span>
                         </div>
                         <span class="nav-link-text ms-1"><b>PERFIL</b></span>
                     </a>
                 </li>
-            @endif
             {{-- REGISTRO DE LSB --}}
             @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
@@ -63,9 +61,9 @@
             {{-- MAPA --}}
             @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'user-management' ? 'active' : '' }}" href="{{ route('user-management') }}">
+                    <a class="nav-link {{ Route::currentRouteName() == 'mapa' ? 'active' : '' }}" href="{{ route('mapa') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="material-icons {{ in_array(request()->route()->getName(),['user-management']) ? 'text-white' : 'text-dark' }}">person_pin_circle</span>
+                            <span class="material-icons {{ in_array(request()->route()->getName(),['mapa']) ? 'text-white' : 'text-dark' }}">person_pin_circle</span>
                             {{-- <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center ></i> --}}
                         </div>
                         <span class="nav-link-text ms-1"><b>MAPA</b></span>
@@ -80,9 +78,9 @@
             @if (auth()->user()->nivel_id == 1)
                 {{-- GESTIÓN DE USUARIOS --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'user-management' ? 'active' : '' }}" href="{{ route('user-management') }}">
+                    <a class="nav-link {{ Route::currentRouteName() == 'usuario' ? 'active' : '' }}" href="{{ route('usuario') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="material-icons {{ in_array(request()->route()->getName(),['user-management']) ? 'text-white' : 'text-dark' }}">manage_accounts</span>
+                            <span class="material-icons {{ in_array(request()->route()->getName(),['usuario']) ? 'text-white' : 'text-dark' }}">manage_accounts</span>
                             {{-- <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center ></i> --}}
                         </div>
                         <span class="nav-link-text ms-1"><b>GESTIÓN DE USUARIOS</b></span>
@@ -107,10 +105,8 @@
                     </a>
                 </li>
             @endif
-            <li class="nav-item d-flex align-items-center">
-                <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                    <auth.logout />
-                </a>
+            <li class="nav-item">
+                <a href="{{ url('logout') }}" class=" nav-link btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">Salir</a>
             </li>
         </ul>
     </div>

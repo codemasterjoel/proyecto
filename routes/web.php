@@ -13,10 +13,15 @@ use App\Http\Livewire\Tables;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Rtl;
+use App\Http\Livewire\Auth\Logout;
+use App\Http\Livewire\Postulacion\Index as postulacion;
+
 use App\Http\Livewire\Registro1x10ffm\Index as ffm;
 use App\Http\Livewire\Luchador\Index as registrolsb;
 use App\Http\Livewire\NBC\Index as registronbc;
 use App\Http\Livewire\Saime\Index as saime;
+use App\Http\Livewire\Mapa\Index as mapa;
+use App\Http\Livewire\Usuario\Index as usuario;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -27,9 +32,14 @@ Route::get('/', function() {
     return redirect('/login');
 });
 
+Route::get('/logout', function() {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
 
 Route::get('/sign-up', SignUp::class)->name('sign-up');
 Route::get('/login', Login::class)->name('login');
+Route::get('/postulacion', postulacion::class)->name('postulacion');
 
 Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
 
@@ -40,14 +50,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/lsb', registrolsb::class)->name('lsb');
     Route::get('/nbc', registronbc::class)->name('nbc');
     Route::get('/saime', saime::class)->name('saime');
+    Route::get('/mapa', mapa::class)->name('mapa');
+    Route::get('/usuario', usuario::class)->name('usuario');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/perfil', UserProfile::class)->name('perfil');
+
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/tables', Tables::class)->name('tables');
     Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
     Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
     Route::get('/rtl', Rtl::class)->name('rtl');
-    Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
     Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
 });
 

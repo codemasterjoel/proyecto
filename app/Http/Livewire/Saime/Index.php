@@ -9,7 +9,6 @@ use App\Models\Genero;
 
 use Livewire\WithPagination;
 
-
 class Index extends Component
 {
     use WithPagination;

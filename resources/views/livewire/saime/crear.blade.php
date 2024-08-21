@@ -14,9 +14,9 @@
         @endif
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">    
-            <div class="min-h-screen flex items-center justify-center">
+            <div class="min-h-screen flex justify-center">
                 <div class="p-4 w-full bg-white rounded-lg">
-                    <div class="flex items-center justify-center">
+                    <div class="flex justify-center">
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
                     <h3 class="text-2xl text-cyan-400 font-semibold text-center">REGISTRO INTERNO DE SAIME</h3>

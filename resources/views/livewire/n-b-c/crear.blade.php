@@ -327,19 +327,71 @@
                                   </div>
                                 @endif
                               @endif
-                          </div>
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="font-weight-bold text-white text-center"><h3>GEOREFERENCIACION</h3></div>
+                              </div>
+                            </div>
+                            <div class="items-center">
+                                <div id="map" style="width: 200px; height: 200px;"></div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-6">
+                                  <label>COORDENADA UTM</label>
+                                  <input style="width: 500px;" type="text" name="latitud" id="latitud" class="form-control" required>
+                                  <input style="width: 500px;" type="text" name="longitud" id="longitud" class="form-control" required>
+                                </div>
+                              </div>
+                              <div class="px-4 py-3 sm:px-6 sm:flex">
+                                <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
+                                    <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
+                                  </span>
+                                  <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
+                                    <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
+                                  </span>
+                                </div>
+                              </div>
                         </div>
-                        <div class="px-4 py-3 sm:px-6 sm:flex">
-                            <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
-                            </span>
-                            <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
-                            </span>
-                        </div>
-                    </form>
+                      </form>
                 </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+      @push('js')
+      <script>
+        var marker;
+        var coords = {};
+        initMap = function () 
+        {
+          navigator.geolocation.getCurrentPosition(
+          function (position){
+            coords =  {
+              lng: position.coords.longitude,
+              lat: position.coords.latitude
+            };
+            setMapa(coords);
+          },function(error){console.log(error);});
+        }
+        function setMapa (coords)
+        {
+        var map = new google.maps.Map(document.getElementById('map'),
+        {
+          zoom: 13,
+          center:new google.maps.LatLng(coords.lat,coords.lng),
+        });
+        marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: new google.maps.LatLng(coords.lat,coords.lng),
+      });
+      marker.addListener( 'dragend', function (event)
+      {
+        document.getElementById("latitud").value = this.getPosition().lat();
+        document.getElementById("longitud").value = this.getPosition().lng();
+      });
+    }
+  </script>                      
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&callback=initMap&v=weekly" defer></script>
+@endpush
