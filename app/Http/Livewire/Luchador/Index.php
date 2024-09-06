@@ -16,13 +16,14 @@ use App\Models\Saime;
 
 use Ramsey\Uuid\Uuid;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $modal, $estado = false;
+    public $modal, $estado, $filtro = false;
     public $municipios  = null; // Liste de Municipios
     public $estados     = null; // Lista de estados
     public $parroquias  = null; // Lista de parroquias
@@ -61,6 +62,14 @@ class Index extends Component
         $this->limpiarCampos();
         $this->abrirModal();
     }
+    public function verfiltro()
+    {
+        if ($this->filtro) {
+            $this->filtro = false;
+        } else {
+            $this->filtro = true;
+        }
+    } 
     public function abrirModal() 
     {
         $this->modal = true;
@@ -172,5 +181,18 @@ class Index extends Component
     {
         RegistroLuchador::find($id)->delete();
         session()->flash('integranteEliminado', 'success');
+    }
+    public function fichalsb($id)
+    {
+        $lsbs = RegistroLuchador::find($id);
+
+        // return view('reportes.lsb');
+        $pdf = Pdf::loadView('livewire.reportes.lsb', ['lsb'=>$lsbs]);
+        set_time_limit(0);
+        ini_set("memory_limit",-1);
+        ini_set('max_execution_time', 0);
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, 'aaa.pdf');
     }
 }

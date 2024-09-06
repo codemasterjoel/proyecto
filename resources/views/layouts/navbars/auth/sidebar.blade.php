@@ -52,19 +52,31 @@
                     <a class="nav-link {{ Route::currentRouteName() == 'nbc' ? 'active' : '' }}" href="{{route('nbc')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="material-icons {{ in_array(request()->route()->getName(),['nbc']) ? 'text-white' : 'text-dark' }}">groups</span>
-                            {{-- <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center ></i> --}}
                         </div>
                         <span class="nav-link-text ms-1"><b>REGISTRO DE NBC</b></span>
                     </a>
                 </li>  
             @endif
+
+            <!-- FORMACION -->
+             
+            @if (auth()->user()->nivel_id == 1)
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'formacion' ? 'active' : '' }}" href="{{route('formacion')}}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <span class="material-icons {{ in_array(request()->route()->getName(),['formacion']) ? 'text-white' : 'text-dark' }}">book</span>
+                        </div>
+                        <span class="nav-link-text ms-1"><b>FORMACIÓN</b></span>
+                    </a>
+                </li>  
+            @endif
+
             {{-- MAPA --}}
             @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'mapa' ? 'active' : '' }}" href="{{ route('mapa') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="material-icons {{ in_array(request()->route()->getName(),['mapa']) ? 'text-white' : 'text-dark' }}">person_pin_circle</span>
-                            {{-- <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center ></i> --}}
                         </div>
                         <span class="nav-link-text ms-1"><b>MAPA</b></span>
                     </a>
@@ -81,7 +93,6 @@
                     <a class="nav-link {{ Route::currentRouteName() == 'usuario' ? 'active' : '' }}" href="{{ route('usuario') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="material-icons {{ in_array(request()->route()->getName(),['usuario']) ? 'text-white' : 'text-dark' }}">manage_accounts</span>
-                            {{-- <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center ></i> --}}
                         </div>
                         <span class="nav-link-text ms-1"><b>GESTIÓN DE USUARIOS</b></span>
                     </a>

@@ -22,6 +22,7 @@ use App\Http\Livewire\NBC\Index as registronbc;
 use App\Http\Livewire\Saime\Index as saime;
 use App\Http\Livewire\Mapa\Index as mapa;
 use App\Http\Livewire\Usuario\Index as usuario;
+use App\Http\Livewire\Formacion\Index as formacion;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/usuario', usuario::class)->name('usuario');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/perfil', UserProfile::class)->name('perfil');
+    Route::get('/formacion', formacion::class)->name('formacion');
 
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');

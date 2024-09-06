@@ -24,4 +24,21 @@ class postulacion extends Model
         'parroquia_id',
         'direccion'
     ];
+
+    public function estado()
+    {
+        return $this->belongsTo(Estado::class);
+    }
+    public function genero()
+    {
+        return $this->belongsTo(Genero::class);
+    }
+    public function municipio()
+    {
+        return $this->belongsTo(Municipio::class);
+    }
+    public function parroquia()
+    {
+        return $this->belongsTo(Parroquia::class);
+    }
 }

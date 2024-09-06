@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label for="user-email" class="form-control-label">{{ __('Correo') }}</label>
                                 <div class="@error('user.email')border border-danger rounded-3 @enderror">
-                                    <input wire:model.live="user.email" class="form-control" type="email" placeholder="@example.com" id="user-email">value="{{$user->email}}"
+                                    <input wire:model.live="user.email" class="form-control" type="email" placeholder="@example.com" value="{{$user->email}}" id="user-email">
                                 </div>
                                 @error('user.email') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user.phone" class="form-control-label">{{ __('Phone') }}</label>
+                                <label for="user.phone" class="form-control-label">Telefono</label>
                                 <div class="@error('user.phone')border border-danger rounded-3 @enderror">
                                     <input wire:model.live="user.phone" class="form-control" type="tel" placeholder="40770888444" value="{{$user->telefono}}" id="phone">
                                 </div>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user.location" class="form-control-label">{{ __('Location') }}</label>
+                                <label for="user.location" class="form-control-label">Direcciòn</label>
                                 <div class="@error('user.location') border border-danger rounded-3 @enderror">
                                     <input wire:model.live="user.location" class="form-control" type="text"
                                         placeholder="Location" id="name">

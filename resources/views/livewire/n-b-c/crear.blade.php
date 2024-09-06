@@ -15,9 +15,9 @@
                     </div>
                     <h3 class="text-2xl text-cyan-400 font-semibold text-center">REGISTRAR NUEVO NUCLEO DE BASE COMUNITARIO</h3>
                     <form>
-                        <div class="relative flex flex-wrap items-stretch pt-4"> {{-- campo Nombre del NBC --}}
+                        <div class=" flex items-stretch pt-4"> {{-- campo Nombre del NBC --}}
                             <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre del nbc</span>
-                            <input wire:model="NombreNBC" type="text" class="rounded-0 relative m-0 block w-[1px] min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
+                            <input wire:model="NombreNBC" type="text" class="w-full flex-auto relative bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
                         </div>
                         <div class="grid grid-cols-3 gap-4 pt-4">
                             <div class="flex items-center justify-center"> {{-- campo estado --}}
@@ -333,7 +333,7 @@
                               </div>
                             </div>
                             <div class="items-center">
-                                <div id="map" style="width: 200px; height: 200px;"></div>
+                                <div id="map" style="width: 100%; height: 500px;"></div>
                             </div>
                             <div class="row">
                               <div class="col-sm-6">
@@ -342,12 +342,12 @@
                                   <input style="width: 500px;" type="text" name="longitud" id="longitud" class="form-control" required>
                                 </div>
                               </div>
-                              <div class="px-4 py-3 sm:px-6 sm:flex">
+                              <div class="px-4 py-3 sm:px-6 sm:flex">                                  
+                                <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
+                                    <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
+                                  </span>
                                 <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
                                     <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
-                                  </span>
-                                  <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                    <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
                                   </span>
                                 </div>
                               </div>
@@ -359,39 +359,43 @@
         </div>
       </div>
       @push('js')
-      <script>
-        var marker;
-        var coords = {};
-        initMap = function () 
-        {
-          navigator.geolocation.getCurrentPosition(
-          function (position){
-            coords =  {
-              lng: position.coords.longitude,
-              lat: position.coords.latitude
-            };
-            setMapa(coords);
-          },function(error){console.log(error);});
-        }
-        function setMapa (coords)
-        {
-        var map = new google.maps.Map(document.getElementById('map'),
-        {
-          zoom: 13,
-          center:new google.maps.LatLng(coords.lat,coords.lng),
-        });
-        marker = new google.maps.Marker({
-        map: map,
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        position: new google.maps.LatLng(coords.lat,coords.lng),
-      });
-      marker.addListener( 'dragend', function (event)
-      {
-        document.getElementById("latitud").value = this.getPosition().lat();
-        document.getElementById("longitud").value = this.getPosition().lng();
-      });
-    }
-  </script>                      
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&callback=initMap&v=weekly" defer></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&v=weekly&loading=async"></script>
+
+      @script
+        <script>
+            console.log("Listo");
+            var marker;
+            var coords = {};
+            initMap = function () 
+              {
+                navigator.geolocation.getCurrentPosition(
+                function (position){
+                  coords =  {
+                    lng: position.coords.longitude,
+                    lat: position.coords.latitude
+                  };
+                  setMapa(coords);
+                },function(error){console.log(error);});
+              }
+              function setMapa (coords)
+                {
+                  var map = new google.maps.Map(document.getElementById('map'),
+                    {
+                      zoom: 13,
+                      center:new google.maps.LatLng(coords.lat,coords.lng),
+                    });
+                  marker = new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coords.lat,coords.lng),
+                  });
+                  marker.addListener( 'dragend', function (event)
+                    {
+                      document.getElementById("latitud").value = this.getPosition().lat();
+                      document.getElementById("longitud").value = this.getPosition().lng();
+                    });
+                }
+        </script>
+      @endscript
 @endpush

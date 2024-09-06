@@ -10,6 +10,11 @@
                         <input wire:model.live="search" type="text" placeholder="Filtrar por Cedula" class="w-30 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
                         <button wire:click="crear()" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; NUEVO REGISTRO</button>
                     </div>
+
+                    <button wire:click="verfiltro()" class="btn bg-gradient-success mt-2 btn-sm mb-0" type="button">FILTRO</button>
+                    @if($filtro)
+                        <div>aqui va el filtro</div>
+                    @endif
                 </div>
                 @if($modal)
                     @include('livewire.luchador.crear')   
@@ -44,9 +49,9 @@
                                         <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0 {{$lsb->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td>
                                         {{-- <td class="text-center text-uppercase"><p class="text-xs font-weight-bold">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td> --}}
                                         <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar lsb">
+                                            <a wire:click="fichalsb('{{$lsb->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
                                             <a wire:click="editar('{{$lsb->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
-                                            {{-- <button wire:click="editar({{$lsb->id}})" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4">Editar</button> --}}
-                                            <a wire:click="borrar('{{$lsb->id}}')" class=" text-danger font-bold py-2 px-4"><span class="material-symbols-outlined">person_cancel</span></a>
+                                            <a wire:click="borrar('{{$lsb->id}}')" class="text-danger font-bold py-2 px-2"><span class="material-symbols-outlined">person_cancel</span></a>
                                         </td>
                                     </tr>
                                     @endforeach
