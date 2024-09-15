@@ -48,7 +48,7 @@ class Index extends Component
     {
         $this->ModalOrganizador = true;
     }
-    public function cerrarModal() 
+    public function cerrarModal()
     {
         $this->modal = false; 
         $this->limpiarCampos();

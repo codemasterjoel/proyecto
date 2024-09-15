@@ -5,6 +5,11 @@ namespace App\Http\Livewire\Formacion;
 use Livewire\Component;
 use App\Models\RegistroLuchador;
 use Livewire\WithPagination;
+use App\Models\postulacion;
+use App\Models\Estado;
+use App\Models\Municipio;
+use App\Models\Parroquia;
+use App\Models\Genero;
 use App\Models\Avanzada;
 use App\Models\NivelAcademico;
 use App\Models\Responsabilidad;
@@ -15,18 +20,18 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $verLuchador, $verPostulado, $verFormador = false;
-    public $municipios  = null; // Liste de Municipios
-    public $estados     = null; // Lista de estados
-    public $parroquias  = null; // Lista de parroquias
-    public $nivelesAcademicos = null; //Niveles Academicos
-    public $responsabilidades = null; //Responsabilidades
+    public $modalLuchador, $verPostulado, $verFormador = false;
+    public $municipios, $municipio  = null; // Liste de Municipios
+    public $estados, $estado     = null; // Lista de estados
+    public $parroquias, $parroquia  = null; // Lista de parroquias
+    public $nivelesAcademicos, $nivelAcademico = null; //Niveles Academicos
+    public $responsabilidades, $responsabilidad = null; //Responsabilidades
     public $cedula = null; //Cedula
-    public $avanzadas = null; //Avanzadas
+    public $avanzadas, $avanzada = null; //Avanzadas
     public $correo = null; //Correo
     public $fechaNacimiento = null; //Fecha Nacimiento
     public $nombreCompleto = null; //Nombres
-    public $generos = null; //Genero
+    public $generos, $genero = null; //Genero
     public $estatus = null; //Estatus
     public $telefono = null; //Telefono
     
@@ -50,10 +55,8 @@ class Index extends Component
     {
         $this->data = $campo;
     }
-
     public function verLuchador($id)
     {
-        dd($id);
         $lsb = RegistroLuchador::findOrFail($id);
 
         $this->id = $id;
@@ -63,20 +66,22 @@ class Index extends Component
         $this->fechaNacimiento = $lsb->fecha_nac;
         $this->telefono = $lsb->telefono;
         $this->correo = $lsb->correo;
-        $this->avanzadaId = $lsb->avanzada_id;
-        $this->generoId = $lsb->genero_id;
-        $this->nivelAcademicoId = $lsb->nivel_academico_id;
-        $this->responsabilidadId = $lsb->responsabilidad_id;
-        $this->estadoId = $lsb->estado_id;
-        $this->municipioId = $lsb->municipio_id;
-        $this->municipios = Municipio::where('estado_id', $lsb->estado_id)->get();
-        $this->parroquiaId = $lsb->parroquia_id;
-        $this->parroquias = Parroquia::where('municipio_id', $lsb->municipio_id)->get();
+        $this->avanzada = $lsb->avanzada->nombre;
+        $this->genero = $lsb->genero->nombre;
+        $this->nivelAcademico = $lsb->nivelAcademico->nombre;
+        $this->responsabilidad = $lsb->responsabilidad->nombre;
+        $this->estado = $lsb->estado->nombre;
+        $this->municipio = $lsb->municipio->nombre;
+        $this->parroquia = $lsb->parroquia->nombre;
 
         $this->abrirModalLuchador();
     }
     public function abrirModalLuchador() 
     {
-        $this->verLuchador = true;        
+        $this->modalLuchador = true;
+    }
+    public function cerrarModalLuchador() 
+    {
+        $this->modalLuchador = false;
     }
 }

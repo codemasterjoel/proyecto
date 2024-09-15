@@ -64,7 +64,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'formacion' ? 'active' : '' }}" href="{{route('formacion')}}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="material-icons {{ in_array(request()->route()->getName(),['formacion']) ? 'text-white' : 'text-dark' }}">book</span>
+                            <span class="material-icons {{ in_array(request()->route()->getName(),['formacion']) ? 'text-white' : 'text-dark' }}">auto_stories</span>
                         </div>
                         <span class="nav-link-text ms-1"><b>FORMACIÓN</b></span>
                     </a>
@@ -83,7 +83,18 @@
                 </li>
             @endif
 
-            
+            {{-- REPORTES --}}
+            @if (auth()->user()->nivel_id == 1)
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() == 'reporte' ? 'active' : '' }}" href="{{ route('reporte') }}">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <span class="material-icons {{ in_array(request()->route()->getName(),['reporte']) ? 'text-white' : 'text-dark' }}">print</span>
+                        </div>
+                        <span class="nav-link-text ms-1"><b>REPORTE</b></span>
+                    </a>
+                </li>
+            @endif
+
             <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">CONFIGURACIÓN</h6>
             </li>

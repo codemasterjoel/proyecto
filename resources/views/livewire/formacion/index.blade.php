@@ -1,7 +1,4 @@
 <div class="main-content mt-5">
-    @if($verLuchador)
-        @include('livewire.formador.verlsb')
-    @endif
     <div class="row">
         <div class="col-12">
             <div class="card mb-4 mx-4">
@@ -9,6 +6,9 @@
                     <a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>
                     <a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>
                     <a href="#" wire:click="ver('postulados')" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">POSTULADOS</a>
+                    @if($modalLuchador)
+                        @include('livewire.formacion.verlsb')   
+                    @endif  
                     @if ($data == 'postulados')
                         <div class="mt-4">
                             <h3 class="text-2xl text-cyan-400 font-semibold text-center">LISTADO DE POSTULADOS</h3>
@@ -100,6 +100,7 @@
                                                 <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0 {{$lsb->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td>
                                                 <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar lsb">
                                                     <a wire:click="verLuchador('{{$lsb->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
+                                                    <a wire:click="verLuchador('{{$lsb->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
