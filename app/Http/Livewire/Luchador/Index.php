@@ -13,10 +13,12 @@ use App\Models\Avanzada;
 use App\Models\NivelAcademico;
 use App\Models\Responsabilidad;
 use App\Models\Saime;
+use App\Mail\UserCreated;
 
 use Ramsey\Uuid\Uuid;
 use Livewire\WithPagination;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class Index extends Component
 {
@@ -171,6 +173,8 @@ class Index extends Component
             'municipio_id' => $this->municipioId,
             'parroquia_id' => $this->parroquiaId
         ]);
+
+        Mail::to($this->correo)->send(new UserCreated());
          
         session()->flash('success', 'success');
          
@@ -194,5 +198,11 @@ class Index extends Component
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();
         }, 'aaa.pdf');
+    }
+    public function verficha($id) 
+    {
+        $lsbs = RegistroLuchador::find($id);
+
+        return view ('livewire.reportes.lsb', ['lsb'=>$lsbs]);
     }
 }

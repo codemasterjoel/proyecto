@@ -15,15 +15,14 @@
     </table>
     <table style="width: 100%; border: 0px;" align="center">
         <tr>
-            <td align="center"><h3>Planilla de Registro</h3></td>
+            <td align="center"><h1>Planilla de Registro</h1></td>
         </tr>
     </table>
     <table style="text-align: center; width: 100%">
         <tbody>
 			<tr>
 				<td style="text-align:justify">
-					Uno de los principios fundamentales de los programas nacionales de formación, es la vinculación directa de los estudiantes con las comunidades y empresas en el área de desempeño profesional, 
-					donde se promueve una educación basada en proyectos y problemas, estudiando los temas en el contexto de aplicación y superando la fragmentación curricular.<br><br>
+					<br><br>
 				</td>
 			</tr>
 			<tr>

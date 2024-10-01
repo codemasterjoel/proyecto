@@ -67,4 +67,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/rtl', Rtl::class)->name('rtl');
     Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
 });
-
