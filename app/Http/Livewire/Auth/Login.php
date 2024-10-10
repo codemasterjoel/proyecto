@@ -11,12 +11,18 @@ use App\Models\Genero;
 use App\Models\NivelAcademico;
 use App\Models\postulacion;
 
+use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\UserCreated;
+use App\Mail\resetMail;
+
 class Login extends Component
 {
     public $email = '';
     public $password = '';
     public $remember_me = false;  
-    public $modal, $estado = false;
+    public $modal, $estado, $modalReset = false;
     public $estados, $municipios, $parroquias, $nivelesAcademicos, $generos = null; // Listas desplegables
     public $cedula = null; //Cedula
     public $telefono = null; //Telefono
@@ -25,22 +31,22 @@ class Login extends Component
     public $nombreCompleto = null; //Nombres
     public $direccion = null; //Direccion
     public $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $generoId = null; //Id que recibo de las listas desplegables
+    public $showSuccesNotification, $showFailureNotification = false;
 
     protected $rules = [
         'email' => 'required|email:rfc,dns',
         'password' => 'required',
     ];
 
-    public function mount() {
+    public function mount() 
+    {
         if(auth()->user()){
             redirect('/dashboard');
         }
         $this->fill(['email' => 'admin@email.com', 'password' => '21246813']);
     }
-
-    public function login() {
-
-        
+    public function login() 
+    {    
         $user = User::where('email', '=', $this->email)->first();
         
         if($user->email == $this->email and password_verify($this->password, $user->password)) 
@@ -53,7 +59,6 @@ class Login extends Component
             return $this->addError('email', trans('auth.failed')); 
         }
     }
-
     public function render()
     {
         return view('livewire.auth.login');
@@ -103,6 +108,8 @@ class Login extends Component
     public function guardar()
     {
         $lsb = postulacion::create([
+
+            'id' => Uuid::uuid4()->toString(),
             'cedula' => $this->cedula,
             'NombreCompleto' => $this->nombreCompleto,
             'fecha_nac' => $this->fechaNacimiento,
@@ -120,5 +127,27 @@ class Login extends Component
          
          $this->cerrarModal();
          $this->limpiarCampos();
+    }
+    public function resetPassword()
+    {
+        $this->modalReset = true;
+    }
+    public function recoverPassword()
+    {
+        $user = User::where('email', '=', $this->email)->first();
+        
+        //dd($user);
+
+        if(isset($user))
+        {
+            //dd($user->email);
+            //return view('livewire.auth.reset');
+            Mail::to($user->email)->send(new resetMail());
+            $this->showSuccesNotification = true;
+        }
+        else
+        {
+            $this->showFailureNotification = true;
+        }
     }
 }

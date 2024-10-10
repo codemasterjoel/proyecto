@@ -11,14 +11,14 @@
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
                     <h3 class="text-2xl text-cyan-400 font-semibold text-center">¿QUIERES PERTENECER AL FRENTE FRANCISCO DE MIRANDA?</h3>
-                    <h3 class="text-xl text-red-400 font-semibold text-center">LLENA EL FORMULARIO Y SE COMUNICARAN CON USTED</h3>
+                    <h3 class="text-xl text-red-400 font-semibold text-center">LLENA EL FORMULARIO Y SE NOS ESTAREMOS COMUNICANDO CON USTED</h3>
                     <form>
                         <div class="grid grid-cols-2 gap-4"> 
                             <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <input wire:model="cedula" type="number" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                        <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                        <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Cédula</span>
+                                        <input wire:model="cedula" type="text" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-r-lg border-slate-200" onkeypress="$(this).mask('00000000')" maxlength="8" title="debe colocar una cedula valida">
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                         
                         <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nombre y Apellido --}}
                             <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre y Apellido</span>
-                            <input wire:model="nombreCompleto" type="text" class="rounded-0 relative m-0 block w-[1px] min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
+                            <input wire:model="nombreCompleto" type="text" class="rounded-r-lg relative m-0 block w-[1px] min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" onkeyup="this.value = this.value.toUpperCase();"/>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -131,7 +131,7 @@
                             <div class="w-full rounded-lg bg-gray-500">
                               <div class="flex">
                                 <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Dirección</span>
-                                <input wire:model="direccion" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                <input wire:model="direccion" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" onkeyup="this.value = this.value.toUpperCase();"/>
                               </div>
                             </div>
                         </div>

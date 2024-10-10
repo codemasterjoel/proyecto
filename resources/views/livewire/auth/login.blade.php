@@ -2,6 +2,9 @@
     @if($modal)
         @include('livewire.postulacion.index')
     @endif
+    @if($modalReset)
+        @include('livewire.auth.reset')
+    @endif
     @if(session()->has('success')== 'success')
         @include('livewire.components.success')
     @endif
@@ -32,6 +35,9 @@
                                     </div>
                                     @error('password') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
+                                <div class=" text-end -mt-3">
+                                    <a href="#" wire:click="resetPassword()" class=" text-red-500 text-uppercase" role="button" aria-pressed="true">¿Olvido la Contraseña?</a>
+                                </div>
                                 <div class="text-center">
                                     <button type="submit"
                                         class="btn bg-gradient-danger w-100 mt-4 mb-0">{{ __('Ingresar') }}</button>
@@ -42,8 +48,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                        <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6"
-                            style="background-image:url('../assets/img/curved-images/fondo_login.jpg')"></div>
+                        <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/fondo_login.jpg')"></div>
                     </div>
                 </div>
             </div>

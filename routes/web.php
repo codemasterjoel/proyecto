@@ -24,6 +24,7 @@ use App\Http\Livewire\Mapa\Index as mapa;
 use App\Http\Livewire\Usuario\Index as usuario;
 use App\Http\Livewire\Formacion\Index as formacion;
 use App\Http\Livewire\Reporte\Index as reporte;
+use App\Http\Livewire\Infoqr\Index as infoqr;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -58,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/perfil', UserProfile::class)->name('perfil');
     Route::get('/formacion', formacion::class)->name('formacion');
     Route::get('/reporte', reporte::class)->name('reporte');
-
+    Route::get('/info/{id}', infoqr::class)->name('infoqr');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/tables', Tables::class)->name('tables');

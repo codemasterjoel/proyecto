@@ -174,7 +174,7 @@ class Index extends Component
             'parroquia_id' => $this->parroquiaId
         ]);
 
-        Mail::to($this->correo)->send(new UserCreated());
+        // Mail::to($this->correo)->send(new UserCreated());
          
         session()->flash('success', 'success');
          
