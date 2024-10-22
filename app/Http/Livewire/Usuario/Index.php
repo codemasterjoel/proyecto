@@ -17,7 +17,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     
-    public $modal, $estado, $mostrar, $integranteModal = false;
+    public $modal, $estado, $mostrar, $integranteModal, $showPassword = false;
     public $search = "";
     public $id = null;
     public $municipios  = null; // Liste de Municipios
@@ -41,6 +41,7 @@ class Index extends Component
     public function crear()
     {
         $this->limpiarCampos();
+        $this->showPassword = true;
         $this->abrirModal();
     }
     public function abrirModal() 
@@ -58,6 +59,8 @@ class Index extends Component
         $this->municipios = Municipio::all();
         $this->parroquias = Parroquia::all();
 
+        // dd(decrypt($usuario->password));
+
         $this->id = $id;
         $this->name = $usuario->name;
         $this->email = $usuario->email;
@@ -66,17 +69,25 @@ class Index extends Component
         $this->estadoId = $usuario->estado_id;
         $this->municipioId = $usuario->municipio_id;
         $this->parroquiaId = $usuario->parroquia_id;
+        $this->password = $usuario->password;
 
         $this->modal = true;
         
     }
     public function guardar()
     {
+        if ($this->nivelId = 1) {
+            $this->estadoId = 25;
+        }
+        if ($this->showPassword) {
+            $this->password = bcrypt($this->password);
+        }
+
         $usuario = User::updateOrCreate(['id' => $this->id],
         [
             'name' => $this->name,
             'email' => $this->email,
-            'password' => bcrypt($this->password),
+            'password' => $this->password,
             'area_id' => $this->areaId,
             'nivel_id' => $this->nivelId,
             'estado_id' => $this->estadoId,
@@ -91,10 +102,19 @@ class Index extends Component
     }
     public function cerrarFormulario()
     {
+        $this->limpiarCampos();
         $this->mostrar = false;
     }
     public function limpiarCampos()
     {
+        $this->name = null;
+        $this->email = null;
+        $this->areaId = null;
+        $this->nivelId = null;
+        $this->estadoId = null;
+        $this->municipioId = null;
+        $this->parroquiaId = null;
+        $this->password = null;
     }
     public function updatedEstadoId($id)
     {

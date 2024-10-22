@@ -53,7 +53,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @if ($nivelId <> 1)
+                        @if ($nivelId > 1)
                             <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
@@ -123,6 +123,16 @@
                               </div>
                             </div>
                         </div>
+                        @if ($showPassword)
+                        <div class="flex items-center justify-center pb-4"> {{-- campo contraseña --}}
+                            <div class="w-full rounded-lg bg-gray-500">
+                              <div class="flex">
+                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Contraseña</span>
+                                <input wire:model="password" type="password" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                              </div>
+                            </div>
+                        </div>
+                        @endif
                         <div class="px-4 py-3 sm:px-6 sm:flex">
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
                                 <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>

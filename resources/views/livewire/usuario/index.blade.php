@@ -33,7 +33,7 @@
                                     @foreach ($usuarios as $usuario)
                                     <?php $indice += 1; ?>
                                     <tr><td class="ps-4"><p class="text-xs font-weight-bold mb-0"><?php echo $indice; ?></p></td>
-                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$usuario->name}}</p></td>
+                                        <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$usuario->name ? $usuario->name : ''}}</p></td>
                                         <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$usuario->nivel->nombre}}</p></td>
                                         <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$usuario->estado->nombre}}</p></td>
                                         <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar usuario">

@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\softDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+
 class RegistroLuchador extends Model
 {
-    use HasFactory;
+    use HasFactory, softDeletes;
     public $incrementing = false;
     protected $keyType = 'string';
 

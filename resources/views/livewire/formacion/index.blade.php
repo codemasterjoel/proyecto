@@ -16,7 +16,7 @@
                         <div class="d-flex flex-row justify-content-between">
                             <input wire:model.live="search" type="text" placeholder="Filtrar por Cedula" class="w-30 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
                         </div>
-                        @if ($lsbs->count())
+                        @if ($postulados->count())
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
                                     <table class="table align-items-center mb-0">
