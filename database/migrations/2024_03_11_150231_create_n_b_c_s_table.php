@@ -30,7 +30,7 @@ return new class extends Migration
             $table->integer('cant_urbanismos')->nullable();
             $table->integer('cant_cdi')->nullable();
 
-            // DATOS SOCIALES
+            // DATOS FFM
 
             $table->integer('cant_lsb_jefe_ubch')->nullable();
             $table->integer('cant_lsb_jefe_comunidad')->nullable();

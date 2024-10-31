@@ -4,11 +4,15 @@
             <div class="card mb-4 mx-4">
                 <div class="card-header pb-0">
                     <a href="#" wire:click="ver('luchador')" class="btn bg-gradient-success active mb-0 text-white" role="button" aria-pressed="true">LUCHADORES</a>
-                    <a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>
                     <a href="#" wire:click="ver('postulados')" class="btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">POSTULADOS</a>
+                    <a href="#" wire:click="ver('formacion')" class="btn bg-gradient-warning active mb-0 text-white" role="button" aria-pressed="true">FORMACIÓN</a>
                     @if($modalLuchador)
                         @include('livewire.formacion.verlsb')   
-                    @endif  
+                    @endif
+                    @if($modalPostulado)
+                        @include('livewire.formacion.verpostulado')   
+                    @endif
+
                     @if ($data == 'postulados')
                         <div class="mt-4">
                             <h3 class="text-2xl text-cyan-400 font-semibold text-center">LISTADO DE POSTULADOS</h3>
@@ -28,7 +32,7 @@
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">estado</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">municipio</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">parroquia</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">estatus</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">registro</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">acciones</th>
                                             </tr>
                                         </thead>
@@ -42,9 +46,9 @@
                                                 <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$postulado->estado->nombre}}</p></td>
                                                 <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$postulado->municipio->nombre}}</p></td>
                                                 <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$postulado->parroquia->nombre}}</p></td>
-                                                <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0 {{$postulado->estatus ? 'text-cyan-500 bg-cyan-100' : 'text-red-500 bg-red-100'}} rounded-lg">{{$postulado->estatus ? 'activo' : 'inactivo'}}</p></td>
+                                                <td class="text-center text-uppercase"><p class="text-xs font-weight-bold mb-0">{{$postulado->created_at->format('Y-m-d')}}</p></td>
                                                 <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar postulado">
-                                                    <a wire:click="verPostulado('{{$postulado->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
+                                                    <a wire:click="verPostulacion('{{$postulado->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
                                                 </td>
                                             </tr>
                                             @endforeach

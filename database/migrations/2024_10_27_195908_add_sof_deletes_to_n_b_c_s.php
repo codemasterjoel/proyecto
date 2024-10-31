@@ -6,17 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('responsabilidads', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('nivel');
-            $table->timestamps();
+        Schema::table('n_b_c_s', function (Blueprint $table) {
+            //
         });
     }
+
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('responsabilidads');
+        Schema::table('n_b_c_s', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -5,20 +5,16 @@ namespace App\Http\Livewire\NBC;
 use Livewire\Component;
 
 use App\Models\NBC;
-use App\Models\RegistroLuchador;
 use App\Models\Estado;
-use App\Models\Municipio;
-use App\Models\Parroquia;
 
 use Ramsey\Uuid\Uuid;
-use Livewire\WithPagination;
 
-class Index extends Component
+class Crear extends Component
 {
-    public $modal, $PoseeOrganizador, $PoseeFormador, $PoseeMovilizador, $PoseeDefensa, $PoseeProductivo = false;
+    public $PoseeOrganizador, $PoseeFormador, $PoseeMovilizador, $PoseeDefensa, $PoseeProductivo = false;
     public $ContentOrganizador, $ContentFormador, $ContentMovilizador, $ContentDefensa, $ContentProductivo = false;
     public $FormOrganizador, $FormFormador, $FormMovilizador, $FormDefensa, $FormProductivo = false;
-    public $estados     = null; // Lista de estados
+    public $estados = null;
     public $municipios  = null; // Liste de Municipios
     public $parroquias  = null; // Lista de parroquias
     public $CedulaJefe, $CedulaOrganizador, $CedulaFormador, $CedulaMovilizador, $CedulaDefensa, $CedulaProductivo = null; //Cedula
@@ -29,31 +25,11 @@ class Index extends Component
 
     public $estadoId, $municipioId, $parroquiaId = null; //Id que recibo de los campos
 
-    public $index = true;
-
     public function render()
     {
-        if ($this->index)
-        {
-            $nbcs = NBC::all();
-            $this->estados = Estado::all();
-            return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
-        }else
-        {
-            $nbcs = NBC::all();
-            $this->estados = Estado::all();
-            return view('livewire.n-b-c.crear', ['nbcs' => $nbcs]);
-        }
-    }
-    public function crear()
-    {
-        // $this->limpiarCampos();
-        $this->abrirModal();
-    }
-    public function abrirModal() 
-    {
-        $this->modal = true;
-        $this->index = false;
+        $nbcs = NBC::all();
+        $this->estados = Estado::all();
+        return view('livewire.n-b-c.crear', ['nbcs' => $nbcs]);
     }
     public function organizador() 
     {
@@ -75,136 +51,6 @@ class Index extends Component
     {
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
-    }
-    public function consultar($estructura)
-    {
-        if ($estructura == 'jefe') 
-        {
-
-            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaJefe)->firstOrFail(); 
-
-            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
-                ->orWhere('organizador_id', '=', $validar_lsb->id)
-                ->orWhere('formador_id', '=', $validar_lsb->id)
-                ->orWhere('movilizador_id', '=', $validar_lsb->id)
-                ->orWhere('defensa_id', '=', $validar_lsb->id)
-                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
-
-            if (count($existelsb) > 0)
-            {
-                session()->flash('yaregistrado', 'yaregistrado');
-            }
-            else{
-                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaJefe)->firstOrFail();
-                $this->NombreJefe = $Luchador->NombreCompleto;
-                $this->IdJefe = $Luchador->id;
-            }
-        }
-        elseif ($estructura == 'organizador') 
-        {
-            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaOrganizador)->firstOrFail(); 
-
-            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
-                ->orWhere('organizador_id', '=', $validar_lsb->id)
-                ->orWhere('formador_id', '=', $validar_lsb->id)
-                ->orWhere('movilizador_id', '=', $validar_lsb->id)
-                ->orWhere('defensa_id', '=', $validar_lsb->id)
-                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
-                
-            if (count($existelsb) > 0)
-            {
-                session()->flash('yaregistrado', 'yaregistrado');
-            }
-            else{
-                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaOrganizador)->firstOrFail();
-                $this->NombreOrganizador = $Luchador->NombreCompleto;
-                $this->IdOrganizador = $Luchador->id;
-            }
-        }
-        elseif ($estructura == 'formador')
-        {
-            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaFormador)->firstOrFail(); 
-
-            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
-                ->orWhere('organizador_id', '=', $validar_lsb->id)
-                ->orWhere('formador_id', '=', $validar_lsb->id)
-                ->orWhere('movilizador_id', '=', $validar_lsb->id)
-                ->orWhere('defensa_id', '=', $validar_lsb->id)
-                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
-                
-            if (count($existelsb) > 0)
-            {
-                session()->flash('yaregistrado', 'yaregistrado');
-            }
-            else{
-                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaFormador)->firstOrFail();
-                $this->NombreFormador = $Luchador->NombreCompleto;
-                $this->IdFormador = $Luchador->id;
-            }
-        }
-        elseif ($estructura == 'movilizador')
-        {
-            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaMovilizador)->firstOrFail(); 
-
-            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
-                ->orWhere('organizador_id', '=', $validar_lsb->id)
-                ->orWhere('formador_id', '=', $validar_lsb->id)
-                ->orWhere('movilizador_id', '=', $validar_lsb->id)
-                ->orWhere('defensa_id', '=', $validar_lsb->id)
-                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
-                
-            if (count($existelsb) > 0)
-            {
-                session()->flash('yaregistrado', 'yaregistrado');
-            }
-            else{
-                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaMovilizador)->firstOrFail();
-                $this->NombreMovilizador = $Luchador->NombreCompleto;
-                $this->IdMovilizador = $Luchador->id;
-            } 
-        }
-        elseif ($estructura == 'defensa')
-        {
-            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaDefensa)->firstOrFail(); 
-
-            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
-                ->orWhere('organizador_id', '=', $validar_lsb->id)
-                ->orWhere('formador_id', '=', $validar_lsb->id)
-                ->orWhere('movilizador_id', '=', $validar_lsb->id)
-                ->orWhere('defensa_id', '=', $validar_lsb->id)
-                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
-                
-            if (count($existelsb) > 0)
-            {
-                session()->flash('yaregistrado', 'yaregistrado');
-            }
-            else{
-                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaDefensa)->firstOrFail();
-                $this->NombreDefensa = $Luchador->NombreCompleto;  
-                $this->IdDefensa = $Luchador->id;
-            } 
-        }
-        elseif ($estructura == 'productor')
-        {
-            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaProductivo)->firstOrFail(); 
-
-            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
-                ->orWhere('organizador_id', '=', $validar_lsb->id)
-                ->orWhere('formador_id', '=', $validar_lsb->id)
-                ->orWhere('movilizador_id', '=', $validar_lsb->id)
-                ->orWhere('defensa_id', '=', $validar_lsb->id)
-                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
-                
-            if (count($existelsb) > 0)
-            {
-                session()->flash('yaregistrado', 'yaregistrado');
-            }
-            else{
-                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaProductivo)->firstOrFail();
-                $this->NombreProductivo = $Luchador->NombreCompleto;   
-                $this->IdProductivo = $Luchador->id;
-            }
-        }
     }
     public function editar($id)
     {
@@ -434,5 +280,135 @@ class Index extends Component
         $this->estadoId = null;
         $this->municipioId = null;
         $this->parroquiaId = null;
+    }
+    public function consultar($estructura)
+    {
+        if ($estructura == 'jefe') 
+        {
+            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaJefe)->firstOrFail(); 
+
+            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
+                ->orWhere('organizador_id', '=', $validar_lsb->id)
+                ->orWhere('formador_id', '=', $validar_lsb->id)
+                ->orWhere('movilizador_id', '=', $validar_lsb->id)
+                ->orWhere('defensa_id', '=', $validar_lsb->id)
+                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
+
+            if (count($existelsb) > 0)
+            {
+                session()->flash('yaregistrado', 'yaregistrado');
+            }
+            else{
+                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaJefe)->firstOrFail();
+                $this->NombreJefe = $Luchador->NombreCompleto;
+                $this->IdJefe = $Luchador->id;
+            }
+        }
+        elseif ($estructura == 'organizador') 
+        {
+            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaOrganizador)->firstOrFail(); 
+
+            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
+                ->orWhere('organizador_id', '=', $validar_lsb->id)
+                ->orWhere('formador_id', '=', $validar_lsb->id)
+                ->orWhere('movilizador_id', '=', $validar_lsb->id)
+                ->orWhere('defensa_id', '=', $validar_lsb->id)
+                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
+                
+            if (count($existelsb) > 0)
+            {
+                session()->flash('yaregistrado', 'yaregistrado');
+            }
+            else{
+                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaOrganizador)->firstOrFail();
+                $this->NombreOrganizador = $Luchador->NombreCompleto;
+                $this->IdOrganizador = $Luchador->id;
+            }
+        }
+        elseif ($estructura == 'formador')
+        {
+            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaFormador)->firstOrFail(); 
+
+            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
+                ->orWhere('organizador_id', '=', $validar_lsb->id)
+                ->orWhere('formador_id', '=', $validar_lsb->id)
+                ->orWhere('movilizador_id', '=', $validar_lsb->id)
+                ->orWhere('defensa_id', '=', $validar_lsb->id)
+                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
+                
+            if (count($existelsb) > 0)
+            {
+                session()->flash('yaregistrado', 'yaregistrado');
+            }
+            else
+            {
+                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaFormador)->firstOrFail();
+                $this->NombreFormador = $Luchador->NombreCompleto;
+                $this->IdFormador = $Luchador->id;
+            }
+        }
+        elseif ($estructura == 'movilizador')
+        {
+            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaMovilizador)->firstOrFail(); 
+
+            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
+                ->orWhere('organizador_id', '=', $validar_lsb->id)
+                ->orWhere('formador_id', '=', $validar_lsb->id)
+                ->orWhere('movilizador_id', '=', $validar_lsb->id)
+                ->orWhere('defensa_id', '=', $validar_lsb->id)
+                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
+                
+            if (count($existelsb) > 0)
+            {
+                session()->flash('yaregistrado', 'yaregistrado');
+            }
+            else{
+                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaMovilizador)->firstOrFail();
+                $this->NombreMovilizador = $Luchador->NombreCompleto;
+                $this->IdMovilizador = $Luchador->id;
+            } 
+        }
+        elseif ($estructura == 'defensa')
+        {
+            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaDefensa)->firstOrFail(); 
+
+            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
+                ->orWhere('organizador_id', '=', $validar_lsb->id)
+                ->orWhere('formador_id', '=', $validar_lsb->id)
+                ->orWhere('movilizador_id', '=', $validar_lsb->id)
+                ->orWhere('defensa_id', '=', $validar_lsb->id)
+                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
+                
+            if (count($existelsb) > 0)
+            {
+                session()->flash('yaregistrado', 'yaregistrado');
+            }
+            else{
+                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaDefensa)->firstOrFail();
+                $this->NombreDefensa = $Luchador->NombreCompleto;  
+                $this->IdDefensa = $Luchador->id;
+            } 
+        }
+        elseif ($estructura == 'productor')
+        {
+            $validar_lsb = RegistroLuchador::where('cedula', $this->CedulaProductivo)->firstOrFail(); 
+
+            $existelsb = nbc::where('jefe_id', '=', $validar_lsb->id)
+                ->orWhere('organizador_id', '=', $validar_lsb->id)
+                ->orWhere('formador_id', '=', $validar_lsb->id)
+                ->orWhere('movilizador_id', '=', $validar_lsb->id)
+                ->orWhere('defensa_id', '=', $validar_lsb->id)
+                ->orWhere('productivo_id', '=', $validar_lsb->id)->get();
+                
+            if (count($existelsb) > 0)
+            {
+                session()->flash('yaregistrado', 'yaregistrado');
+            }
+            else{
+                $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaProductivo)->firstOrFail();
+                $this->NombreProductivo = $Luchador->NombreCompleto;   
+                $this->IdProductivo = $Luchador->id;
+            }
+        }
     }
 }

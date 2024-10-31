@@ -8,16 +8,14 @@ use App\models\Nivel;
 
 class NivelSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Nivel::insert([
             ['nombre' => 'Nacional'], 
             ['nombre' => 'Regional'],
             ['nombre' => 'Municipal'],
-            ['nombre' => 'Parroquial']
+            ['nombre' => 'Parroquial'],
+            ['nombre' => 'NBC']
         ]);
     }
 }

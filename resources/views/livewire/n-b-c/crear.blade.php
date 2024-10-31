@@ -4,8 +4,8 @@
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
         @if(session()->has('yaregistrado')== 'yaregistrado')
-        @include('livewire.components.yaregistrado')
-    @endif
+          @include('livewire.components.yaregistrado')
+        @endif
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">    
             <div class="min-h-screen flex items-center justify-center">
@@ -357,45 +357,39 @@
             </div>
           </div>
         </div>
-      </div>
-      @push('js')
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&v=weekly&loading=async"></script>
-
-      @script
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&v=weekly&loading=async"></script>
         <script>
-            console.log("Listo");
-            var marker;
-            var coords = {};
-            initMap = function () 
-              {
-                navigator.geolocation.getCurrentPosition(
-                function (position){
-                  coords =  {
-                    lng: position.coords.longitude,
-                    lat: position.coords.latitude
-                  };
-                  setMapa(coords);
-                },function(error){console.log(error);});
-              }
-              function setMapa (coords)
+              var marker;
+              var coords = {};
+              initMap = function () 
                 {
-                  var map = new google.maps.Map(document.getElementById('map'),
-                    {
-                      zoom: 13,
-                      center:new google.maps.LatLng(coords.lat,coords.lng),
-                    });
-                  marker = new google.maps.Marker({
-                    map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    position: new google.maps.LatLng(coords.lat,coords.lng),
-                  });
-                  marker.addListener( 'dragend', function (event)
-                    {
-                      document.getElementById("latitud").value = this.getPosition().lat();
-                      document.getElementById("longitud").value = this.getPosition().lng();
-                    });
+                  navigator.geolocation.getCurrentPosition(
+                  function (position){
+                    coords =  {
+                      lng: position.coords.longitude,
+                      lat: position.coords.latitude
+                    };
+                    setMapa(coords);
+                  },function(error){console.log(error);});
                 }
+                function setMapa (coords)
+                  {
+                    var map = new google.maps.Map(document.getElementById('map'),
+                      {
+                        zoom: 13,
+                        center:new google.maps.LatLng(coords.lat,coords.lng),
+                      });
+                    marker = new google.maps.Marker({
+                      map: map,
+                      draggable: true,
+                      animation: google.maps.Animation.DROP,
+                      position: new google.maps.LatLng(coords.lat,coords.lng),
+                    });
+                    marker.addListener( 'dragend', function (event)
+                      {
+                        document.getElementById("latitud").value = this.getPosition().lat();
+                        document.getElementById("longitud").value = this.getPosition().lng();
+                      });
+                  }
         </script>
-      @endscript
-@endpush
+      </div>

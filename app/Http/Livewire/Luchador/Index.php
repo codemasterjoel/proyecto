@@ -53,7 +53,7 @@ class Index extends Component
         ->paginate(5);
         $this->estados = Estado::all();
         $this->nivelesAcademicos = NivelAcademico::all();
-        $this->responsabilidades = Responsabilidad::all();
+        $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
         $this->avanzadas = Avanzada::all();
         $this->generos = Genero::all();
 
@@ -137,21 +137,18 @@ class Index extends Component
         $lsb = RegistroLuchador::findOrFail($id);
 
         $this->id = $id;
-        $this->estatus = $lsb->estatus;
         $this->cedula = $lsb->cedula;
         $this->nombreCompleto = $lsb->NombreCompleto;
         $this->fechaNacimiento = $lsb->fecha_nac;
-        $this->telefono = $lsb->telefono;
-        $this->correo = $lsb->correo;
-        $this->avanzadaId = $lsb->avanzada_id;
         $this->generoId = $lsb->genero_id;
+        $this->telefono = $lsb->telefono;
         $this->nivelAcademicoId = $lsb->nivel_academico_id;
-        $this->responsabilidadId = $lsb->responsabilidad_id;
         $this->estadoId = $lsb->estado_id;
         $this->municipioId = $lsb->municipio_id;
         $this->municipios = Municipio::where('estado_id', $lsb->estado_id)->get();
         $this->parroquiaId = $lsb->parroquia_id;
         $this->parroquias = Parroquia::where('municipio_id', $lsb->municipio_id)->get();
+        $this->correo = $lsb->correo;
 
         $this->abrirModal();
     }

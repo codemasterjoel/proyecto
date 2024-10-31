@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Formacion;
 use Livewire\Component;
 use App\Models\RegistroLuchador;
 use Livewire\WithPagination;
-use App\Models\postulacion;
+use App\Models\postulacion as postulado;
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Parroquia;
@@ -14,16 +14,16 @@ use App\Models\Avanzada;
 use App\Models\NivelAcademico;
 use App\Models\Responsabilidad;
 
-
 class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $modalLuchador, $verPostulado, $verFormador = false;
+    public $modalLuchador, $modalPostulado, $verPostulado, $verFormador = false;
     public $municipios, $municipio  = null; // Liste de Municipios
-    public $estados, $estado     = null; // Lista de estados
+    public $estados, $estado = null; // Lista de estados
     public $parroquias, $parroquia  = null; // Lista de parroquias
+    public $direccion = null; // direccion
     public $nivelesAcademicos, $nivelAcademico = null; //Niveles Academicos
     public $responsabilidades, $responsabilidad = null; //Responsabilidades
     public $cedula = null; //Cedula
@@ -46,8 +46,10 @@ class Index extends Component
     {
         $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
         ->paginate(5);
-        $postulados = postulacion::where('cedula', 'like', "%$this->search%")
+        $postulados = postulado::where('cedula', 'like', "%$this->search%")->orderBy('created_at', 'Asc')	
         ->paginate(5);
+        $this->nivelesAcademicos = NivelAcademico::all();
+        $this->estados = Estado::all();
 
         return view('livewire.formacion.index', ['lsbs'=>$lsbs, 'postulados'=>$postulados]);
     }
@@ -83,5 +85,24 @@ class Index extends Component
     public function cerrarModalLuchador() 
     {
         $this->modalLuchador = false;
+    }
+    public function verPostulacion($id)
+    {
+        $postulado = postulado::findOrFail($id);
+
+        $this->id = $id;
+        $this->cedula = $postulado->cedula;
+        $this->nombreCompleto = $postulado->NombreCompleto;
+        $this->fechaNacimiento = $postulado->fecha_nac;
+        $this->telefono = $postulado->telefono;
+        $this->correo = $postulado->correo;
+        $this->genero = $postulado->genero->nombre;
+        $this->nivelAcademico = $postulado->nivelAcademico->nombre;
+        $this->estado = $postulado->estado->nombre;
+        $this->municipio = $postulado->municipio->nombre;
+        $this->parroquia = $postulado->parroquia->nombre;
+        $this->direccion = $postulado->direccion;
+
+        $this->modalPostulado = true;
     }
 }

@@ -9,6 +9,8 @@ class postulacion extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'estatus',
@@ -41,5 +43,9 @@ class postulacion extends Model
     public function parroquia()
     {
         return $this->belongsTo(Parroquia::class);
+    }
+    public function nivelAcademico()
+    {
+        return $this->belongsTo(NivelAcademico::class);
     }
 }

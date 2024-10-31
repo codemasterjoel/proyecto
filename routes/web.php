@@ -19,6 +19,7 @@ use App\Http\Livewire\Postulacion\Index as postulacion;
 use App\Http\Livewire\Registro1x10ffm\Index as ffm;
 use App\Http\Livewire\Luchador\Index as registrolsb;
 use App\Http\Livewire\NBC\Index as registronbc;
+use App\Http\Livewire\NBC\Crear as crearnbc;
 use App\Http\Livewire\Saime\Index as saime;
 use App\Http\Livewire\Mapa\Index as mapa;
 use App\Http\Livewire\Usuario\Index as usuario;
@@ -31,14 +32,9 @@ use App\Http\Livewire\LaravelExamples\UserManagement;
 
 use Illuminate\Http\Request;
 
-Route::get('/', function() {
-    return redirect('/login');
-});
+Route::get('/', function() {return redirect('/login');});
 
-Route::get('/logout', function() {
-    Auth::logout();
-    return redirect('/login');
-})->name('logout');
+Route::get('/logout', function() {Auth::logout(); return redirect('/login'); })->name('logout');
 
 Route::get('/sign-up', SignUp::class)->name('sign-up');
 Route::get('/login', Login::class)->name('login');
@@ -52,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/1x10ffm', ffm::class)->name('ffm');
     Route::get('/lsb', registrolsb::class)->name('lsb');
     Route::get('/nbc', registronbc::class)->name('nbc');
+    Route::get('/nbc/crear', crearnbc::class)->name('nbc.crear');
     Route::get('/saime', saime::class)->name('saime');
     Route::get('/mapa', mapa::class)->name('mapa');
     Route::get('/usuario', usuario::class)->name('usuario');
@@ -67,4 +64,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
     Route::get('/rtl', Rtl::class)->name('rtl');
     Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
+});
+
+Route::middleware('auth')->group(function() {
+    Route::get('/sessions', function () {
+        $sessions = DB::table('sessions')
+            ->where('user_id', auth()->id())
+            ->orderBy('last_activity', 'DESC')
+            ->get();
+        return view('sessions', ['sessions' => $sessions]);
+    });
+    
+    Route::post('/delete-session', function(Request $request) {
+        DB::table('sessions')
+            ->where('id', $request->id)
+            ->where('user_id', auth()->id())
+            ->delete();
+    });
 });

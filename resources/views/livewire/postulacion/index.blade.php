@@ -15,11 +15,12 @@
                     <form>
                         <div class="grid grid-cols-2 gap-4"> 
                             <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
-                                <div class="w-full rounded-lg bg-gray-500">
+                                <div class="w-full rounded-lg">
                                     <div class="flex">
                                         <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Cédula</span>
                                         <input wire:model="cedula" type="text" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-r-lg border-slate-200" onkeypress="$(this).mask('00000000')" maxlength="8" title="debe colocar una cedula valida">
                                     </div>
+                                    @error('cedula') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
@@ -41,8 +42,8 @@
                                         <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Genero</span>
                                         <select wire:model="generoId" class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
                                             <option value="">Seleccione</option>
-                                                <option value="1">Masculino</option>
-                                                <option value="2">Femenina</option>
+                                            <option value="1">Masculino</option>
+                                            <option value="2">Femenina</option>
                                         </select>
                                     </div>
                                 </div>
@@ -74,30 +75,30 @@
                         <div class="grid grid-cols-3 gap-4"> {{-- campo estado --}}
                             <div class="flex items-center justify-center pb-4">
                                 <div class="w-full rounded-lg bg-gray-500">
-                                <div class="flex">
-                                    <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado</span>
-                                    <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
-                                        <option value="">Seleccione</option>
-                                        @foreach( $estados as $estado )
-                                            <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                    <div class="flex">
+                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado</span>
+                                        <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
+                                            <option value="">Seleccione</option>
+                                            @foreach( $estados as $estado )
+                                                <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
                             @if (!is_null($municipios)) {{-- campo municipio --}}
                                 <div class="flex items-center justify-center pb-4">
                                     <div class="w-full rounded-lg bg-gray-500">
-                                    <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
-                                        <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
-                                            <option value="">Seleccione</option>
-                                            @foreach( $municipios as $municipio )
-                                                <option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                        <div class="flex">
+                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
+                                            <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
+                                                <option value="">Seleccione</option>
+                                                @foreach( $municipios as $municipio )
+                                                    <option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             @endif
@@ -105,15 +106,15 @@
                             @if (!is_null($parroquias)) {{-- campo Parroquia --}}
                                 <div class="flex items-center justify-center pb-4">
                                     <div class="w-full rounded-lg bg-gray-500">
-                                    <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
-                                        <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="parroquiaId" required>
-                                            <option value="">Seleccione</option>
-                                            @foreach( $parroquias as $parroquia )
-                                            <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                        <div class="flex">
+                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
+                                            <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="parroquiaId" required>
+                                                <option value="">Seleccione</option>
+                                                @foreach( $parroquias as $parroquia )
+                                                <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             @endif

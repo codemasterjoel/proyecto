@@ -1,7 +1,4 @@
 <section>
-    @if($modal)
-        @include('livewire.postulacion.index')
-    @endif
     @if($modalReset)
         @include('livewire.auth.reset')
     @endif
@@ -9,7 +6,7 @@
         @include('livewire.components.success')
     @endif
     <div class="nav-item mr-8 d-flex align-self-end p-4 absolute flex z-40">
-        <a href="#" wire:click="crear()" class=" text-red-500 mb-0 text-bold text-uppercase absolute" role="button" aria-pressed="true">Postulate!!</a>
+        <a href="/postulacion" wire:navigate class=" text-red-500 mb-0 text-bold text-uppercase absolute" role="button" aria-pressed="true">Postulate!!</a>
     </div>
     <div class="page-header section-height-75">
         <div class="container">
