@@ -7,14 +7,23 @@ use App\Models\Parroquia;
 use App\Models\RegistroLuchador as lsb;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class NBC extends Model
 {
+    use HasFactory, SoftDeletes;
     public $incrementing = false;
     protected $keyType = 'string';
 
-    use HasFactory;
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->id = (string) Str::uuid();
+        });
+    }
 
     protected $fillable = [
         'nombre',
@@ -31,7 +40,10 @@ class NBC extends Model
         'cant_cdi',
         'estado_id',
         'municipio_id',
-        'parroquia_id'
+        'parroquia_id',
+        'id',
+        'latitud',
+        'longitud'
     ];
 
     public function estado()

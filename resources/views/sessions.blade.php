@@ -27,7 +27,7 @@
                                                     <td>{{ $session->ip_address }}</td>
                                                     <td>{{ \Carbon\Carbon::createFromTimeStamp($session->last_activity)->diffForhumans() }}</td>
                                                     <td class="text-center">
-                                                        <button type="button" name="button" class="btn btn-danger delete-session" data-id="{{ $session->id }}">?️</button>
+                                                        <a href="/delete-session/{{$session->id}}" type="button" name="button" class="btn btn-danger delete-session" data-id="{{ $session->id }}">?️</button>
                                                     </td>
                                                 </tr>
                                                 @endforeach

@@ -26,13 +26,8 @@ class Index extends Component
 
     public function mount()
     {
-        $this->fill(['cedula' => '5555', 'nombreCompleto' => 'Juanito', 'fechaNacimiento'=>'1990-10-17', 'generoId' => '1', 'telefono' => '(0000) 000-0000', 'correo' => 'usuario@gmail.com', 'direccion' => 'calle 10', 'nivelAcademicoId' => '1', 'estadoId' => '2']);
+        // $this->fill(['cedula' => '5555', 'nombreCompleto' => 'Juanito', 'fechaNacimiento'=>'1990-10-17', 'generoId' => '1', 'telefono' => '(0000) 000-0000', 'correo' => 'usuario@gmail.com', 'direccion' => 'calle 10', 'nivelAcademicoId' => '1', 'estadoId' => '2']);
     }
-
-    protected $rules = [
-        'cedula' => 'required|min:7|max:8',
-    ];
-
     public function render()
     {
         $this->estados = Estado::all();
@@ -54,7 +49,19 @@ class Index extends Component
     }
     public function guardar()
     {
-        $this->validate();
+        $this->validate([
+            'cedula' => 'required|min:7|max:8|unique:postulacions,cedula',
+            'nombreCompleto' => 'required',
+            'fechaNacimiento' => 'required',
+            'generoId' => 'required|exists:generos,id',
+            'telefono' => 'required',
+            'nivelAcademicoId' => 'required',
+            'estadoId' => 'required',
+            'municipioId' => 'required',
+            'parroquiaId' => 'required',
+            'correo' => 'required|email:rfc',
+            'direccion' => 'required'
+        ]);
         
         $lsb = postulacion::create([
             'id' => Uuid::uuid4()->toString(),

@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('registro_luchadors', function (Blueprint $table) {
             // $table->id();
             $table->uuid('id')->primary()->default(Uuid::uuid4()->toString());
-            $table->boolean('estatus')->default(false);
+            $table->boolean('estatus')->default('1');
             $table->Integer('cedula')->unique();
             $table->string('NombreCompleto');
             $table->date('fecha_nac');
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('estado_id')->nullable()->references('id')->on('estados')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('municipio_id')->nullable()->references('id')->on('municipios')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('parroquia_id')->nullable()->references('id')->on('parroquias')->nullOnDelete()->cascadeOnUpdate();
+            $table->string('direccion', 200);
             $table->timestamps();
         });
     }

@@ -5,7 +5,6 @@ namespace App\Http\Livewire\NBC;
 use Livewire\Component;
 
 use App\Models\NBC;
-use App\Models\RegistroLuchador;
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Parroquia;
@@ -250,7 +249,7 @@ class Index extends Component
         $this->CantUrbanismo = $nbc->cant_urbanismos;
         $this->CantCDI = $nbc->cant_cdi;
 
-        $this->abrirModal();
+        return redirect('/nbc/editar', ['nbcs' => $nbc]);
     }
     public function guardar()
     {

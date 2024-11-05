@@ -35,9 +35,9 @@
 
     <!--   Core JS Files   --> 
     {{-- <script src="{{ asset('js/google.js')}}"></script> --}}
-    <script src="assets/js/core/popper.min.js"></script>
-    <script src="assets/js/core/bootstrap.min.js"></script>
-    <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <!-- <script src="{{asset('assets/js/core/popper.min.js')}}"></script> -->
+    <!-- <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script> -->
+    <!-- <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script> -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquerygoogle.min.js') }}"></script>
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script-->
@@ -53,7 +53,7 @@
     <!-- Github buttons
     <script async defer src="https://buttons.github.io/buttons.js"></script> -->
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="assets/js/soft-ui-dashboard.js"></script>
+    <!-- <script src="{{ asset('assets/js/soft-ui-dashboard.js')}}"></script> -->
     <script src="{{ asset('js/jquery.mask.min.js')}}"></script>
     <script src="{{asset('js/tailmater.js')}}"></script>
     @livewireScripts

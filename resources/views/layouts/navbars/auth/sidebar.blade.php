@@ -1,16 +1,15 @@
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3" id="sidenav-main" style="overflow-y: hidden;">
     <div class="sidenav-header mb-5">
         <i class="fas fa-times p-3 cursor-pointer text-seconsdary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="p-2">
+        <a class="py-2">
             <img src="{{asset('img/logo.svg')}}" class="">
-            {{-- <span class="ms-3 font-weight-bold">Soft UI Dashboard Laravel Livewire</span> --}}
         </a>
     </div>
     {{-- <hr class="horizontal dark mt-0"> --}}
     <div class=" navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             {{-- INICIO --}}    
-            <li class="nav-item pb-2">
+            <li class="nav-item">
                 <a class="nav-link {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}" href="{{ route('dashboard') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <span class="material-icons {{ in_array(request()->route()->getName(),['dashboard']) ? 'text-white' : 'text-dark' }}">home</span>
@@ -84,7 +83,7 @@
             @endif
 
             {{-- REPORTES --}}
-            @if (auth()->user()->nivel_id == 1)
+            <!-- @if (auth()->user()->nivel_id == 1)
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'reporte' ? 'active' : '' }}" href="{{ route('reporte') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -93,7 +92,7 @@
                         <span class="nav-link-text ms-1"><b>REPORTE</b></span>
                     </a>
                 </li>
-            @endif
+            @endif -->
 
             <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">CONFIGURACIÓN</h6>
@@ -118,14 +117,14 @@
                     </a>
                 </li>
                 {{-- BENEFICIOS --}}
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'billing' ? 'active' : '' }}" href="{{ route('billing') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="material-icons {{ in_array(request()->route()->getName(),['billing']) ? 'text-white' : 'text-dark' }}">card_giftcard</span>
                         </div>
                         <span class="nav-link-text ms-1"><b>BENEFICIOS</b></span>
                     </a>
-                </li>
+                </li> -->
             @endif
             <li class="nav-item">
                 <a href="{{ url('logout') }}" class=" nav-link btn bg-gradient-danger active mb-0 text-white" role="button" aria-pressed="true">Salir</a>

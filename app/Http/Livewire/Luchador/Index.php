@@ -33,7 +33,7 @@ class Index extends Component
     public $responsabilidades = null; //Responsabilidades
     public $cedula = null; //Cedula
     public $avanzadas = null; //Avanzadas
-    public $correo = null; //Correo
+    public $correo, $direccion = null; //Correo
     public $fechaNacimiento = null; //Fecha Nacimiento
     public $nombreCompleto = null; //Nombres
     public $generos = null; //Genero
@@ -78,6 +78,7 @@ class Index extends Component
     }
     public function cerrarModal() 
     {
+        $this->limpiarCampos();
         $this->modal = false;
     }
     public function limpiarCampos()
@@ -95,6 +96,7 @@ class Index extends Component
         $this->estadoId = null;
         $this->municipioId = null;
         $this->parroquiaId = null;
+        $this->direccion = null;
     }
     public function updatedEstadoId($id)
     {
@@ -143,17 +145,38 @@ class Index extends Component
         $this->generoId = $lsb->genero_id;
         $this->telefono = $lsb->telefono;
         $this->nivelAcademicoId = $lsb->nivel_academico_id;
+        $this->avanzadaId = $lsb->avanzada_id;
+        $this->responsabilidadId = $lsb->responsabilidad_id;
         $this->estadoId = $lsb->estado_id;
         $this->municipioId = $lsb->municipio_id;
         $this->municipios = Municipio::where('estado_id', $lsb->estado_id)->get();
         $this->parroquiaId = $lsb->parroquia_id;
         $this->parroquias = Parroquia::where('municipio_id', $lsb->municipio_id)->get();
         $this->correo = $lsb->correo;
+        $this->direccion = $lsb->direccion;
+
+        session()->flash('success', 'success');
 
         $this->abrirModal();
     }
     public function guardar()
     {
+        $this->validate([
+            'cedula' => 'required|min:7|max:8|exists:saimes,cedula',
+            'nombreCompleto' => 'required',
+            'fechaNacimiento' => 'required',
+            'generoId' => 'required|exists:generos,id',
+            'telefono' => 'required|size:15',
+            'nivelAcademicoId' => 'required',
+            'avanzadaId' => 'required',
+            'responsabilidadId' => 'required',
+            'estadoId' => 'required',
+            'municipioId' => 'required',
+            'parroquiaId' => 'required',
+            'correo' => 'required|email:rfc',
+            'direccion' => 'required'
+        ]);
+
         $lsb = RegistroLuchador::updateOrCreate(['id' => $this->id],
             [
             'estatus' => $this->estatus,
@@ -168,7 +191,8 @@ class Index extends Component
             'responsabilidad_id' => $this->responsabilidadId,
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
-            'parroquia_id' => $this->parroquiaId
+            'parroquia_id' => $this->parroquiaId,
+            'direccion' => $this->direccion
         ]);
 
         // Mail::to($this->correo)->send(new UserCreated());

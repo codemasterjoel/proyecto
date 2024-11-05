@@ -27,7 +27,8 @@ class RegistroLuchadorSeeder extends Seeder
             'responsabilidad_id' => '2',
             'estado_id' => '1',
             'municipio_id'  => '101',
-            'parroquia_id'  => '10122'
+            'parroquia_id'  => '10122',
+            'direccion' => 'CALLE 10'
         ]]);
     }
 }

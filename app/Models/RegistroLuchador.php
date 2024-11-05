@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 
 class RegistroLuchador extends Model
 {
-    use HasFactory, softDeletes;
+    use HasFactory, SoftDeletes;
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -35,7 +35,8 @@ class RegistroLuchador extends Model
         'responsabilidad_id',
         'estado_id',
         'municipio_id',
-        'parroquia_id'
+        'parroquia_id',
+        'direccion'
     ];
 
     // public function estado(): BelongsTo

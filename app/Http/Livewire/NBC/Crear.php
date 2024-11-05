@@ -6,6 +6,9 @@ use Livewire\Component;
 
 use App\Models\NBC;
 use App\Models\Estado;
+use App\Models\Municipio;
+use App\Models\Parroquia;
+use App\Models\RegistroLuchador;
 
 use Ramsey\Uuid\Uuid;
 
@@ -18,17 +21,26 @@ class Crear extends Component
     public $municipios  = null; // Liste de Municipios
     public $parroquias  = null; // Lista de parroquias
     public $CedulaJefe, $CedulaOrganizador, $CedulaFormador, $CedulaMovilizador, $CedulaDefensa, $CedulaProductivo = null; //Cedula
-    public $NombreNBC, $id = null; // Nombre del NBC
+    public $NombreNBC, $id, $lat, $lon = null; // Nombre del NBC
     public $CantConsejoComunal, $CantBaseMisiones, $CantUrbanismo, $CantCDI = null;
     public $NombreJefe, $NombreOrganizador, $NombreFormador, $NombreMovilizador, $NombreDefensa, $NombreProductivo = null; // nombre
     public $IdJefe, $IdOrganizador, $IdFormador, $IdMovilizador, $IdDefensa, $IdProductivo = null; // nombre
 
     public $estadoId, $municipioId, $parroquiaId = null; //Id que recibo de los campos
 
+    public function mount($id)
+    {
+        if ($id) {
+            $this->id = $id;
+            $this->editar($id);
+        }
+        
+    }
     public function render()
     {
         $nbcs = NBC::all();
         $this->estados = Estado::all();
+        // $this->municipios = Municipio::all();
         return view('livewire.n-b-c.crear', ['nbcs' => $nbcs]);
     }
     public function organizador() 
@@ -95,11 +107,10 @@ class Crear extends Component
         $this->CantBaseMisiones = $nbc->cant_bases_misiones;
         $this->CantUrbanismo = $nbc->cant_urbanismos;
         $this->CantCDI = $nbc->cant_cdi;
-
-        $this->abrirModal();
     }
     public function guardar()
     {
+        dd($this->latitud);
         $lsb = NBC::updateOrCreate(['id' => $this->id],
             [
             'nombre' => $this->NombreNBC,
@@ -116,12 +127,14 @@ class Crear extends Component
             'cant_cdi' => $this->CantCDI,
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
-            'parroquia_id' => $this->parroquiaId
+            'parroquia_id' => $this->parroquiaId,
+            'latitud' => $this->lat,
+            'longitud' => $this->lon
         ]);
          
          session()->flash('message', 'success');
          
-         $this->cerrarModal(); 
+         return redirect('nbc');
     }
     public function borrar($id)
     {
