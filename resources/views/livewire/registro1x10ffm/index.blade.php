@@ -4,11 +4,11 @@
             <div class="card mb-4 mx-4">
                 <div class="card-header pb-0">
                     <div>
-                        <h5 class="mb-2">REGISTRO DE 1x10</h5>
+                        <h5 class="mb-2 font-bold">REGISTRO DE 1x10</h5>
                     </div>
                     <div class="d-flex flex-row justify-content-between">
-                        <input wire:model.live="search" type="text" placeholder="Filtrar por Cedula" class="w-30 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                        <button wire:click="crear()" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; NUEVO REGISTRO</button>
+                        <input wire:model.live="search" type="number" placeholder="Filtrar por Cedula" class=" font-bold text-slate-900 w-30 px-4 py-2 border border-solid border-slate-900 rounded-lg">
+                        <button wire:click="crear()" class="btn bg-gradient-primary btn-sm mb-0 font-bold" type="button">+&nbsp; NUEVO REGISTRO</button>
                     </div>
                 </div>
 
@@ -32,14 +32,13 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cedula</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">nombre completo</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">estado</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">municipio</th>
-                                        {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">parroquia</th> --}}
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">telefono</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">acciones</th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder text-dark">#</th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder text-dark">Cedula</th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder text-dark">nombre completo</th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder text-dark">estado</th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder text-dark">municipio</th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder text-dark">telefono</th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder text-dark">acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -19,14 +19,14 @@
                     <div class="flex justify-center">
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
-                    <h3 class="text-2xl text-cyan-400 font-semibold text-center">REGISTRO INTERNO DE SAIME</h3>
+                    <h3 class="text-2xl text-cyan-400 font-bold text-center">REGISTRO INTERNO DE SAIME</h3>
                     <form>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="flex items-center justify-center py-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nacionalidad</span>
-                                        <select wire:model="letra" class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Nacionalidad</span>
+                                        <select wire:model="letra" class="w-full px-4 py-2 border rounded-r-lg font-bold text-neutral-900 border-solid border-neutral-900 outline-2" required>
                                             <option value="">Seleccione</option>
                                             <option value="V">VENEZOLANO</option>
                                             <option value="E">EXTRANJERO</option>
@@ -37,8 +37,8 @@
                             <div class="flex items-center justify-center py-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Cedula</span>
-                                        <input wire:model="cedula" type="number" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-r-lg border-slate-200">
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Cedula</span>
+                                        <input wire:model="cedula" type="number" class="w-full  pl-2 text-base border font-bold outline-2 text-neutral-900 rounded-r-lg border-neutral-900">
                                     </div>
                                 </div>
                             </div>
@@ -47,16 +47,16 @@
                             <div class="flex items-center justify-center pb-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">1er Nombre</span>
-                                        <input wire:model="nombre1" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">1er Nombre</span>
+                                        <input wire:model="nombre1" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base text-neutral-900 border rounded-r-lg font-bold outline-2 border-neutral-900" />
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center pb-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">2do Nombre</span>
-                                        <input wire:model="nombre2" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">2do Nombre</span>
+                                        <input wire:model="nombre2" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base border text-neutral-900 rounded-r-lg font-bold outline-2 border-neutral-900" />
                                     </div>
                                 </div>
                             </div>
@@ -65,16 +65,16 @@
                             <div class="flex items-center justify-center pb-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">1er Apellido</span>
-                                        <input wire:model="apellido1" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">1er Apellido</span>
+                                        <input wire:model="apellido1" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base text-neutral-900 border rounded-r-lg font-bold outline-2 border-neutral-900" />
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center pb-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">2do Apellido</span>
-                                        <input wire:model="apellido2" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">2do Apellido</span>
+                                        <input wire:model="apellido2" type="text" class="block w-[1px] min-w-0 flex-auto bg-white pl-2 text-base border text-neutral-900 rounded-r-lg font-bold outline-2 border-neutral-900" />
                                     </div>
                                 </div>
                             </div>
@@ -82,22 +82,22 @@
 
                         <div class="grid grid-cols-2 gap-4">
                             <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Fecha de Nacimiento --}}
-                                <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Fecha de Nacimiento</span>
-                                <input wire:model="fechaNacimiento" type="date" aria-label="Last name" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
+                                <span class="flex bg-cyan-900 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Fecha de Nacimiento</span>
+                                <input wire:model="fechaNacimiento" type="date" aria-label="Last name" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] text-base font-bold  text-neutral-900 " />
                             </div>
 
                             <div class="flex items-center justify-center pb-4"> {{-- campo genero --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Genero</span>
-                                        <select wire:model="generoId" class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Genero</span>
+                                        <select wire:model="generoId" class="w-full px-4 py-2 border rounded-r-lg border-solid border-neutral-900 text-neutral-900 font-bold outline-2">
                                             <option value="">Seleccione</option>
                                             @foreach ($generos as $genero)
                                                 <option value="{{$genero->id}}">{{$genero->nombre}}</option>
                                             @endforeach
                                         </select>
-                                        {{-- <input wire:model="generoId" type="text" class="w-full bg-white pl-2 text-base rounded-r-lg font-semibold outline-0 border-slate-200" />
-                                        <input wire:model="generoIdHidden" type="hidden" class="w-full bg-white pl-2 text-base rounded-r-lg font-semibold outline-0 border-slate-200" /> --}}
+                                        {{-- <input wire:model="generoId" type="text" class="w-full bg-white pl-2 text-base rounded-r-lg font-bold outline-2 border-neutral-900" />
+                                        <input wire:model="generoIdHidden" type="hidden" class="w-full bg-white pl-2 text-base rounded-r-lg font-bold outline-2 border-neutral-900" /> --}}
                                     </div>
                                 </div>
                             </div>

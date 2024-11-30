@@ -15,7 +15,7 @@
                             <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Cédula</span>
+                                        <span class="flex bg-cyan-900 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Cédula</span>
                                         <input wire:model="cedula" type="text" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-r-lg border-slate-200" onkeypress="$(this).mask('00000000')" maxlength="8" title="debe colocar una cedula valida">
                                     </div>
                                 </div>
@@ -23,24 +23,26 @@
                         </div>
                         
                         <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nombre y Apellido --}}
-                            <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre y Apellido</span>
-                            <input wire:model="nombreCompleto" type="text" class="rounded-r-lg relative m-0 block w-[1px] min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" onkeyup="this.value = this.value.toUpperCase();"/>
+                            <span class="flex bg-cyan-900 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre y Apellido</span>
+                            <input wire:model="nombreCompleto" type="text" class="rounded-r-lg relative m-0 block w-[1px] min-w-0 flex-auto text-uppercase border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" onkeyup="this.value = this.value.toUpperCase();"/>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Fecha de Nacimiento --}}
-                                <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Fecha de Nacimiento</span>
+                                <span class="flex bg-cyan-900 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Fecha de Nacimiento</span>
                                 <input wire:model="fechaNacimiento" type="date" aria-label="Last name" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
                             </div>
 
                             <div class="flex items-center justify-center pb-4"> {{-- campo genero --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Genero</span>
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Genero</span>
                                         <select wire:model="generoId" class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
                                             <option value="">Seleccione</option>
-                                                <option value="1">Masculino</option>
+                                                <option value="1">Femenima</option>
                                                 <option value="2">Femenina</option>
+                                                <option value="2">Masculino</option>
+                                                <option value="3">Otro</option>
                                         </select>
                                     </div>
                                 </div>
@@ -51,13 +53,13 @@
                             <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
                                 <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
                                         <input wire:model="telefono" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
                                     </div>
                                 </div>
                             </div>
                             <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nivel Academico --}}
-                                <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nivel Académico</span>
+                                <span class="flex bg-cyan-900 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nivel Académico</span>
                                 <select wire:model="nivelAcademicoId" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
                                     <option value="">Seleccione</option>
                                     @foreach( $nivelesAcademicos as $nivelacademico )
@@ -73,7 +75,7 @@
                             <div class="flex items-center justify-center pb-4">
                                 <div class="w-full rounded-lg bg-gray-500">
                                 <div class="flex">
-                                    <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado</span>
+                                    <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado</span>
                                     <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
                                         <option value="">Seleccione</option>
                                         @foreach( $estados as $estado )
@@ -88,7 +90,7 @@
                                 <div class="flex items-center justify-center pb-4">
                                     <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
                                         <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
                                             <option value="">Seleccione</option>
                                             @foreach( $municipios as $municipio )
@@ -104,7 +106,7 @@
                                 <div class="flex items-center justify-center pb-4">
                                     <div class="w-full rounded-lg bg-gray-500">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
                                         <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="parroquiaId" required>
                                             <option value="">Seleccione</option>
                                             @foreach( $parroquias as $parroquia )
@@ -120,7 +122,7 @@
                         <div class="flex items-center justify-center pb-4"> {{-- campo Correo --}}
                             <div class="w-full rounded-lg bg-gray-500">
                               <div class="flex">
-                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Correo</span>
+                                <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Correo</span>
                                 <input wire:model="correo" type="email" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" placeholder="usuario@correo.com" />
                               </div>
                             </div>
@@ -128,7 +130,7 @@
                         <div class="flex items-center justify-center pb-4"> {{-- campo Direccion --}}
                             <div class="w-full rounded-lg bg-gray-500">
                               <div class="flex">
-                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Dirección</span>
+                                <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Dirección</span>
                                 <input wire:model="direccion" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" onkeyup="this.value = this.value.toUpperCase();"/>
                               </div>
                             </div>
@@ -136,10 +138,10 @@
 
                         <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
+                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModalPostulado()">SALIR</button>
                             </span>
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
+                                {{-- <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button> --}}
                             </span>
                         </div>
                     </form>

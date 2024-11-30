@@ -8,18 +8,18 @@
         <div>    
           <div class="min-h-screen flex items-center justify-center">
               <div class="p-4 w-full bg-white rounded-lg">
-                  <h3 class=" mt-4 text-2xl text-cyan-400 font-semibold text-center">REGISTRAR NUEVO NUCLEO DE BASE COMUNITARIO</h3>
+                  <h3 class=" mt-4 text-2xl text-cyan-400 font-bold text-center">REGISTRAR NUEVO NUCLEO DE BASE COMUNITARIO</h3>
                   <form>
                       <div class=" flex items-stretch pt-4"> {{-- campo Nombre del NBC --}}
-                          <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre del nbc</span>
-                          <input wire:model="NombreNBC" type="text" class="w-full flex-auto relative bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                          <span class="flex bg-cyan-900 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem] text-center">Nombre del NBC</span>
+                          <input wire:model="NombreNBC" type="text" class="w-full flex-auto relative pl-3 border border-solid rounded-r-lg font-bold text-neutral-900 text-uppercase outline-2 border-neutral-900" />
                       </div>
                       <div class="grid grid-cols-3 gap-4 pt-4">
                           <div class="flex items-center justify-center"> {{-- campo estado --}}
                               <div class="w-full rounded-lg">
                                 <div class="flex">
-                                    <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado</span>
-                                    <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
+                                    <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Estado</span>
+                                    <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-solid border-neutral-900 outline-2 font-bold" wire:model.live="estadoId" required>
                                         <option value="">Seleccione</option>
                                         @foreach( $estados as $estado )
                                             <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
@@ -33,8 +33,8 @@
                               <div class="flex items-center justify-center">
                                   <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
-                                      <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
+                                      <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Municipio</span>
+                                      <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-solid border-neutral-900 outline-2 font-bold" wire:model.live="municipioId" required>
                                           <option value="">Seleccione</option>
                                           @foreach( $municipios as $municipio )
                                               <option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
@@ -49,8 +49,8 @@
                               <div class="flex items-center justify-center">
                                   <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
-                                      <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="parroquiaId" required>
+                                      <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Parroquia</span>
+                                      <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-solid border-neutral-900 outline-2 font-bold" wire:model="parroquiaId" required>
                                           <option value="">Seleccione</option>
                                           @foreach( $parroquias as $parroquia )
                                           <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
@@ -65,46 +65,46 @@
                           <div class="flex items-center justify-center py-4"> {{-- campo consejo comunales --}}
                               <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <input wire:model="CantConsejoComunal" type="number" placeholder="Consejos Comunales" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
+                                      <input wire:model="CantConsejoComunal" type="number" placeholder="Consejos Comunales" class="w-full bg-white pl-3 text-neutral-900 text-base border font-bold outline-2 rounded-lg border-slate-900">
                                   </div>
                               </div>
                           </div>
                           <div class="flex items-center justify-center py-4"> {{-- campo base de misiones --}}
                               <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <input wire:model="CantBaseMisiones" type="number" placeholder="Bases de Misiones" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
+                                      <input wire:model="CantBaseMisiones" type="number" placeholder="Bases de Misiones" class="w-full bg-white pl-3 text-base text-neutral-900 border font-bold outline-0 rounded-lg border-slate-900">
                                   </div>
                               </div>
                           </div>
                           <div class="flex items-center justify-center py-4"> {{-- campo urbanismos --}}
                               <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <input wire:model="CantUrbanismo" type="number" placeholder="Urbanismos" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
+                                      <input wire:model="CantUrbanismo" type="number" placeholder="Urbanismos" class="w-full bg-white pl-3 text-base border text-neutral-900 font-bold outline-0 rounded-lg border-slate-200">
                                   </div>
                               </div>
                           </div>
                           <div class="flex items-center justify-center py-4"> {{-- campo cdi --}}
                               <div class="w-full rounded-lg bg-gray-500">
                                   <div class="flex">
-                                      <input wire:model="CantCDI" type="number" placeholder="CDI" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-lg border-slate-200">
+                                      <input wire:model="CantCDI" type="number" placeholder="CDI" class="w-full bg-white pl-3 text-base border border-solid text-neutral-900 font-bold outline-0 rounded-lg border-slate-900">
                                   </div>
                               </div>
                           </div>
                       </div>
                       <div class="grid grid-cols-2 gap-4"> {{-- campo cedula --}}
                           <div class="flex items-center justify-center py-4">
-                              <div class="w-full rounded-lg bg-gray-500">
+                              <div class="w-full rounded-lg">
                                   <div class="flex">
-                                      <input wire:model="CedulaJefe" type="number" placeholder="Cedula Jefe de Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                      <input wire:click="consultar('jefe')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                      <input wire:model="CedulaJefe" type="number" placeholder="Cedula Jefe de Nucleo" class="w-full px-3 py-[0.25rem] border text-neutral-900 font-bold outline-2 rounded-tl-lg rounded-bl-lg border-slate-900">
+                                      <input wire:click="consultar('jefe')" type="button" value="Buscar" class="bg-gradient-primary rounded-tr-lg px-2 rounded-br-lg text-white font-bold transition-colors">
                                   </div>
                               </div>
                           </div>
                           <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                               <div class="w-full rounded-lg bg-gray-500">
                                 <div class="flex">
-                                  <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
-                                  <input wire:model="NombreJefe" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                  <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                  <input wire:model="NombreJefe" type="text" class="w-full pl-3 border border-solid rounded-r-lg font-bold text-neutral-900 outline-2 border-slate-900" />
                                 </div>
                               </div>
                           </div>
@@ -112,7 +112,7 @@
 
                       <div class="card card-subcategories card-plain">
                         <div class="card-header">
-                          <h2 class="card-title text-dark text-center">ESTRUCTURA DEL NUCLEO DE BASE COMUNITARIO</h2>
+                          <h2 class=" mt-4 text-2xl text-cyan-400 font-bold text-center">ESTRUCTURA DEL NUCLEO DE BASE COMUNITARIO</h2>
                         </div>
                         <div class="card-body">
                           <ul class="nav nav-pills-primary nav-pills-icons justify-content-center">
@@ -178,16 +178,16 @@
                                     <div class="flex items-center justify-center py-4">
                                         <div class="w-full rounded-lg bg-gray-500">
                                             <div class="flex">
-                                                <input wire:model="CedulaOrganizador" type="number" placeholder="Cedula Organizador del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                                <input wire:click="consultar('organizador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                                <input wire:model="CedulaOrganizador" type="number" placeholder="Cedula Organizador del Nucleo" class=" px-3 py-[0.25rem] w-full text-neutral-900 pl-3 border font-bold outline-2 rounded-tl-lg rounded-bl-lg border-slate-900">
+                                                <input wire:click="consultar('organizador')" type="button" value="Buscar" class="bg-gradient-primary px-3 py-[0.25rem] rounded-tr-lg rounded-br-lg text-white font-bold transition-colors">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                       <div class="w-full rounded-lg bg-gray-500">
                                         <div class="flex">
-                                          <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
-                                          <input wire:model="NombreOrganizador" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                          <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                          <input wire:model="NombreOrganizador" type="text" class="w-full text-neutral-900 pl-3 text-base border rounded-r-lg font-bold outline-2 border-slate-200" />
                                         </div>
                                       </div>
                                     </div>
@@ -210,16 +210,16 @@
                                   <div class="flex items-center justify-center py-4">
                                       <div class="w-full rounded-lg bg-gray-500">
                                           <div class="flex">
-                                              <input wire:model="CedulaFormador" type="number" placeholder="Cedula Formador del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                              <input wire:click="consultar('formador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                              <input wire:model="CedulaFormador" type="number" placeholder="Cedula Formador del Nucleo" class="w-full text-neutral-900 pl-3 border font-bold outline-2 rounded-tl-lg rounded-bl-lg border-slate-900">
+                                              <input wire:click="consultar('formador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-bold transition-colors">
                                           </div>
                                       </div>
                                   </div>
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
-                                        <input wire:model="NombreFormador" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold hover:bg-cyan-500 transition-colors">Nombre</span>
+                                        <input wire:model="NombreFormador" type="text" class="w-full text-neutral-900 pl-3 text-base border rounded-r-lg font-bold outline-2 border-slate-200" />
                                       </div>
                                     </div>
                                   </div>
@@ -242,16 +242,16 @@
                                   <div class="flex items-center justify-center py-4">
                                       <div class="w-full rounded-lg bg-gray-500">
                                           <div class="flex">
-                                              <input wire:model="CedulaMovilizador" type="number" placeholder="Cedula Movilizador del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                              <input wire:click="consultar('movilizador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                              <input wire:model="CedulaMovilizador" type="number" placeholder="Cedula Movilizador del Nucleo" class="w-full bg-white text-neutral-900 pl-3 border font-bold outline-2 rounded-tl-lg rounded-bl-lg border-slate-900">
+                                              <input wire:click="consultar('movilizador')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-bold transition-colors">
                                           </div>
                                       </div>
                                   </div>
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
-                                        <input wire:model="NombreMovilizador" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900  rounded-tl-lg rounded-bl-lg p-2 text-white font-bold">Nombre</span>
+                                        <input wire:model="NombreMovilizador" type="text" class="w-full text-neutral-900 pl-3 border rounded-r-lg font-bold outline-2 border-slate-900" />
                                       </div>
                                     </div>
                                   </div>
@@ -274,16 +274,16 @@
                                   <div class="flex items-center justify-center py-4">
                                       <div class="w-full rounded-lg bg-gray-500">
                                           <div class="flex">
-                                              <input wire:model="CedulaDefensa" type="number" placeholder="Cedula Defensa del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                              <input wire:click="consultar('defensa')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                              <input wire:model="CedulaDefensa" type="number" placeholder="Cedula Defensa del Nucleo" class="w-full text-neutral-900 pl-3 border font-bold outline-2 rounded-tl-lg rounded-bl-lg border-slate-900">
+                                              <input wire:click="consultar('defensa')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-bold">
                                           </div>
                                       </div>
                                   </div>
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
-                                        <input wire:model="NombreDefensa" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                        <input wire:model="NombreDefensa" type="text" class="w-full pl-3 border border-solid text-neutral-900 rounded-r-lg font-bold outline-2 border-slate-900" />
                                       </div>
                                     </div>
                                   </div>
@@ -306,16 +306,16 @@
                                   <div class="flex items-center justify-center py-4">
                                       <div class="w-full rounded-lg bg-gray-500">
                                           <div class="flex">
-                                              <input wire:model="CedulaProductivo" type="number" placeholder="Cedula Productor del Nucleo" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                              <input wire:click="consultar('productor')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                              <input wire:model="CedulaProductivo" type="number" placeholder="Cedula Productor del Nucleo" class="w-full text-neutral-900 pl-3 border font-bold outline-2 rounded-tl-lg rounded-bl-lg border-slate-900">
+                                              <input wire:click="consultar('productor')" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-bold">
                                           </div>
                                       </div>
                                   </div>
                                   <div class="flex items-center justify-center"> {{-- campo Nombre --}}
                                     <div class="w-full rounded-lg bg-gray-500">
                                       <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nombre</span>
-                                        <input wire:model="NombreProductivo" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold">Nombre</span>
+                                        <input wire:model="NombreProductivo" type="text" class="w-full pl-2 border border-solid text-neutral-900 rounded-r-lg font-bold outline-2 border-slate-900" />
                                       </div>
                                     </div>
                                   </div>
@@ -333,12 +333,12 @@
                           <div class="row">
                             <label>COORDENADA UTM</label>
                             <div class="col-sm-3">
-                                <input wire:model.live="lat" type="text" name="latitud" id="latitud" class="form-control">
+                                <input wire:model="lat" type="text" name="latitud" value="10.494134" id="latitud" class="form-control">
                             </div>
                             <div class="col-sm-3">
-                              <input wire:model.live="lon" type="text" name="longitud" id="longitud" class="form-control">
+                              <input wire:model="lon" type="text" name="longitud" value="-66.931854" id="longitud" class="form-control">
                             </div>
-                          </div>{{$lat}}, {{$lon}}
+                          </div>
                             <div class="px-4 py-3 sm:px-6 sm:flex">                                  
                               <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
                                   <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>

@@ -14,6 +14,9 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $modal, $PoseeOrganizador, $PoseeFormador, $PoseeMovilizador, $PoseeDefensa, $PoseeProductivo = false;
     public $ContentOrganizador, $ContentFormador, $ContentMovilizador, $ContentDefensa, $ContentProductivo = false;
     public $FormOrganizador, $FormFormador, $FormMovilizador, $FormDefensa, $FormProductivo = false;
@@ -25,23 +28,28 @@ class Index extends Component
     public $CantConsejoComunal, $CantBaseMisiones, $CantUrbanismo, $CantCDI = null;
     public $NombreJefe, $NombreOrganizador, $NombreFormador, $NombreMovilizador, $NombreDefensa, $NombreProductivo = null; // nombre
     public $IdJefe, $IdOrganizador, $IdFormador, $IdMovilizador, $IdDefensa, $IdProductivo = null; // nombre
+    public $search = "";
 
     public $estadoId, $municipioId, $parroquiaId = null; //Id que recibo de los campos
 
     public $index = true;
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
     public function render()
     {
         if ($this->index)
         {
-            $nbcs = NBC::all();
+            $nbcs = NBC::where('nombre', 'like', "%$this->search%")
+            ->paginate(5);
             $this->estados = Estado::all();
             return view('livewire.n-b-c.index', ['nbcs' => $nbcs]);
         }else
         {
-            $nbcs = NBC::all();
             $this->estados = Estado::all();
-            return view('livewire.n-b-c.crear', ['nbcs' => $nbcs]);
+            return view('livewire.n-b-c.crear');
         }
     }
     public function crear()
@@ -231,7 +239,8 @@ class Index extends Component
         $this->PoseeDefensa = (isset($nbc->defensa)) ? true : false ;
         $this->PoseeProductivo = (isset($nbc->productivo)) ? true : false ;
 
-        $this->NombreJefe = $nbc->jefe->NombreCompleto;
+        $this->NombreJefe = $nbc->jefe->cedula;
+        dd($this->NombreJefe);
         $this->NombreOrganizador = (isset($nbc->organizador)) ? $nbc->organizador->NombreCompleto : "" ;
         $this->NombreFormador = (isset($nbc->formador)) ? $nbc->formador->NombreCompleto : "" ;
         $this->NombreMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador->NombreCompleto : "" ;

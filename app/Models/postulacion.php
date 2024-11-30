@@ -15,7 +15,8 @@ class postulacion extends Model
     protected $fillable = [
         'estatus',
         'cedula',
-        'NombreCompleto',
+        'nombre',
+        'apellido',
         'fecha_nac',
         'telefono',
         'correo',
@@ -25,7 +26,9 @@ class postulacion extends Model
         'municipio_id',
         'parroquia_id',
         'direccion',
-        'id'
+        'id',
+        'pais_id',
+        'letra'
     ];
 
     public function estado()

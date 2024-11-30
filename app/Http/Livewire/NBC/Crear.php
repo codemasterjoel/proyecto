@@ -30,18 +30,65 @@ class Crear extends Component
 
     public function mount($id)
     {
-        if ($id) {
-            $this->id = $id;
-            $this->editar($id);
-        }
-        
+        $this->id = $id;
+        // dd($this->id);
     }
     public function render()
     {
-        $nbcs = NBC::all();
+        // dd(isset($this->id));
+        $this->lat = '10.494134';
+        $this->lon = '-66.931854';
+
+        if ($this->id) {
+        $nbc = NBC::findOrFail($this->id);
+
+        $this->NombreNBC = $nbc->nombre;
+        $this->CedulaJefe = $nbc->jefe->cedula;
+        $this->CedulaOrganizador = (isset($nbc->organizador)) ? $nbc->organizador->cedula : "" ;
+        $this->CedulaFormador = (isset($nbc->formador)) ? $nbc->formador->cedula : "" ;
+        $this->CedulaMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador->cedula : "" ;
+        $this->CedulaDefensa = (isset($nbc->defensa)) ? $nbc->defensa->cedula : "" ;
+        $this->CedulaProductivo = (isset($nbc->productivo)) ? $nbc->productivo->cedula : "" ;
+
+        $this->IdJefe = $nbc->jefe_id;
+        $this->IdOrganizador = (isset($nbc->organizador)) ? $nbc->organizador_id : null ;
+        $this->IdFormador = (isset($nbc->formador)) ? $nbc->formador_id : null ;
+        $this->IdMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador_id : null ;
+        $this->IdDefensa = (isset($nbc->defensa)) ? $nbc->defensa_id : null ;
+        $this->IdProductivo = (isset($nbc->productivo)) ? $nbc->productivo_id : null ;
+
+        $this->PoseeOrganizador = (isset($nbc->organizador)) ? true : false ;
+        $this->PoseeFormador = (isset($nbc->formador)) ? true : false ;
+        $this->PoseeMovilizador = (isset($nbc->movilizador)) ? true : false ;
+        $this->PoseeDefensa = (isset($nbc->defensa)) ? true : false ;
+        $this->PoseeProductivo = (isset($nbc->productivo)) ? true : false ;
+
+        $this->NombreJefe = $nbc->jefe->nombre." ".$nbc->jefe->apellido;
+        $this->NombreOrganizador = (isset($nbc->organizador)) ? $nbc->organizador->nombre." ".$nbc->organizador->apellido : "" ;
+        $this->NombreFormador = (isset($nbc->formador)) ? $nbc->formador->nombre." ".$nbc->organizador->apellido : "" ;
+        $this->NombreMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador->nombre." ".$nbc->movilizador->apellido : "" ;
+        $this->NombreDefensa = (isset($nbc->defensa)) ? $nbc->defensa->nombre." ".$nbc->defensa->apellido : "" ;
+        $this->NombreProductivo = (isset($nbc->productivo)) ? $nbc->productivo->nombre." ".$nbc->productivo->apellido : "" ;
+
+        $this->estadoId = $nbc->estado_id;
+        $this->municipioId = $nbc->municipio_id;
+        $this->municipios = Municipio::where('estado_id', $nbc->estado_id)->get();
+        $this->parroquiaId = $nbc->parroquia_id;
+        $this->parroquias = Parroquia::where('municipio_id', $nbc->municipio_id)->get();
+
+        $this->CantConsejoComunal = $nbc->cant_consejos_comunales;
+        $this->CantBaseMisiones = $nbc->cant_bases_misiones;
+        $this->CantUrbanismo = $nbc->cant_urbanismos;
+        $this->CantCDI = $nbc->cant_cdi;
         $this->estados = Estado::all();
-        // $this->municipios = Municipio::all();
-        return view('livewire.n-b-c.crear', ['nbcs' => $nbcs]);
+        return view('livewire.n-b-c.crear');
+
+        } else {
+            $nbcs = NBC::all();
+            $this->estados = Estado::all();
+            // $this->municipios = Municipio::all();
+            return view('livewire.n-b-c.crear', ['nbcs' => $nbcs]);
+        }
     }
     public function organizador() 
     {
@@ -64,53 +111,54 @@ class Crear extends Component
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
     }
-    public function editar($id)
+    public function editar()
     {
-        $nbc = NBC::findOrFail($id);
+        // $nbc = NBC::findOrFail($this->id);
 
-        $this->id = $id;
-        $this->NombreNBC = $nbc->nombre;
-        $this->CedulaJefe = $nbc->jefe->cedula;
-        $this->CedulaOrganizador = (isset($nbc->organizador)) ? $nbc->organizador->cedula : "" ;
-        $this->CedulaFormador = (isset($nbc->formador)) ? $nbc->formador->cedula : "" ;
-        $this->CedulaMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador->cedula : "" ;
-        $this->CedulaDefensa = (isset($nbc->defensa)) ? $nbc->defensa->cedula : "" ;
-        $this->CedulaProductivo = (isset($nbc->productivo)) ? $nbc->productivo->cedula : "" ;
+        // $this->NombreNBC = $nbc->nombre;
+        // $this->CedulaJefe = $nbc->jefe->cedula;
+        // $this->CedulaOrganizador = (isset($nbc->organizador)) ? $nbc->organizador->cedula : "" ;
+        // $this->CedulaFormador = (isset($nbc->formador)) ? $nbc->formador->cedula : "" ;
+        // $this->CedulaMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador->cedula : "" ;
+        // $this->CedulaDefensa = (isset($nbc->defensa)) ? $nbc->defensa->cedula : "" ;
+        // $this->CedulaProductivo = (isset($nbc->productivo)) ? $nbc->productivo->cedula : "" ;
 
-        $this->IdJefe = $nbc->jefe_id;
-        $this->IdOrganizador = (isset($nbc->organizador)) ? $nbc->organizador_id : null ;
-        $this->IdFormador = (isset($nbc->formador)) ? $nbc->formador_id : null ;
-        $this->IdMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador_id : null ;
-        $this->IdDefensa = (isset($nbc->defensa)) ? $nbc->defensa_id : null ;
-        $this->IdProductivo = (isset($nbc->productivo)) ? $nbc->productivo_id : null ;
+        // $this->IdJefe = $nbc->jefe_id;
+        // $this->IdOrganizador = (isset($nbc->organizador)) ? $nbc->organizador_id : null ;
+        // $this->IdFormador = (isset($nbc->formador)) ? $nbc->formador_id : null ;
+        // $this->IdMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador_id : null ;
+        // $this->IdDefensa = (isset($nbc->defensa)) ? $nbc->defensa_id : null ;
+        // $this->IdProductivo = (isset($nbc->productivo)) ? $nbc->productivo_id : null ;
 
-        $this->PoseeOrganizador = (isset($nbc->organizador)) ? true : false ;
-        $this->PoseeFormador = (isset($nbc->formador)) ? true : false ;
-        $this->PoseeMovilizador = (isset($nbc->movilizador)) ? true : false ;
-        $this->PoseeDefensa = (isset($nbc->defensa)) ? true : false ;
-        $this->PoseeProductivo = (isset($nbc->productivo)) ? true : false ;
+        // $this->PoseeOrganizador = (isset($nbc->organizador)) ? true : false ;
+        // $this->PoseeFormador = (isset($nbc->formador)) ? true : false ;
+        // $this->PoseeMovilizador = (isset($nbc->movilizador)) ? true : false ;
+        // $this->PoseeDefensa = (isset($nbc->defensa)) ? true : false ;
+        // $this->PoseeProductivo = (isset($nbc->productivo)) ? true : false ;
 
-        $this->NombreJefe = $nbc->jefe->NombreCompleto;
-        $this->NombreOrganizador = (isset($nbc->organizador)) ? $nbc->organizador->NombreCompleto : "" ;
-        $this->NombreFormador = (isset($nbc->formador)) ? $nbc->formador->NombreCompleto : "" ;
-        $this->NombreMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador->NombreCompleto : "" ;
-        $this->NombreDefensa = (isset($nbc->defensa)) ? $nbc->defensa->NombreCompleto : "" ;
-        $this->NombreProductivo = (isset($nbc->productivo)) ? $nbc->productivo->NombreCompleto : "" ;
+        // $this->NombreJefe = $nbc->jefe->NombreCompleto;
+        // $this->NombreOrganizador = (isset($nbc->organizador)) ? $nbc->organizador->NombreCompleto : "" ;
+        // $this->NombreFormador = (isset($nbc->formador)) ? $nbc->formador->NombreCompleto : "" ;
+        // $this->NombreMovilizador = (isset($nbc->movilizador)) ? $nbc->movilizador->NombreCompleto : "" ;
+        // $this->NombreDefensa = (isset($nbc->defensa)) ? $nbc->defensa->NombreCompleto : "" ;
+        // $this->NombreProductivo = (isset($nbc->productivo)) ? $nbc->productivo->NombreCompleto : "" ;
 
-        $this->estadoId = $nbc->estado_id;
-        $this->municipioId = $nbc->municipio_id;
-        $this->municipios = Municipio::where('estado_id', $nbc->estado_id)->get();
-        $this->parroquiaId = $nbc->parroquia_id;
-        $this->parroquias = Parroquia::where('municipio_id', $nbc->municipio_id)->get();
+        // $this->estadoId = $nbc->estado_id;
+        // $this->municipioId = $nbc->municipio_id;
+        // $this->municipios = Municipio::where('estado_id', $nbc->estado_id)->get();
+        // $this->parroquiaId = $nbc->parroquia_id;
+        // $this->parroquias = Parroquia::where('municipio_id', $nbc->municipio_id)->get();
 
-        $this->CantConsejoComunal = $nbc->cant_consejos_comunales;
-        $this->CantBaseMisiones = $nbc->cant_bases_misiones;
-        $this->CantUrbanismo = $nbc->cant_urbanismos;
-        $this->CantCDI = $nbc->cant_cdi;
+        // $this->CantConsejoComunal = $nbc->cant_consejos_comunales;
+        // $this->CantBaseMisiones = $nbc->cant_bases_misiones;
+        // $this->CantUrbanismo = $nbc->cant_urbanismos;
+        // $this->CantCDI = $nbc->cant_cdi;
+        // return view('livewire.n-b-c.crear');
+
+        return view('livewire.n-b-c.crear');
     }
     public function guardar()
     {
-        dd($this->latitud);
         $lsb = NBC::updateOrCreate(['id' => $this->id],
             [
             'nombre' => $this->NombreNBC,
@@ -132,14 +180,16 @@ class Crear extends Component
             'longitud' => $this->lon
         ]);
          
-         session()->flash('message', 'success');
+        //  session()->flash('message', 'success');
+         session()->flash('success', 'success');
+
          
          return redirect('nbc');
     }
     public function borrar($id)
     {
         NBC::find($id)->delete();
-        session()->flash('message', 'delete');
+        session()->flash('messaje', 'delete');
     }
     public function MenuOrganizador()
     {
@@ -313,7 +363,7 @@ class Crear extends Component
             }
             else{
                 $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaJefe)->firstOrFail();
-                $this->NombreJefe = $Luchador->NombreCompleto;
+                $this->NombreJefe = $Luchador->nombre."".$Luchador->apellido;
                 $this->IdJefe = $Luchador->id;
             }
         }
@@ -334,7 +384,7 @@ class Crear extends Component
             }
             else{
                 $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaOrganizador)->firstOrFail();
-                $this->NombreOrganizador = $Luchador->NombreCompleto;
+                $this->NombreOrganizador = $Luchador->nombre."".$Luchador->apellido;
                 $this->IdOrganizador = $Luchador->id;
             }
         }
@@ -356,7 +406,7 @@ class Crear extends Component
             else
             {
                 $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaFormador)->firstOrFail();
-                $this->NombreFormador = $Luchador->NombreCompleto;
+                $this->NombreFormador = $$Luchador->nombre."".$Luchador->apellido;
                 $this->IdFormador = $Luchador->id;
             }
         }
@@ -377,7 +427,7 @@ class Crear extends Component
             }
             else{
                 $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaMovilizador)->firstOrFail();
-                $this->NombreMovilizador = $Luchador->NombreCompleto;
+                $this->NombreMovilizador = $Luchador->nombre."".$Luchador->apellido;
                 $this->IdMovilizador = $Luchador->id;
             } 
         }
@@ -398,7 +448,7 @@ class Crear extends Component
             }
             else{
                 $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaDefensa)->firstOrFail();
-                $this->NombreDefensa = $Luchador->NombreCompleto;  
+                $this->NombreDefensa = $Luchador->nombre."".$Luchador->apellido;
                 $this->IdDefensa = $Luchador->id;
             } 
         }
@@ -419,7 +469,7 @@ class Crear extends Component
             }
             else{
                 $Luchador = RegistroLuchador::where('cedula', '=', $this->CedulaProductivo)->firstOrFail();
-                $this->NombreProductivo = $Luchador->NombreCompleto;   
+                $this->NombreProductivo = $Luchador->nombre."".$Luchador->apellido;  
                 $this->IdProductivo = $Luchador->id;
             }
         }

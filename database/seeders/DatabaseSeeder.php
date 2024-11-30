@@ -9,13 +9,9 @@ use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
+        $this->call(PaisSeeder::class);
         $this->call(NivelSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(EstadoSeeder::class);
@@ -33,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SaimeSeeder::class);
         $this->call(cneSeeder::class);
         $this->call(AreaSeeder::class);
+        $this->call(FormacionSeeder::class);
     }
 }

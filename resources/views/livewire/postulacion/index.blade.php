@@ -10,16 +10,51 @@
                     <div class="flex justify-center">
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
-                    <h3 class="text-2xl text-cyan-400 font-semibold text-center">¿QUIERES PERTENECER AL FRENTE FRANCISCO DE MIRANDA?</h3>
-                    <h3 class="text-xl text-red-400 font-semibold text-center">LLENA EL FORMULARIO Y SE NOS ESTAREMOS COMUNICANDO CON USTED</h3>
+                    <span class=" font-italic text-red-400">El Frente Francisco de Miranda es una organización política disciplinada,
+                        antiimperialista, dinámica y organizada; fundamental en la lucha por erradicar la
+                        pobreza en todas sus manifestaciones y por alcanzar la igualdad social en
+                        Venezuela.</span>
+                    <h3 class="text-2xl text-cyan-400 font-bold text-center mt-2">¿QUIERES PERTENECER AL FRENTE FRANCISCO DE MIRANDA?</h3>
+                    <h3 class="text-xl text-red-400 font-bold text-center pb-4">LLENA EL FORMULARIO</h3>
                     <form>
                         <div class="row">
-                            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                                <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
+                            <div class="col-xl-4 col-sm-12 mb-xl-0">
+                                <div class="flex items-center justify-center pb-4"> {{-- campo cedula --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Cédula</span>
-                                            <input wire:model="cedula" type="text" class="w-full bg-white pl-2 text-base border font-semibold outline-0 rounded-r-lg border-slate-200" onkeypress="$(this).mask('00000000')" maxlength="8" title="debe colocar una cedula valida">
+                                            <span class="flex bg-cyan-900 text-white items-center font-bold whitespace-nowrap rounded-l-lg border-r-0 border-solid px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nacionalidad</span>
+                                            <select wire:model.live="nacionalidad" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-2 transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
+                                                <option value="">Seleccione</option>
+                                                <option value="V">V</option>
+                                                <option value="E">E</option>
+                                            </select>
+                                        </div>
+                                        @error('nacionalidadId') <div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-12 mb-xl-0">
+                                <div class="flex items-center justify-center pb-4"> {{-- campo cedula --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <span class="flex bg-cyan-900 text-white items-center font-bold whitespace-nowrap rounded-l-lg border-r-0 border-solid px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Cédula</span>
+                                            <input wire:model="cedula" type="text" class="w-full pl-2 border text-neutral-900 font-bold rounded-r-lg border-neutral-900" onkeypress="$(this).mask('00000000')" maxlength="8" title="debe colocar una cedula valida">
+                                        </div>
+                                        @error('cedula') <div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-12 mb-xl-0">
+                                <div class="flex items-center justify-center pb-4"> {{-- campo cedula --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <span class="flex bg-cyan-900 text-white items-center font-bold whitespace-nowrap rounded-l-lg border-r-0 border-solid px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Pais</span>
+                                            <select wire:model="paisId" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
+                                                <option value="">Seleccione</option>
+                                                @foreach( $paises as $pais )
+                                                    <option value="{{ $pais->id }}">{{ $pais->nombre }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         @error('cedula') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
@@ -27,31 +62,47 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-center pb-4"> {{-- campo Nombre Completo --}}
-                            <div class="w-full rounded-lg">
-                              <div class="flex">
-                                <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6]">Nombre Completo</span>
-                                <input wire:model="nombreCompleto" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" onkeyup="this.value = this.value.toUpperCase();" />
-                              </div>
-                              @error('nombreCompleto') <div class="text-danger">{{ $message }}</div> @enderror
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold transition-colors">Nombre</span>
+                                            <input wire:model="nombre" type="text" class="w-full pl-2 text-neutral-900 border rounded-r-lg font-bold outline-2 border-cyan-900" onkeyup="this.value = this.value.toUpperCase();"/>
+                                        </div>
+                                        @error('nombre')<div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
+                                <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nivel Academico --}}
+                                    <div class="w-full rounded-lg">
+                                        <div class="flex">
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold transition-colors">Apellido</span>
+                                            <input wire:model="apellido" type="text" class="w-full pl-2 border rounded-r-lg text-neutral-900 font-bold outline-2 border-cyan-900" onkeyup="this.value = this.value.toUpperCase();"/>
+                                        </div>
+                                        @error('apellido')<div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                             
                         <div class="row">
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Fecha de Nacimiento --}}
-                                    <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Fecha de Nacimiento</span>
-                                    <input wire:model="fechaNacimiento" type="date" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
+                                    <span class="flex bg-cyan-900 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem] text-center leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Fecha de Nacimiento</span>
+                                    <input wire:model="fechaNacimiento" type="date" class="relative m-0 -ml-px block w-[1px] outline-2 min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" />
                                     @error('fechaNacimiento') <br><div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Fecha de Nacimiento --}}
-                                    <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg px-3 py-[0.25rem] text-center text-base leading-[1.6]">Genero</span>
-                                    <select wire:model="generoId" class="relative m-0 -ml-px block min-w-0 flex-auto border rounded-r-lg bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out">
+                                    <span class="flex bg-cyan-900 font-bold text-white items-center rounded-l-lg px-3 py-[0.25rem] leading-[1.6]">Genero</span>
+                                    <select wire:model="generoId" class="relative m-0 -ml-px block min-w-0 flex-auto border rounded-r-lg bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-2 transition duration-200 ease-in-out">
                                         <option value="">Seleccione</option>
-                                        <option value="1">Masculino</option>
-                                        <option value="2">Femenina</option>
+                                        <option value="1">Femenina</option>
+                                        <option value="2">Masculino</option>
+                                        <option value="3">Otro</option>
                                     </select>
                                     @error('generoId')<div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
@@ -63,8 +114,8 @@
                                 <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
-                                            <input wire:model="telefono" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold transition-colors">Telefono</span>
+                                            <input wire:model="telefono" type="text" class="w-full pl-2 border rounded-r-lg text-neutral-900 font-bold outline-2 border-cyan-900" minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" />
                                         </div>
                                         @error('telefono')<div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
@@ -72,8 +123,8 @@
                             </div>
                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 <div class="relative flex flex-wrap items-stretch pb-4"> {{-- campo Nivel Academico --}}
-                                    <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nivel Académico</span>
-                                    <select wire:model="nivelAcademicoId" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
+                                    <span class="flex bg-cyan-900 font-bold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem] text-center">Nivel Académico</span>
+                                    <select wire:model="nivelAcademicoId" class="relative m-0 -ml-px block w-[1px] min-w-0 flex-auto rounded-r-lg border border-solid border-neutral-900 bg-clip-padding px-3 py-[0.25rem] font-bold leading-[1.6] text-neutral-900 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary">
                                         <option value="">Seleccione</option>
                                         @foreach( $nivelesAcademicos as $nivelacademico )
                                             <option value="{{ $nivelacademico->id }}">{{ $nivelacademico->nombre }}</option>
@@ -88,8 +139,8 @@
                                 <div class="flex items-center justify-center pb-4">
                                     <div class="w-full rounded-lg">
                                         <div class="flex">
-                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado</span>
-                                            <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
+                                            <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold transition-colors">Estado</span>
+                                            <select class="w-full pl-3 border outline-2 text-neutral-900 border-solid font-bold border-neutral-900 rounded-r-lg" wire:model.live="estadoId" required>
                                                 <option value="">Seleccione</option>
                                                 @foreach( $estados as $estado )
                                                     <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
@@ -103,10 +154,10 @@
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 @if (!is_null($municipios)) {{-- campo municipio --}}
                                     <div class="flex items-center justify-center pb-4">
-                                        <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="w-full rounded-lg">
                                             <div class="flex">
-                                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
-                                                <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
+                                                <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Municipio</span>
+                                                <select class="w-full pl-3 border text-neutral-900 rounded-r-lg font-bold outline-2 border-solid" wire:model.live="municipioId" required>
                                                     <option value="">Seleccione</option>
                                                     @foreach( $municipios as $municipio )
                                                         <option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
@@ -121,10 +172,10 @@
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 mb-xl-0">
                                 @if (!is_null($parroquias)) {{-- campo Parroquia --}}
                                     <div class="flex items-center justify-center pb-4">
-                                        <div class="w-full rounded-lg bg-gray-500">
+                                        <div class="w-full rounded-lg">
                                             <div class="flex">
-                                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
-                                                <select class="w-full px-4 py-2 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="parroquiaId" required>
+                                                <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold ">Parroquia</span>
+                                                <select class="w-full pl-3 border rounded-r-lg text-neutral-900 border-neutral-900 font-bold border-solid outline-2" wire:model="parroquiaId" required>
                                                     <option value="">Seleccione</option>
                                                     @foreach( $parroquias as $parroquia )
                                                     <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
@@ -138,29 +189,29 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-center pb-4"> {{-- campo Correo --}}
-                            <div class="w-full rounded-lg">
-                              <div class="flex">
-                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Correo</span>
-                                <input wire:model="correo" type="email" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" placeholder="usuario@correo.com" />
-                              </div>
-                              @error('correo') <div class="text-danger">{{ $message }}</div> @enderror
-                            </div>
-                        </div>
                         <div class="flex items-center justify-center pb-4"> {{-- campo Direccion --}}
                             <div class="w-full rounded-lg">
                               <div class="flex">
-                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Dirección</span>
-                                <input wire:model="direccion" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" onkeyup="this.value = this.value.toUpperCase();"/>
+                                <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Dirección</span>
+                                <input wire:model="direccion" type="text" class="w-full pl-2 border text-neutral-900 border-solid rounded-r-lg font-bold outline-2 border-slate-900" onkeyup="this.value = this.value.toUpperCase();"/>
                               </div>
                               @error('direccion') <div class="text-danger">{{ $message }}</div> @enderror
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center pb-4"> {{-- campo Correo --}}
+                            <div class="w-full rounded-lg">
+                              <div class="flex">
+                                <span class="bg-cyan-900 px-3 py-[0.25rem] rounded-tl-lg rounded-bl-lg text-white font-bold">Correo</span>
+                                <input wire:model="correo" type="email" class="w-full pl-2 border border-solid text-neutral-900 rounded-r-lg font-bold outline-2 border-slate-900" placeholder="usuario@correo.com" />
+                              </div>
+                              @error('correo') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
                         </div>
 
                         <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
 
-                                <a href="{{route('login')}}" class="btn w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">SALIR</a>
+                                <a href="{{route('login')}}" class="btn w-32 bg-gradient-to-r from-red-400 to-red-600 text-white font-bold py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">SALIR</a>
                             </span>
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
                                 <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>

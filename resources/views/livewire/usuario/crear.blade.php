@@ -19,13 +19,13 @@
                     <div class="flex justify-center">
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
-                    <h3 class="text-2xl text-cyan-400 font-semibold text-center">REGISTRO DE USUARIOS</h3>
+                    <h3 class="text-2xl text-cyan-400 font-semibold text-center pb-4">REGISTRO DE USUARIOS</h3>
                     <form>
                         <div class="flex items-center justify-center pb-4"> {{-- campo Nivel --}}
                             <div class="w-full rounded-lg bg-red-500 text-white">
                                 <div class="flex">
-                                    <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Nivel de Usuario</span>
-                                    <select class="block w-[1px] min-w-0 px-4 flex-auto py-2 border rounded-r-lg text-gray-400 font-semibold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="nivelId" required>
+                                    <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold ">Nivel de Usuario</span>
+                                    <select class="block w-[1px] min-w-0 px-4 flex-auto py-2 border rounded-r-lg text-gray-900 font-bold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="nivelId" required>
                                         <option value="">Seleccione</option>
                                         @foreach( $niveles as $nivel )
                                             <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
@@ -40,8 +40,8 @@
                         <div class="flex items-center justify-center pb-4"> {{-- campo Area --}}
                             <div class="w-full rounded-lg bg-red-500 text-white">
                                 <div class="flex">
-                                    <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Àrea de Trabajo</span>
-                                    <select class="block w-[1px] min-w-0 px-4 flex-auto py-2 border rounded-r-lg text-gray-400 font-semibold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="areaId" required>
+                                    <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Àrea de Trabajo</span>
+                                    <select class="block w-[1px] min-w-0 px-4 flex-auto py-2 border rounded-r-lg text-gray-900 font-bold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model="areaId" required>
                                         <option value="">Seleccione</option>
                                         @foreach( $areas as $area )
                                             <option value="{{ $area->id }}">{{ $area->nombre }}</option>
@@ -57,8 +57,8 @@
                             <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 flex rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado estado</span>
-                                        <select class=" flex-auto block w-[1px] min-w-0 px-4 py-2 border rounded-r-lg text-gray-400 font-semibold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
+                                        <span class="bg-cyan-900 p-2 flex rounded-tl-lg rounded-bl-lg text-white font-bold ">Estado estado</span>
+                                        <select class=" flex-auto block w-[1px] min-w-0 px-4 py-2 border rounded-r-lg text-gray-900 font-bold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
                                             <option value="">Seleccione</option>
                                             @foreach( $estados as $estado )
                                                 <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
@@ -75,8 +75,8 @@
                             <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
-                                        <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 font-semibold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Municipio</span>
+                                        <select class="w-full px-4 py-2 border rounded-r-lg text-gray-900 font-bold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
                                             <option value="">Seleccione</option>
                                             @foreach( $municipios as $municipio )
                                                 <option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
@@ -93,8 +93,8 @@
                             <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
-                                        <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 focus:outline-none font-semibold focus:ring-2 focus:ring-cyan-500" wire:model.live="parroquiaId" required>
+                                        <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Parroquia</span>
+                                        <select class="w-full px-4 py-2 border rounded-r-lg text-gray-900 focus:outline-none font-bold focus:ring-2 focus:ring-cyan-500" wire:model.live="parroquiaId" required>
                                             <option value="">Seleccione</option>
                                             @foreach( $parroquias as $parroquia )
                                             <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
@@ -110,16 +110,16 @@
                         <div class="flex items-center justify-center pb-4"> {{-- campo Usuario --}}
                             <div class="w-full rounded-lg bg-gray-500">
                               <div class="flex">
-                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Usuario</span>
-                                <input wire:model="name" type="text" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Usuario</span>
+                                <input wire:model="name" type="text" class="w-full pl-2 text-base border rounded-r-lg font-bold outline-0 border-slate-900 text-neutral-900 border-solid" />
                               </div>
                             </div>
                         </div>
                         <div class="flex items-center justify-center pb-4"> {{-- campo Correo --}}
                             <div class="w-full rounded-lg bg-gray-500">
                               <div class="flex">
-                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Correo</span>
-                                <input wire:model="email" type="email" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Correo</span>
+                                <input wire:model="email" type="email" class="w-full pl-2 text-base border rounded-r-lg font-bold outline-0 border-slate-900 text-neutral-900 border-solid" />
                               </div>
                             </div>
                         </div>
@@ -127,8 +127,8 @@
                         <div class="flex items-center justify-center pb-4"> {{-- campo contraseña --}}
                             <div class="w-full rounded-lg bg-gray-500">
                               <div class="flex">
-                                <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Contraseña</span>
-                                <input wire:model="password" type="password" class="w-full bg-white pl-2 text-base border rounded-r-lg font-semibold outline-0 border-slate-200" />
+                                <span class="bg-cyan-900 p-2 rounded-tl-lg rounded-bl-lg text-white font-bold ">Contraseña</span>
+                                <input wire:model="password" type="password" class="w-full pl-2 text-base border rounded-r-lg font-bold outline-0 border-slate-900 text-neutral-900 border-solid" />
                               </div>
                             </div>
                         </div>

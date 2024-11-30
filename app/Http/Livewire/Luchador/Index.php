@@ -14,6 +14,8 @@ use App\Models\NivelAcademico;
 use App\Models\Responsabilidad;
 use App\Models\Saime;
 use App\Mail\UserCreated;
+use App\Models\Pais;
+use Carbon\Carbon;
 
 use Ramsey\Uuid\Uuid;
 use Livewire\WithPagination;
@@ -26,22 +28,25 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $modal, $estado, $filtro = false;
-    public $municipios  = null; // Liste de Municipios
+    public $paises      = null; // Lista de estados
     public $estados     = null; // Lista de estados
+    public $municipios  = null; // Liste de Municipios
     public $parroquias  = null; // Lista de parroquias
     public $nivelesAcademicos = null; //Niveles Academicos
     public $responsabilidades = null; //Responsabilidades
-    public $cedula = null; //Cedula
+    public $cedula, $nacionalidad = null; //Cedula
     public $avanzadas = null; //Avanzadas
     public $correo, $direccion = null; //Correo
     public $fechaNacimiento = null; //Fecha Nacimiento
-    public $nombreCompleto = null; //Nombres
+    public $nombre, $apellido = null; //Nombres
     public $generos = null; //Genero
     public $estatus = null; //Estatus
     public $telefono = null; //Telefono
+    public $edad = null; //edad calculada
+    public $inactivo = null; //Fecha de inactivo
     public $id = null; //Id
     public $search = "";
-    public $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId = null; //Id que recibo de los campos
+    public $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $responsabilidadId, $avanzadaId, $generoId = null; //Id que recibo de los campos
 
     public function updatingSearch()
     {
@@ -50,12 +55,14 @@ class Index extends Component
     public function render()
     {
         $lsbs = RegistroLuchador::where('cedula', 'like', "%$this->search%")
+        ->where('estado_id', '<>', '25')
         ->paginate(5);
         $this->estados = Estado::all();
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->responsabilidades = Responsabilidad::where('nivel','>=', auth()->user()->nivel_id)->pluck('nombre', 'id');
         $this->avanzadas = Avanzada::all();
         $this->generos = Genero::all();
+        $this->paises = Pais::all();
 
         return view('livewire.luchador.index', ['lsbs'=>$lsbs]);
     }
@@ -85,7 +92,8 @@ class Index extends Component
     {
         $this->estatus = false;
         $this->cedula = null;
-        $this->nombreCompleto = null;
+        $this->nombre = null;
+        $this->apellido = null;
         $this->fechaNacimiento = null;
         $this->telefono = null;
         $this->correo = null;
@@ -97,6 +105,9 @@ class Index extends Component
         $this->municipioId = null;
         $this->parroquiaId = null;
         $this->direccion = null;
+        $this->paisId = null;
+        $this->nacionalidad = null;
+        $this->edad = null;
     }
     public function updatedEstadoId($id)
     {
@@ -125,7 +136,8 @@ class Index extends Component
             if (count($saime) > 0) {
                 $saime = $saime->first();
                 // dd($saime);
-                $this->nombreCompleto = $saime->nombre1." ".$saime->nombre2." ".$saime->apellido1." ".$saime->apellido2;
+                $this->nombre = $saime->nombre1." ".$saime->nombre2;
+                $this->apellido = $saime->apellido1." ".$saime->apellido2;
                 $this->generoId = $saime->genero_id;
                 $this->fechaNacimiento = $saime->fecha_nac;
             } else {
@@ -140,7 +152,8 @@ class Index extends Component
 
         $this->id = $id;
         $this->cedula = $lsb->cedula;
-        $this->nombreCompleto = $lsb->NombreCompleto;
+        $this->nombre = $lsb->nombre;
+        $this->apellido = $lsb->apellido;
         $this->fechaNacimiento = $lsb->fecha_nac;
         $this->generoId = $lsb->genero_id;
         $this->telefono = $lsb->telefono;
@@ -154,6 +167,9 @@ class Index extends Component
         $this->parroquias = Parroquia::where('municipio_id', $lsb->municipio_id)->get();
         $this->correo = $lsb->correo;
         $this->direccion = $lsb->direccion;
+        $this->paisId = $lsb->pais_id;
+        $this->nacionalidad = $lsb->letra;
+        $this->edad = $lsb->edad;
 
         session()->flash('success', 'success');
 
@@ -162,8 +178,11 @@ class Index extends Component
     public function guardar()
     {
         $this->validate([
-            'cedula' => 'required|min:7|max:8|exists:saimes,cedula',
-            'nombreCompleto' => 'required',
+            'nacionalidad' => 'required',
+            'paisId' => 'required',
+            'cedula' => 'required|min:7|max:8',
+            'nombre' => 'required',
+            'apellido' => 'required',
             'fechaNacimiento' => 'required',
             'generoId' => 'required|exists:generos,id',
             'telefono' => 'required|size:15',
@@ -177,11 +196,23 @@ class Index extends Component
             'direccion' => 'required'
         ]);
 
+        if ($this->estatus == false) {
+            $this->inactivo = Carbon::now()->toDateTimeString();
+        }else
+        {
+            $this->inactivo = null;
+        }
+
+        $this->edad = Carbon::parse($this->fechaNacimiento)->age;
+
         $lsb = RegistroLuchador::updateOrCreate(['id' => $this->id],
             [
+            'letra' => $this->nacionalidad,
+            'pais_id' => $this->paisId,
             'estatus' => $this->estatus,
             'cedula' => $this->cedula,
-            'NombreCompleto' => $this->nombreCompleto,
+            'nombre' => $this->nombre,
+            'apellido' => $this->apellido,
             'fecha_nac' => $this->fechaNacimiento,
             'telefono' => $this->telefono,
             'correo' => $this->correo,
@@ -192,10 +223,10 @@ class Index extends Component
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
             'parroquia_id' => $this->parroquiaId,
-            'direccion' => $this->direccion
+            'direccion' => $this->direccion,
+            'edad' => $this->edad,
+            'inactivo' => $this->inactivo
         ]);
-
-        // Mail::to($this->correo)->send(new UserCreated());
          
         session()->flash('success', 'success');
          
@@ -218,12 +249,20 @@ class Index extends Component
         ini_set('max_execution_time', 0);
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();
-        }, 'aaa.pdf');
+        }, 'constancia.pdf');
     }
     public function verficha($id) 
     {
         $lsbs = RegistroLuchador::find($id);
 
         return view ('livewire.reportes.lsb', ['lsb'=>$lsbs]);
+    }
+    public function updatedNacionalidad($id)
+    {
+        if ($id == 'V') {
+            $this->paisId = 'VE';
+        }else{
+            $this->paisId = null;
+        }
     }
 }

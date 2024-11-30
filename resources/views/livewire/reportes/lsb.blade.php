@@ -9,13 +9,13 @@
 <body>
     <table style="width: 100%; border: 0px;">
         <tr>
-            <td style="text-align: left;    width: 33%"><img src="img/logocenso.png" width="100"></td>
-            <td style="text-align: right;    width: 64%"><?php echo date('d/m/Y'); ?></td>
+            <td style="text-align: left; width: 33%"><img src="img/logo.svg" width="100"></td>
+            <td style="text-align: right; width: 64%"><?php echo date('d/m/Y'); ?></td>
         </tr>
     </table>
     <table style="width: 100%; border: 0px;" align="center">
         <tr>
-            <td align="center"><h1>Planilla de Registro</h1></td>
+            <td align="center"><h1>Constancia de Registro</h1></td>
         </tr>
     </table>
     <table style="text-align: center; width: 100%">

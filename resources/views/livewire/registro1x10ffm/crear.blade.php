@@ -19,13 +19,13 @@
                     <div class="flex items-center justify-center">
                         <img src="{{asset('assets/img/logo.png')}}" class="w-52">
                     </div>
-                    <h3 class="text-2xl text-cyan-400 font-semibold text-center">REGISTRAR JEFE DE 1X10</h3>
+                    <h3 class="text-2xl text-cyan-400 font-bold text-center">REGISTRAR JEFE DE 1X10</h3>
                     <form>
-                        <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
+                        <div class="flex items-center justify-center pt-4"> {{-- campo cedula --}}
                             <div class="w-full rounded-lg text-white">
                                 <div class="flex">
-                                    <input wire:model="cedula" type="number" placeholder="Cedula" class=" bg-white text-gray-500 pl-2 text-base border font-semibold outline-0 rounded-tl-lg rounded-bl-lg border-slate-200">
-                                    <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-semibold transition-colors">
+                                    <input wire:model="cedula" type="number" placeholder="Cedula" class=" text-gray-900 pl-3 border border-solid font-bold outline-2 rounded-tl-lg rounded-bl-lg border-slate-900">
+                                    <input wire:click="consultar" type="button" value="Buscar" class="bg-gradient-primary p-2 rounded-tr-lg rounded-br-lg text-white font-bold transition-colors">
                                 </div>
                                 @error('cedula')
                                     {{$message}}
@@ -33,12 +33,12 @@
                             </div>
                         </div>
                         @if ($mostrar == true)
-                            <div class="flex items-center justify-center py-4"> {{-- campo cedula --}}
+                            <div class="flex items-center justify-center pb-4"> {{-- campo cedula --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
-                                        <span class="flex bg-cyan-300 font-semibold text-white items-center whitespace-nowrap rounded-l-lg border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base leading-[1.6] dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200">Nombre</span>
-                                        <input type="text" class="w-full rounded-r-lg bg-white text-gray-400 pl-2 text-base border border-r-0 border-solid border-neutral-300 font-semibold" wire:model="nombreCompleto">
-                                        {{-- <input wire:model="nombreCompleto" type="text" class="rounded-0 font-semibold relative m-0 block w-[1px] min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-gray-400 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" /> --}}
+                                        <span class="flex bg-cyan-900 font-bold text-white rounded-l-lg border border-r-0 border-solid border-neutral-900 px-3 py-[0.25rem]">Nombre</span>
+                                        <input type="text" class="w-full rounded-r-lg text-gray-900 pl-3 border border-r-0 border-solid border-neutral-900 font-bold" wire:model="nombreCompleto">
+                                        {{-- <input wire:model="nombreCompleto" type="text" class="rounded-0 font-bold relative m-0 block w-[1px] min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base leading-[1.6] text-gray-400 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" /> --}}
                                     </div>
                                     @error('nombreCompleto')
                                         {{$message}}
@@ -48,8 +48,8 @@
                             <div class="flex items-center justify-center pb-4"> {{-- campo genero --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Genero</span>
-                                        <select wire:model="generoId" class="w-full px-4 py-2 border font-semibold text-base text-gray-400 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                                        <span class="bg-cyan-900 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Genero</span>
+                                        <select wire:model="generoId" class="w-full pl-3 border border-solid border-slate-900 font-bold text-gray-900 outline-2 rounded-r-lg ">
                                             <option value="">Seleccione</option>
                                             @foreach ($generos as $genero)
                                                 <option value="{{$genero->id}}">{{$genero->nombre}}</option>
@@ -64,8 +64,8 @@
                             <div class="flex items-center justify-center pb-4"> {{-- campo Telefono --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Telefono</span>
-                                        <input wire:model="telefono" type="text" class="w-full text-gray-400 border pl-2 text-base rounded-r-lg font-semibold " minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" required/>
+                                        <span class="bg-cyan-900 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Telefono</span>
+                                        <input wire:model="telefono" type="text" class="w-full text-gray-900 border border-solid border-slate-900 outline-2 pl-3 rounded-r-lg font-bold " minlength="15" placeholder="(0000) 000-0000" onkeypress="$(this).mask('(0000) 000-0000')" title="SOLO SE PERMITE NUMEROS, 11 DIGITOS" required/>
                                     </div>
                                     @error('telefono')
                                         {{$message}}
@@ -75,8 +75,8 @@
                             <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                 <div class="w-full rounded-lg bg-red-500 text-white">
                                     <div class="flex">
-                                        <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Estado</span>
-                                        <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 font-semibold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="estadoId" required>
+                                        <span class="bg-cyan-900 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Estado</span>
+                                        <select class="w-full pl-3 border border-solid border-slate-900 outline-2 rounded-r-lg text-gray-900 font-bold " wire:model.live="estadoId" required>
                                             <option value="">Seleccione</option>
                                             @foreach( $estados as $estado )
                                                 <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
@@ -92,8 +92,8 @@
                                 <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                     <div class="w-full rounded-lg bg-red-500 text-white">
                                         <div class="flex">
-                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Municipio</span>
-                                            <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 font-semibold focus:outline-none focus:ring-2 focus:ring-cyan-500" wire:model.live="municipioId" required>
+                                            <span class="bg-cyan-900 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Municipio</span>
+                                            <select class="w-full pl-3 border border-solid border-slate-900 rounded-r-lg text-gray-900 font-bold outline-2 " wire:model.live="municipioId" required>
                                                 <option value="">Seleccione</option>
                                                 @foreach( $municipios as $municipio )
                                                     <option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
@@ -110,8 +110,8 @@
                                 <div class="flex items-center justify-center pb-4"> {{-- campo estado --}}
                                     <div class="w-full rounded-lg bg-red-500 text-white">
                                         <div class="flex">
-                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Parroquia</span>
-                                            <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 focus:outline-none font-semibold focus:ring-2 focus:ring-cyan-500" wire:model.live="parroquiaId" required>
+                                            <span class="bg-cyan-900 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Parroquia</span>
+                                            <select class="w-full pl-3 border border-solid border-slate-900 rounded-r-lg text-gray-900 font-bold outline-2" wire:model.live="parroquiaId" required>
                                                 <option value="">Seleccione</option>
                                                 @foreach( $parroquias as $parroquia )
                                                 <option value="{{ $parroquia->id }}">{{ $parroquia->nombre }}</option>
@@ -128,8 +128,8 @@
                                 <div class="flex items-center justify-center pb-4">
                                     <div class="w-full rounded-lg bg-red-500 text-white">
                                         <div class="flex">
-                                            <span class="bg-cyan-300 p-2 rounded-tl-lg rounded-bl-lg text-white font-semibold hover:bg-cyan-500 transition-colors">Centro</span>
-                                            <select class="w-full px-4 py-2 border rounded-r-lg text-gray-400 focus:outline-none font-semibold focus:ring-2 focus:ring-cyan-500" wire:model="centroId" required>
+                                            <span class="bg-cyan-900 py-[0.25rem] px-3 rounded-tl-lg rounded-bl-lg text-white font-bold">Centro</span>
+                                            <select class="w-full pl-3 border border-solid border-slate-900 rounded-r-lg text-gray-900 font-bold outline-2" wire:model="centroId" required>
                                                 <option value="">Seleccione</option>
                                                 @foreach( $centros as $centro )
                                                 <option value="{{ $centro->id }}">{{ $centro->nombre }}</option>
@@ -145,10 +145,10 @@
                         @endif
                         <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click="cerrarModal()">SALIR</button>
+                                <button type="button" class="w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block mb-2 font-bold" wire:click="cerrarModal()">SALIR</button>
                             </span>
                             <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2" wire:click.prevent="guardar()"  >GUARDAR</button>
+                                <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block mb-2 font-bold" wire:click.prevent="guardar()"  >GUARDAR</button>
                             </span>
                         </div>
                     </form>

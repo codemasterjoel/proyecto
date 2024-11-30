@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-
-class RegistroLuchador extends Model
+class Formacion extends Model
 {
     use HasFactory, SoftDeletes;
     public $incrementing = false;
@@ -25,34 +24,21 @@ class RegistroLuchador extends Model
     protected $fillable = [
         'estatus',
         'cedula',
-        'nombre',
-        'apellido',
+        'NombreCompleto',
         'fecha_nac',
         'telefono',
         'correo',
-        'avanzada_id',
         'genero_id',
         'nivel_academico_id',
-        'responsabilidad_id',
         'estado_id',
         'municipio_id',
         'parroquia_id',
-        'direccion',
-        'pais_id',
-        'letra',
-        'edad',
-        'inactivo',
-        'hijos'
-
+        'direccion'
     ];
 
     public function estado()
     {
         return $this->belongsTo(Estado::class);
-    }
-    public function avanzada()
-    {
-        return $this->belongsTo(Avanzada::class);
     }
     public function genero()
     {
@@ -69,13 +55,5 @@ class RegistroLuchador extends Model
     public function nivelAcademico()
     {
         return $this->belongsTo(NivelAcademico::class);
-    }
-    public function responsabilidad()
-    {
-        return $this->belongsTo(Responsabilidad::class);
-    }
-    public function nbc()
-    {
-        return $this->belongsTo(NBC::class);
     }
 }

@@ -9,20 +9,21 @@ use App\Models\Parroquia;
 use App\Models\Genero;
 use App\Models\NivelAcademico;
 use App\Models\postulacion;
+use App\Models\Pais;
 
 use Ramsey\Uuid\Uuid;
 
 class Index extends Component
 {
     public $modal, $estado, $modalReset = false;
-    public $estados, $municipios, $parroquias, $nivelesAcademicos, $generos = null; // Listas desplegables
+    public $paises, $estados, $municipios, $parroquias, $nivelesAcademicos, $generos = null; // Listas desplegables
     public $cedula = null; //Cedula
     public $telefono = null; //Telefono
     public $correo = null; //Correo
     public $fechaNacimiento = null; //Fecha Nacimiento
-    public $nombreCompleto = null; //Nombres
+    public $nombre, $apellido  = null; //Nombres
     public $direccion = null; //Direccion
-    public $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $generoId = null; //Id que recibo de las listas desplegables
+    public $nacionalidad, $paisId, $estadoId, $municipioId, $parroquiaId, $nivelAcademicoId, $generoId = null; //Id que recibo de las listas desplegables
 
     public function mount()
     {
@@ -33,6 +34,7 @@ class Index extends Component
         $this->estados = Estado::all();
         $this->nivelesAcademicos = NivelAcademico::all();
         $this->generos = Genero::all();
+        $this->paises = Pais::all();
 
         return view('livewire.postulacion.index')->layout('layouts.single');
     }
@@ -47,11 +49,20 @@ class Index extends Component
         $this->parroquiaId = null;
         $this->parroquias = Parroquia::where('municipio_id', $id)->get();
     }
+    public function updatedNacionalidad($id)
+    {
+        if ($id == 'V') {
+            $this->paisId = 'VE';
+        }else{
+            $this->paisId = null;
+        }
+    }
     public function guardar()
     {
         $this->validate([
             'cedula' => 'required|min:7|max:8|unique:postulacions,cedula',
-            'nombreCompleto' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
             'fechaNacimiento' => 'required',
             'generoId' => 'required|exists:generos,id',
             'telefono' => 'required',
@@ -60,13 +71,16 @@ class Index extends Component
             'municipioId' => 'required',
             'parroquiaId' => 'required',
             'correo' => 'required|email:rfc',
-            'direccion' => 'required'
+            'direccion' => 'required',
+            'nacionalidad' => 'required',
+            'paisId' => 'required'
         ]);
         
         $lsb = postulacion::create([
             'id' => Uuid::uuid4()->toString(),
             'cedula' => $this->cedula,
-            'NombreCompleto' => $this->nombreCompleto,
+            'nombre' => $this->nombre,
+            'apellido' => $this->apellido,
             'fecha_nac' => $this->fechaNacimiento,
             'telefono' => $this->telefono,
             'correo' => $this->correo,
@@ -75,7 +89,9 @@ class Index extends Component
             'estado_id' => $this->estadoId,
             'municipio_id' => $this->municipioId,
             'parroquia_id' => $this->parroquiaId,
-            'direccion' => $this->direccion
+            'direccion' => $this->direccion,
+            'letra' => $this->nacionalidad,
+            'pais_id' => $this->paisId,
         ]);
          
         session()->flash('success', 'success');
@@ -87,7 +103,8 @@ class Index extends Component
     public function limpiarCampos()
     {
         $this->cedula = null;
-        $this->nombreCompleto = null;
+        $this->nombre = null;
+        $this->apellido = null;
         $this->fechaNacimiento = null;
         $this->telefono = null;
         $this->correo = null;
@@ -97,6 +114,8 @@ class Index extends Component
         $this->municipioId = null;
         $this->parroquiaId = null;
         $this->direccion = null;
+        $this->nacionalidad = null;
+        $this->paisId;
     }
     public function cerrarModal() 
     {

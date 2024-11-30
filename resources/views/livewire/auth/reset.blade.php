@@ -10,19 +10,19 @@
                     <div class="flex justify-center">
                         <img src="{{asset('img/logo.svg')}}" class="w-52">
                     </div>
-                    <h3 class="text-xl text-red-500 font-semibold">INGRESE EL CORREO PARA RECUPERAR LA CONTRASEÑA.</h3>
+                    <h3 class="text-xl text-red-500 font-bold ">INGRESE EL CORREO PARA RECUPERAR LA CONTRASEÑA.</h3>
                     <div class="card card-plain">
                         <div class="card-body">
                             <form>
                                 <div>
-                                    <label for="email">{{ __('Correo') }}</label>
+                                    <label class=" text-neutral-900 font-bold text-uppercase" for="email">{{ __('Correo') }}</label>
                                     <div class="@error('email')border border-danger rounded-3 @enderror">
-                                        <input wire:model.live="email" id="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                                        <input wire:model.live="email" id="email" type="email" class="form-control border border-solid text-neutral-900 border-neutral-900 outline-2 font-bold" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                                     </div>
                                     @error('email') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="text-center">
-                                    <button wire:click.prevent="recoverPassword()" type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">{{ __('Recuperar Contraseña') }}</button>
+                                    <button wire:click.prevent="recoverPassword()" type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0 font-bold">{{ __('Recuperar Contraseña') }}</button>
                                 </div>
                             </form>
                             @if ($showSuccesNotification)
@@ -38,6 +38,12 @@
                                     <button wire:click="$set('showFailureNotification', false)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><strong>X</strong></button>
                                 </div>
                             @endif
+                        </div>
+                        <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
+
+                                <a href="{{route('login')}}" class="btn w-32 bg-gradient-to-r from-red-400 to-red-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">SALIR</a>
+                            </span>
                         </div>
                     </div>
                 </div>
