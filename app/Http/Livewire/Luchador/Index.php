@@ -265,12 +265,13 @@ class Index extends Component
             $this->paisId = null;
         }
     }
-    public function carnet()
+    public function carnet($id)
     {
         // return view('livewire.reportes.carnet');
+        $lsbs = RegistroLuchador::find($id);
 
-        $pdf = Pdf::loadView('livewire.reportes.carnet');
-        $pdf ->set_paper("A4", "landscape");
+        $pdf = Pdf::loadView('livewire.reportes.carnet', data:['lsb'=>$lsbs]);
+        $pdf ->set_paper("carnet", "landscape");
 
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();

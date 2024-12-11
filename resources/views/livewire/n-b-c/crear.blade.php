@@ -358,7 +358,7 @@
   </div>
 </div>
 
-<script>
+{{-- <script>
   var marker;
   var coords = {};
   initMap = function () 
@@ -393,7 +393,18 @@
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&callback=initMap&v=weekly" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZhH6WXRQpmvkrpZ6w-kBIQTqOwHuPncI&callback=initMap&v=weekly" defer></script> --}}
+
+<script>
+  // initialize the map on the "map" div with a given center and zoom
+
+  var BING_KEY = 'AuhiCJHlGzhg93IqUH_oCpl_-ZUrIE6SPftlyGYUvr9Amx5nzA-WqGcPquyFZl4L'
+
+  var map = L.map('map').setView([7.1195102, -67.0456545], 6)
+
+  var bingLayer = L.tileLayer.bing(BING_KEY).addTo(map)
+  
+</script>
 
 @section('js')
   <script src="{{ asset('js/functions3.js')}}" type="text/javascript"></script>
