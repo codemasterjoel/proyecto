@@ -265,4 +265,15 @@ class Index extends Component
             $this->paisId = null;
         }
     }
+    public function carnet()
+    {
+        // return view('livewire.reportes.carnet');
+
+        $pdf = Pdf::loadView('livewire.reportes.carnet');
+        $pdf ->set_paper("A4", "landscape");
+
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, 'carnet.pdf');
+    }
 }

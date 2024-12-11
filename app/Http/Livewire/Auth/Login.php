@@ -33,14 +33,16 @@ class Login extends Component
     {    
         $user = User::where('email', '=', $this->email)->first();
         
-        if($user->email == $this->email and password_verify($this->password, $user->password)) 
-        {
-            auth()->login($user, $this->remember_me);
-            return redirect()->intended('/dashboard'); 
+        if($user->count() > 0){
+            if($user->email == $this->email and password_verify($this->password, $user->password)) 
+            {
+                auth()->login($user, $this->remember_me);
+                return redirect()->intended('/dashboard'); 
 
-        }else
-        {
-            return $this->addError('email', trans('auth.failed')); 
+            }else
+            {
+                return $this->addError('email', trans('auth.failed')); 
+            }
         }
     }
     public function render()

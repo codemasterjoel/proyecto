@@ -12,7 +12,7 @@
         "barryvdh/laravel-dompdf": "^3.0",
         "guzzlehttp/guzzle": "^7.4",
         "laravel-lang/common": "^6.4",
-        "laravel/framework": "^11.0",
+        "laravel/framework": "^11.22",
         "laravel/tinker": "^2.6",
         "livewire/livewire": "^3.0",
         "simplesoftwareio/simple-qrcode": "^2.0"
@@ -20,7 +20,7 @@
     "require-dev": {
         "spatie/laravel-ignition": "^2.0",
         "fakerphp/faker": "^1.17",
-        "laravel/sail": "^1.12",
+        "laravel/sail": "^1.31.3",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.1",
         "phpunit/phpunit": "^10.0"

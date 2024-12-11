@@ -51,7 +51,7 @@
                                         {{-- <td class="text-center text-uppercase"><p class=" font-weight-bold">{{$lsb->estatus ? 'activo' : 'inactivo'}}</p></td> --}}
                                         <td class="text-center"><a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar lsb">
                                             <a wire:click="fichalsb('{{$lsb->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-warning font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
-                                            {{-- <a wire:click="verficha('{{$lsb->id}}')" rel="tooltip" title="Generar Ficha" type="button" class="text-danger font-bold py-2 px-2"><i class="material-icons">contact_page</i></a> --}}
+                                            <a wire:click="carnet()" rel="tooltip" title="Generar Carnet" type="button" class="text-danger font-bold py-2 px-2"><i class="material-icons">contact_page</i></a>
                                             <a wire:click="editar('{{$lsb->id}}')" class=" text-success px-2 py-1 mb-0" type="button"><span class="material-symbols-outlined">person_edit</span></a>
                                             <a wire:click="borrar('{{$lsb->id}}')" class="text-danger font-bold py-2 px-2"><span class="material-symbols-outlined">person_cancel</span></a>
                                         </td>
